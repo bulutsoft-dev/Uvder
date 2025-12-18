@@ -1,0 +1,87 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-18 19:25+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: core/settings.py:115
+msgid "Türkçe"
+msgstr ""
+
+#: core/settings.py:116
+msgid "English"
+msgstr ""
+
+#: templates/base.html:8
+msgid "Umut Vagonu Derneği"
+msgstr ""
+
+#: templates/base.html:35
+msgid "Kapat"
+msgstr ""
+
+#: templates/partials/_footer.html:45
+msgid "Hızlı Linkler"
+msgstr ""
+
+#: templates/partials/_footer.html:47 templates/partials/_header.html:21
+msgid "Hakkımızda"
+msgstr ""
+
+#: templates/partials/_footer.html:48 templates/partials/_header.html:22
+msgid "Haberler"
+msgstr ""
+
+#: templates/partials/_footer.html:49 templates/partials/_header.html:23
+msgid "Galeri"
+msgstr ""
+
+#: templates/partials/_footer.html:50 templates/partials/_header.html:24
+msgid "Yazar Köşesi"
+msgstr ""
+
+#: templates/partials/_footer.html:51 templates/partials/_footer.html:56
+#: templates/partials/_header.html:26
+msgid "İletişim"
+msgstr ""
+
+#: templates/partials/_footer.html:90
+msgid "Bağış Bilgileri"
+msgstr ""
+
+#: templates/partials/_footer.html:95 templates/partials/_footer.html:104
+msgid "Hesap No"
+msgstr ""
+
+#: templates/partials/_footer.html:108 templates/partials/_header.html:29
+msgid "Bağış Yap"
+msgstr ""
+
+#: templates/partials/_footer.html:114
+msgid "Tüm Hakları Saklıdır."
+msgstr ""
+
+#: templates/partials/_header.html:13
+msgid "Menü"
+msgstr ""
+
+#: templates/partials/_header.html:20
+msgid "Ana Sayfa"
+msgstr ""
+
+#: templates/partials/_header.html:25
+msgid "Bağlantılar"
+msgstr ""

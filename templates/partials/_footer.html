@@ -1,3 +1,4 @@
+{% load i18n %}
 <footer class="footer">
     <div class="container">
         <div class="footer-grid">
@@ -8,7 +9,8 @@
                         <strong>Umut Vagonu</strong>
                     </span>
                 </div>
-                <p>{{ site_settings.about_text|default:"Umut Vagonu Derneği, şeffaflık ve hesap verebilirlik ilkeleriyle çalışan, kamu yararına bir sivil toplum kuruluşudur."|truncatewords:30 }}</p>
+                <p>{{ site_settings.about_text|default:"Umut Vagonu Derneği, şeffaflık ve hesap verebilirlik ilkeleriyle
+                    çalışan, kamu yararına bir sivil toplum kuruluşudur."|truncatewords:30 }}</p>
 
                 <div class="social-links">
                     {% if site_settings.instagram_url %}
@@ -40,18 +42,18 @@
             </div>
 
             <div class="footer-links">
-                <h4>Hızlı Linkler</h4>
+                <h4>{% trans "Hızlı Linkler" %}</h4>
                 <ul>
-                    <li><a href="{% url 'landing:about' %}">Hakkımızda</a></li>
-                    <li><a href="{% url 'landing:news_list' %}">Haberler</a></li>
-                    <li><a href="{% url 'landing:gallery' %}">Galeri</a></li>
-                    <li><a href="{% url 'landing:writers' %}">Yazar Köşesi</a></li>
-                    <li><a href="{% url 'landing:contact' %}">İletişim</a></li>
+                    <li><a href="{% url 'landing:about' %}">{% trans "Hakkımızda" %}</a></li>
+                    <li><a href="{% url 'landing:news_list' %}">{% trans "Haberler" %}</a></li>
+                    <li><a href="{% url 'landing:gallery' %}">{% trans "Galeri" %}</a></li>
+                    <li><a href="{% url 'landing:writers' %}">{% trans "Yazar Köşesi" %}</a></li>
+                    <li><a href="{% url 'landing:contact' %}">{% trans "İletişim" %}</a></li>
                 </ul>
             </div>
 
             <div class="footer-contact">
-                <h4>İletişim</h4>
+                <h4>{% trans "İletişim" %}</h4>
                 <ul>
                     {% if site_settings.contact_address %}
                     <li>
@@ -85,12 +87,12 @@
             </div>
 
             <div class="footer-donate">
-                <h4>Bağış Bilgileri</h4>
+                <h4>{% trans "Bağış Bilgileri" %}</h4>
                 {% if site_settings.bank_name %}
                 <div class="bank-info">
                     <p><strong>{{ site_settings.bank_name }}</strong></p>
                     {% if site_settings.bank_account %}
-                    <p>Hesap No: {{ site_settings.bank_account }}</p>
+                    <p>{% trans "Hesap No" %}: {{ site_settings.bank_account }}</p>
                     {% endif %}
                     {% if site_settings.bank_iban %}
                     <p>IBAN: {{ site_settings.bank_iban }}</p>
@@ -99,17 +101,17 @@
                 {% else %}
                 <div class="bank-info">
                     <p><strong>Ziraat Bankası</strong></p>
-                    <p>Hesap No: 2642979740225001</p>
+                    <p>{% trans "Hesap No" %}: 2642979740225001</p>
                 </div>
                 {% endif %}
                 <a href="{% url 'landing:contact' %}" class="btn btn-donate">
-                    <i class="fas fa-heart"></i> Bağış Yap
+                    <i class="fas fa-heart"></i> {% trans "Bağış Yap" %}
                 </a>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; {% now "Y" %} Umut Vagonu Derneği. Tüm Hakları Saklıdır.</p>
+            <p>&copy; {% now "Y" %} Umut Vagonu Derneği. {% trans "Tüm Hakları Saklıdır." %}</p>
             <p class="developer-credit">Developed by <a href="https://furkanbulut.vercel.app/" target="_blank"
                     rel="noopener">Furkan Bulut</a></p>
         </div>

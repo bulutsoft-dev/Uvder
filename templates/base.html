@@ -1,10 +1,11 @@
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="{{ LANGUAGE_CODE }}">
 
 <head>
     {% include 'partials/_meta.html' %}
 
-    <title>{% block title %}Umut Vagonu Derneği{% endblock %}</title>
+    <title>{% block title %}{% trans "Umut Vagonu Derneği" %}{% endblock %}</title>
 
     <!-- Google Fonts -->
     <link
@@ -31,7 +32,7 @@
                 <i
                     class="fas {% if message.tags == 'success' %}fa-check-circle{% elif message.tags == 'error' %}fa-exclamation-circle{% else %}fa-info-circle{% endif %}"></i>
                 {{ message }}
-                <button type="button" class="alert-close" aria-label="Kapat">&times;</button>
+                <button type="button" class="alert-close" aria-label="{% trans 'Kapat' %}">&times;</button>
             </div>
             {% endfor %}
         </div>

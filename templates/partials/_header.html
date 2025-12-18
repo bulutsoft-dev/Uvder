@@ -1,3 +1,4 @@
+{% load i18n %}
 <header class="header">
     <nav class="navbar">
         <div class="container">
@@ -9,26 +10,75 @@
                 </span>
             </a>
 
-            <button class="nav-toggle" aria-label="Menü">
+            <!-- Nav Toggle Button (Mobile) -->
+            <button class="nav-toggle" aria-label="{% trans 'Menü' %}">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
 
+            <!-- Navigation Menu -->
             <ul class="nav-menu">
-                <li><a href="{% url 'landing:home' %}" class="nav-link">Ana Sayfa</a></li>
-                <li><a href="{% url 'landing:about' %}" class="nav-link">Hakkımızda</a></li>
-                <li><a href="{% url 'landing:news_list' %}" class="nav-link">Haberler</a></li>
-                <li><a href="{% url 'landing:gallery' %}" class="nav-link">Galeri</a></li>
-                <li><a href="{% url 'landing:writers' %}" class="nav-link">Yazar Köşesi</a></li>
-                <li><a href="{% url 'landing:links' %}" class="nav-link">Bağlantılar</a></li>
-                <li><a href="{% url 'landing:contact' %}" class="nav-link">İletişim</a></li>
+                <li><a href="{% url 'landing:home' %}" class="nav-link">{% trans "Ana Sayfa" %}</a></li>
+                <li><a href="{% url 'landing:about' %}" class="nav-link">{% trans "Hakkımızda" %}</a></li>
+                <li><a href="{% url 'landing:news_list' %}" class="nav-link">{% trans "Haberler" %}</a></li>
+                <li><a href="{% url 'landing:gallery' %}" class="nav-link">{% trans "Galeri" %}</a></li>
+                <li><a href="{% url 'landing:writers' %}" class="nav-link">{% trans "Yazar Köşesi" %}</a></li>
+                <li><a href="{% url 'landing:links' %}" class="nav-link">{% trans "Bağlantılar" %}</a></li>
+                <li><a href="{% url 'landing:contact' %}" class="nav-link">{% trans "İletişim" %}</a></li>
                 <li>
                     <a href="{% url 'landing:contact' %}" class="nav-link btn-donate">
-                        <i class="fas fa-heart"></i> Bağış Yap
+                        <i class="fas fa-heart"></i> {% trans "Bağış Yap" %}
                     </a>
+                </li>
+
+                <!-- Desktop Language Switcher (Flag Toggle) -->
+                <li class="lang-desktop-item">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    <div class="flag-switcher">
+                        {% if LANGUAGE_CODE == 'tr' %}
+                        <button type="button" class="flag-btn active"
+                            onclick="document.getElementById('lang-form-en').submit();" title="Switch to English">
+                            🇹🇷
+                        </button>
+                        {% else %}
+                        <button type="button" class="flag-btn active"
+                            onclick="document.getElementById('lang-form-tr').submit();" title="Türkçe'ye Geç">
+                            🇬🇧
+                        </button>
+                        {% endif %}
+                    </div>
+                </li>
+
+                <!-- Mobile Language Switcher (Flag Toggle) -->
+                <li class="language-switcher-mobile">
+                    <div class="mobile-lang-buttons">
+                        {% if LANGUAGE_CODE == 'tr' %}
+                        <button type="button" class="flag-btn active"
+                            onclick="document.getElementById('lang-form-en').submit();" title="Switch to English">
+                            🇹🇷
+                        </button>
+                        {% else %}
+                        <button type="button" class="flag-btn active"
+                            onclick="document.getElementById('lang-form-tr').submit();" title="Türkçe'ye Geç">
+                            🇬🇧
+                        </button>
+                        {% endif %}
+                    </div>
                 </li>
             </ul>
         </div>
     </nav>
+
+    <!-- Hidden Language Forms -->
+    <form id="lang-form-tr" action="{% url 'set_language' %}" method="post" style="display:none;">
+        {% csrf_token %}
+        <input type="hidden" name="language" value="tr">
+        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+    </form>
+    <form id="lang-form-en" action="{% url 'set_language' %}" method="post" style="display:none;">
+        {% csrf_token %}
+        <input type="hidden" name="language" value="en">
+        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+    </form>
 </header>
