@@ -1,0 +1,85 @@
+{% load static %}
+{# SEO Meta Tags Partial #}
+
+{# Basic Meta Tags #}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+{# Primary Meta Tags #}
+<meta name="description" content="{{ page_description|default:site_settings.about_text|default:" Umut Vagonu Derneği - İhtiyaç sahiplerine ulaşmak, yüzlerde bir tebessüm oluşturmak için durmaksızın çalışıyoruz. Eğitim desteği, insan yardım ve sürdürülebilir projeler."|truncatewords:30 }}">
+<meta name="keywords"
+    content="umut vagonu, dernek, yardım, bağış, gönüllü, manisa, eğitim desteği, insani yardım, sivil toplum kuruluşu, hayır kurumu">
+<meta name="author" content="Umut Vagonu Derneği">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Turkish">
+<meta name="revisit-after" content="7 days">
+
+{# Favicon #}
+<link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/static/images/logo.png">
+<link rel="shortcut icon" href="/static/images/favicon.png" type="image/png">
+
+{# Open Graph / Facebook #}
+<meta property="og:type" content="{{ og_type|default:'website' }}">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:title" content="{{ page_title|default:site_settings.site_title|default:'Umut Vagonu Derneği' }}">
+<meta property="og:description"
+    content="{{ page_description|default:site_settings.about_text|default:'Umut Vagonu Derneği - İhtiyaç sahiplerine ulaşmak, yüzlerde bir tebessüm oluşturmak için durmaksızın çalışıyoruz.'|truncatewords:25 }}">
+<meta property="og:image"
+    content="{{ og_image|default:request.scheme }}://{{ request.get_host }}/static/images/logo.png">
+<meta property="og:image:alt" content="Umut Vagonu Logo">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Umut Vagonu Derneği">
+<meta property="og:locale" content="tr_TR">
+
+{# Twitter #}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="{{ request.build_absolute_uri }}">
+<meta name="twitter:title" content="{{ page_title|default:site_settings.site_title|default:'Umut Vagonu Derneği' }}">
+<meta name="twitter:description"
+    content="{{ page_description|default:site_settings.about_text|default:'Umut Vagonu Derneği - İhtiyaç sahiplerine ulaşmak, yüzlerde bir tebessüm oluşturmak için durmaksızın çalışıyoruz.'|truncatewords:20 }}">
+<meta name="twitter:image"
+    content="{{ og_image|default:request.scheme }}://{{ request.get_host }}/static/images/logo.png">
+
+{# Theme Color #}
+<meta name="theme-color" content="#3EB89A">
+<meta name="msapplication-TileColor" content="#3EB89A">
+<meta name="msapplication-TileImage" content="/static/images/logo.png">
+
+{# Canonical URL #}
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+{# Preconnect for Performance #}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+{# Structured Data (JSON-LD) #}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "NGO",
+    "name": "{{ site_settings.site_title|default:'Umut Vagonu Derneği' }}",
+    "alternateName": "Umut Vagonu",
+    "url": "{{ request.scheme }}://{{ request.get_host }}",
+    "logo": "{{ request.scheme }}://{{ request.get_host }}/static/images/logo.png",
+    "description": "{{ site_settings.about_text|default:'Umut Vagonu Derneği, ihtiyaç sahiplerine eğitim desteği, insani yardım ve sürdürülebilir projelerle ulaşan bir sivil toplum kuruluşudur.' }}",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "{{ site_settings.contact_address|default:'Güzelyurt Mh. 5731 Sk. No:11' }}",
+        "addressLocality": "Yunusemre",
+        "addressRegion": "Manisa",
+        "addressCountry": "TR"
+    },
+    {% if site_settings.contact_phone %}"telephone": "{{ site_settings.contact_phone }}",{% endif %}
+    "email": "{{ site_settings.contact_email|default:'bilgi@umutvagonu.org' }}",
+    "sameAs": [
+        {% if site_settings.instagram_url %}"{{ site_settings.instagram_url }}"{% else %}"https://www.instagram.com/umutvagonumanisa/"{% endif %}
+        {% if site_settings.facebook_url %}, "{{ site_settings.facebook_url }}"{% endif %}
+        {% if site_settings.twitter_url %}, "{{ site_settings.twitter_url }}"{% endif %}
+        {% if site_settings.youtube_url %}, "{{ site_settings.youtube_url }}"{% endif %}
+    ]
+}
+</script>

@@ -43,9 +43,18 @@ def news_detail(request, slug):
     news_item = get_object_or_404(News, slug=slug, is_published=True)
     related_news = News.objects.filter(is_published=True).exclude(pk=news_item.pk)[:3]
     
+    # SEO context
+    og_image = None
+    if news_item.image:
+        og_image = f"{request.scheme}://{request.get_host()}{news_item.image.url}"
+    
     context = {
         'news': news_item,
         'related_news': related_news,
+        'page_title': news_item.title,
+        'page_description': news_item.summary,
+        'og_type': 'article',
+        'og_image': og_image,
     }
     return render(request, 'pages/news_detail.html', context)
 
@@ -127,9 +136,20 @@ def article_detail(request, slug):
         writer=article.writer, is_published=True
     ).exclude(pk=article.pk)[:3]
     
+    # SEO context
+    og_image = None
+    if article.image:
+        og_image = f"{request.scheme}://{request.get_host()}{article.image.url}"
+    elif article.writer.photo:
+        og_image = f"{request.scheme}://{request.get_host()}{article.writer.photo.url}"
+    
     context = {
         'article': article,
         'related_articles': related_articles,
+        'page_title': f"{article.title} | {article.writer.name}",
+        'page_description': article.content[:200] if article.content else '',
+        'og_type': 'article',
+        'og_image': og_image,
     }
     return render(request, 'pages/article_detail.html', context)
 

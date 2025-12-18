@@ -275,7 +275,8 @@ img {
 .hero-logo {
     width: 120px;
     height: 120px;
-    margin: 0 auto 30px;
+    display: block;
+    margin: 0 auto 50px;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     animation: float 3s ease-in-out infinite;
