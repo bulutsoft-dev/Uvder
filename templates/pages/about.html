@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block title %}Hakkımızda | {{ site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">Hakkımızda</h1>
+        <nav class="breadcrumb">
+            <a href="{% url 'landing:home' %}">Ana Sayfa</a>
+            <span>/</span>
+            <span>Hakkımızda</span>
+        </nav>
+    </div>
+</section>
+
+<!-- About Content -->
+<section class="about-content-section">
+    <div class="container">
+        <div class="about-intro">
+            <div class="about-text">
+                <h2>Umut Vagonu Derneği</h2>
+                <p class="lead">{{ site_settings.about_text|default:"Umut Vagonu Derneği, ihtiyaç sahiplerine ulaşmak,
+                    yüzlerde bir tebessüm oluşturmak için durmaksızın çalışan bir sivil toplum kuruluşudur." }}</p>
+
+                <p>Manisa merkezli olarak kurulan derneğimiz, Fen Bilgisi Öğretmeni Arzu Şahin Ünal tarafından
+                    başlatılan "Umut Vagonu" projesinin dernekleşmesiyle hayata geçmiştir.</p>
+
+                <p>7'den 70'e herkesin birbiriyle kaynaşmasını sağlayarak, topluma karşı duyarlı, sorumluluk sahibi ve
+                    gelişmeye açık bireyler yetiştirmek misyonuyla çalışıyoruz.</p>
+            </div>
+            <div class="about-image">
+                <div class="about-image-placeholder">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mission & Vision -->
+        <div class="mission-vision-grid">
+            <div class="mv-card">
+                <div class="mv-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3>Misyonumuz</h3>
+                <p>İhtiyaç sahiplerine eğitim, insani yardım ve sürdürülebilir projelerle ulaşarak toplumsal dayanışmayı
+                    güçlendirmek.</p>
+            </div>
+            <div class="mv-card">
+                <div class="mv-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3>Vizyonumuz</h3>
+                <p>Türkiye'nin her köşesine umut taşıyan, gönüllülük kültürünü yaygınlaştıran öncü bir sivil toplum
+                    kuruluşu olmak.</p>
+            </div>
+            <div class="mv-card">
+                <div class="mv-icon">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <h3>Değerlerimiz</h3>
+                <p>Şeffaflık, hesap verebilirlik, gönüllülük, dayanışma ve sürdürülebilirlik ilkeleriyle hareket
+                    ediyoruz.</p>
+            </div>
+        </div>
+
+        <!-- What We Do -->
+        <div class="what-we-do">
+            <h2 class="section-title">Neler Yapıyoruz?</h2>
+
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <div class="activity-number">01</div>
+                    <h4>Eğitim Desteği</h4>
+                    <p>Doğu'daki köy okullarında eğitim gören çocuklara kırtasiye ve oyuncak yardımı yapıyor, köy
+                        okullarının tadilatını gerçekleştiriyor ve kütüphaneler kazandırıyoruz.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-number">02</div>
+                    <h4>İnsani Yardım</h4>
+                    <p>Afet bölgeleri ve ihtiyaç sahibi ailelere gıda, giyim ve barınma gibi temel yaşam malzemeleri
+                        ulaştırıyoruz.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-number">03</div>
+                    <h4>Sürdürülebilir Projeler</h4>
+                    <p>Kalıcı çözümler üreterek toplumsal kalkınmaya destek veriyor, gönüllülük temalı festivaller
+                        düzenliyoruz.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-number">04</div>
+                    <h4>Gönüllü Ağı</h4>
+                    <p>Öğrenci, mühendis, avukat, öğretmen ve daha birçok meslek grubundan 1000+ gönüllü ile
+                        çalışıyoruz.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Impact Stats -->
+        <div class="impact-section">
+            <h2 class="section-title">Etkimiz</h2>
+            <div class="impact-grid">
+                <div class="impact-item">
+                    <span class="impact-number">{{ site_settings.stat_lives_touched|default:"10000" }}+</span>
+                    <span class="impact-label">Ulaşılan Hayat</span>
+                </div>
+                <div class="impact-item">
+                    <span class="impact-number">{{ site_settings.stat_projects|default:"100" }}+</span>
+                    <span class="impact-label">Tamamlanan Proje</span>
+                </div>
+                <div class="impact-item">
+                    <span class="impact-number">{{ site_settings.stat_volunteers|default:"1000" }}+</span>
+                    <span class="impact-label">Gönüllü</span>
+                </div>
+                <div class="impact-item">
+                    <span class="impact-number">{{ site_settings.stat_cities|default:"81" }}</span>
+                    <span class="impact-label">İl</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <div class="cta-text">
+                <h2>Siz de Aramıza Katılın</h2>
+                <p>Gönüllü ordumuza katılarak umut taşıyan bir hareketin parçası olun.</p>
+            </div>
+            <div class="cta-buttons">
+                <a href="{% url 'landing:contact' %}" class="btn btn-donate-large">
+                    <i class="fas fa-hands-helping"></i> Gönüllü Ol
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

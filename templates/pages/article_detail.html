@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ article.title }} | Yazar Köşesi | {{ site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">Yazı</h1>
+        <nav class="breadcrumb">
+            <a href="{% url 'landing:home' %}">Ana Sayfa</a>
+            <span>/</span>
+            <a href="{% url 'landing:writers' %}">Yazar Köşesi</a>
+            <span>/</span>
+            <span>{{ article.title|truncatewords:5 }}</span>
+        </nav>
+    </div>
+</section>
+
+<!-- Article Detail -->
+<section class="article-detail-section">
+    <div class="container">
+        <div class="article-detail-grid">
+            <article class="article-detail-main">
+                {% if article.image %}
+                <div class="article-detail-image">
+                    <img src="{{ article.image.url }}" alt="{{ article.title }}">
+                </div>
+                {% endif %}
+
+                <div class="article-detail-meta">
+                    <a href="{% url 'landing:writer_detail' article.writer.slug %}" class="article-author-link">
+                        {% if article.writer.photo %}
+                        <img src="{{ article.writer.photo.url }}" alt="{{ article.writer.name }}"
+                            class="author-avatar-small">
+                        {% else %}
+                        <div class="author-avatar-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        {% endif %}
+                        <span>{{ article.writer.name }}</span>
+                    </a>
+                    <span><i class="far fa-calendar"></i> {{ article.published_date|date:"d F Y" }}</span>
+                </div>
+
+                <h1 class="article-detail-title">{{ article.title }}</h1>
+
+                <div class="article-detail-content">
+                    {{ article.content|linebreaks }}
+                </div>
+
+                <!-- Share Buttons -->
+                <div class="share-section">
+                    <span>Paylaş:</span>
+                    <div class="share-buttons">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"
+                            target="_blank" rel="noopener" class="share-btn facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ article.title }}"
+                            target="_blank" rel="noopener" class="share-btn twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://wa.me/?text={{ article.title }} - {{ request.build_absolute_uri }}"
+                            target="_blank" rel="noopener" class="share-btn whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="article-sidebar">
+                <!-- Author Info -->
+                <div class="sidebar-widget author-widget">
+                    <div class="author-card">
+                        {% if article.writer.photo %}
+                        <img src="{{ article.writer.photo.url }}" alt="{{ article.writer.name }}" class="author-photo">
+                        {% else %}
+                        <div class="author-photo-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        {% endif %}
+                        <h4>{{ article.writer.name }}</h4>
+                        {% if article.writer.bio %}
+                        <p>{{ article.writer.bio|truncatewords:20 }}</p>
+                        {% endif %}
+                        <a href="{% url 'landing:writer_detail' article.writer.slug %}" class="btn btn-outline btn-sm">
+                            Tüm Yazıları
+                        </a>
+                    </div>
+                </div>
+
+                {% if related_articles %}
+                <div class="sidebar-widget">
+                    <h3>Bu Yazarın Diğer Yazıları</h3>
+                    <div class="related-articles-list">
+                        {% for item in related_articles %}
+                        <a href="{% url 'landing:article_detail' item.slug %}" class="related-article-item">
+                            <h4>{{ item.title|truncatewords:8 }}</h4>
+                            <span>{{ item.published_date|date:"d M Y" }}</span>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </aside>
+        </div>
+    </div>
+</section>
+{% endblock %}

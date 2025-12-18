@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}Bağlantılar | {{ site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">Bağlantılar</h1>
+        <nav class="breadcrumb">
+            <a href="{% url 'landing:home' %}">Ana Sayfa</a>
+            <span>/</span>
+            <span>Bağlantılar</span>
+        </nav>
+    </div>
+</section>
+
+<!-- Links Section -->
+<section class="links-section">
+    <div class="container">
+        <div class="links-intro">
+            <p>Umut Vagonu ile ilgili önemli bağlantılar ve sosyal medya hesaplarımız.</p>
+        </div>
+
+        {% if links %}
+        <div class="links-full-grid">
+            {% for link in links %}
+            <a href="{{ link.url }}" target="_blank" rel="noopener"
+                class="link-card-full {% if link.is_featured %}featured{% endif %}">
+                <div class="link-icon-wrapper">
+                    <i class="{{ link.icon }}"></i>
+                </div>
+                <div class="link-details">
+                    <h3>{{ link.title }}</h3>
+                    {% if link.description %}
+                    <p>{{ link.description }}</p>
+                    {% endif %}
+                    <span class="link-url">{{ link.url|truncatechars:50 }}</span>
+                </div>
+                <div class="link-arrow">
+                    <i class="fas fa-external-link-alt"></i>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <i class="fas fa-link"></i>
+            <h3>Henüz bağlantı bulunmuyor</h3>
+            <p>Yakında önemli bağlantılarımızı buradan görebileceksiniz.</p>
+        </div>
+        {% endif %}
+
+        <!-- Social Media Section -->
+        <div class="social-section">
+            <h2>Sosyal Medya</h2>
+            <p>Bizi sosyal medyadan takip edin ve gelişmelerden haberdar olun.</p>
+
+            <div class="social-links-large">
+                {% if site_settings.instagram_url %}
+                <a href="{{ site_settings.instagram_url }}" target="_blank" rel="noopener"
+                    class="social-card instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                {% else %}
+                <a href="https://www.instagram.com/umutvagonumanisa/" target="_blank" rel="noopener"
+                    class="social-card instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                {% endif %}
+
+                {% if site_settings.facebook_url %}
+                <a href="{{ site_settings.facebook_url }}" target="_blank" rel="noopener" class="social-card facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    <span>Facebook</span>
+                </a>
+                {% endif %}
+
+                {% if site_settings.twitter_url %}
+                <a href="{{ site_settings.twitter_url }}" target="_blank" rel="noopener" class="social-card twitter">
+                    <i class="fab fa-twitter"></i>
+                    <span>Twitter</span>
+                </a>
+                {% endif %}
+
+                {% if site_settings.youtube_url %}
+                <a href="{{ site_settings.youtube_url }}" target="_blank" rel="noopener" class="social-card youtube">
+                    <i class="fab fa-youtube"></i>
+                    <span>YouTube</span>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

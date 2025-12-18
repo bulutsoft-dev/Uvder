@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ writer.name }} | Yazar Köşesi | {{ site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">{{ writer.name }}</h1>
+        <nav class="breadcrumb">
+            <a href="{% url 'landing:home' %}">Ana Sayfa</a>
+            <span>/</span>
+            <a href="{% url 'landing:writers' %}">Yazar Köşesi</a>
+            <span>/</span>
+            <span>{{ writer.name }}</span>
+        </nav>
+    </div>
+</section>
+
+<!-- Writer Detail -->
+<section class="writer-detail-section">
+    <div class="container">
+        <div class="writer-profile">
+            <div class="writer-avatar large">
+                {% if writer.photo %}
+                <img src="{{ writer.photo.url }}" alt="{{ writer.name }}">
+                {% else %}
+                <div class="avatar-placeholder large">
+                    <i class="fas fa-user"></i>
+                </div>
+                {% endif %}
+            </div>
+            <div class="writer-bio">
+                <h2>{{ writer.name }}</h2>
+                {% if writer.bio %}
+                <p>{{ writer.bio }}</p>
+                {% endif %}
+                {% if writer.email %}
+                <a href="mailto:{{ writer.email }}" class="writer-email">
+                    <i class="fas fa-envelope"></i> {{ writer.email }}
+                </a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Writer's Articles -->
+        <div class="section-divider"></div>
+
+        <div class="section-header">
+            <h2 class="section-title">Yazıları</h2>
+        </div>
+
+        {% if articles %}
+        <div class="articles-grid">
+            {% for article in articles %}
+            <article class="article-card">
+                {% if article.image %}
+                <div class="article-image">
+                    <img src="{{ article.image.url }}" alt="{{ article.title }}">
+                </div>
+                {% endif %}
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="article-date">
+                            <i class="far fa-calendar"></i> {{ article.published_date|date:"d M Y" }}
+                        </span>
+                    </div>
+                    <h3>{{ article.title }}</h3>
+                    <p>{{ article.content|truncatewords:25 }}</p>
+                    <a href="{% url 'landing:article_detail' article.slug %}" class="article-link">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if articles.has_other_pages %}
+        <nav class="pagination">
+            {% if articles.has_previous %}
+            <a href="?page={{ articles.previous_page_number }}" class="page-link">
+                <i class="fas fa-chevron-left"></i> Önceki
+            </a>
+            {% endif %}
+
+            <span class="page-info">
+                Sayfa {{ articles.number }} / {{ articles.paginator.num_pages }}
+            </span>
+
+            {% if articles.has_next %}
+            <a href="?page={{ articles.next_page_number }}" class="page-link">
+                Sonraki <i class="fas fa-chevron-right"></i>
+            </a>
+            {% endif %}
+        </nav>
+        {% endif %}
+        {% else %}
+        <div class="empty-state">
+            <i class="fas fa-pen"></i>
+            <h3>Henüz yazı bulunmuyor</h3>
+            <p>Bu yazarın henüz yayınlanmış yazısı bulunmuyor.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

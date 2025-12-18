@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ news.title }} | {{ site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">Haber Detay</h1>
+        <nav class="breadcrumb">
+            <a href="{% url 'landing:home' %}">Ana Sayfa</a>
+            <span>/</span>
+            <a href="{% url 'landing:news_list' %}">Haberler</a>
+            <span>/</span>
+            <span>{{ news.title|truncatewords:5 }}</span>
+        </nav>
+    </div>
+</section>
+
+<!-- News Detail -->
+<section class="news-detail-section">
+    <div class="container">
+        <div class="news-detail-grid">
+            <article class="news-detail-main">
+                {% if news.image %}
+                <div class="news-detail-image">
+                    <img src="{{ news.image.url }}" alt="{{ news.title }}">
+                </div>
+                {% endif %}
+
+                <div class="news-detail-meta">
+                    <span><i class="far fa-calendar"></i> {{ news.published_date|date:"d F Y" }}</span>
+                    {% if news.is_featured %}
+                    <span class="badge-featured"><i class="fas fa-star"></i> Öne Çıkan</span>
+                    {% endif %}
+                </div>
+
+                <h1 class="news-detail-title">{{ news.title }}</h1>
+
+                <div class="news-detail-summary">
+                    <p>{{ news.summary }}</p>
+                </div>
+
+                <div class="news-detail-content">
+                    {{ news.content|linebreaks }}
+                </div>
+
+                <!-- Share Buttons -->
+                <div class="share-section">
+                    <span>Paylaş:</span>
+                    <div class="share-buttons">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"
+                            target="_blank" rel="noopener" class="share-btn facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ news.title }}"
+                            target="_blank" rel="noopener" class="share-btn twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://wa.me/?text={{ news.title }} - {{ request.build_absolute_uri }}"
+                            target="_blank" rel="noopener" class="share-btn whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="news-sidebar">
+                {% if related_news %}
+                <div class="sidebar-widget">
+                    <h3>İlgili Haberler</h3>
+                    <div class="related-news-list">
+                        {% for item in related_news %}
+                        <a href="{% url 'landing:news_detail' item.slug %}" class="related-news-item">
+                            {% if item.image %}
+                            <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                            {% else %}
+                            <div class="related-placeholder">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                            {% endif %}
+                            <div class="related-content">
+                                <h4>{{ item.title|truncatewords:8 }}</h4>
+                                <span>{{ item.published_date|date:"d M Y" }}</span>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="sidebar-widget cta-widget">
+                    <h3>Destek Olun</h3>
+                    <p>Umut Vagonu hareketine katılarak bir fark yaratın.</p>
+                    <a href="{% url 'landing:contact' %}" class="btn btn-primary btn-block">
+                        <i class="fas fa-heart"></i> Bağış Yap
+                    </a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+{% endblock %}

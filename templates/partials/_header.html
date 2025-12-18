@@ -1,0 +1,34 @@
+<header class="header">
+    <nav class="navbar">
+        <div class="container">
+            <a href="{% url 'landing:home' %}" class="logo">
+                <span class="logo-icon">🚂</span>
+                <span class="logo-text">
+                    <strong>Umut Vagonu</strong>
+                    <small>{{ site_settings.slogan|default:"Geleceğe Umut Taşıyoruz" }}</small>
+                </span>
+            </a>
+
+            <button class="nav-toggle" aria-label="Menü">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu">
+                <li><a href="{% url 'landing:home' %}" class="nav-link">Ana Sayfa</a></li>
+                <li><a href="{% url 'landing:about' %}" class="nav-link">Hakkımızda</a></li>
+                <li><a href="{% url 'landing:news_list' %}" class="nav-link">Haberler</a></li>
+                <li><a href="{% url 'landing:gallery' %}" class="nav-link">Galeri</a></li>
+                <li><a href="{% url 'landing:writers' %}" class="nav-link">Yazar Köşesi</a></li>
+                <li><a href="{% url 'landing:links' %}" class="nav-link">Bağlantılar</a></li>
+                <li><a href="{% url 'landing:contact' %}" class="nav-link">İletişim</a></li>
+                <li>
+                    <a href="{% url 'landing:contact' %}" class="nav-link btn-donate">
+                        <i class="fas fa-heart"></i> Bağış Yap
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

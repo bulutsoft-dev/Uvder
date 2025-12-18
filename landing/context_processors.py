@@ -1,0 +1,20 @@
+from .models import SiteSettings, Link
+
+
+def site_settings(request):
+    """Site ayarlarını tüm template'lere ekle"""
+    try:
+        settings = SiteSettings.get_settings()
+    except:
+        settings = None
+    
+    # Footer için aktif linkleri al
+    try:
+        footer_links = Link.objects.filter(is_active=True)[:5]
+    except:
+        footer_links = []
+    
+    return {
+        'site_settings': settings,
+        'footer_links': footer_links,
+    }

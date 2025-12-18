@@ -1,0 +1,267 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}{{ site_settings.site_title|default:"Umut Vagonu" }} | Geleceğe Umut Taşıyoruz{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-bg">
+        <div class="hero-overlay"></div>
+    </div>
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title animate-fade-in">
+                <span class="hero-icon">🚂</span>
+                Umut Yüklü Vagonlar<br>
+                <span class="gradient-text">Yola Çıkıyor</span>
+            </h1>
+            <p class="hero-subtitle animate-fade-in-delay">
+                İhtiyaç sahiplerine ulaşmak, yüzlerde bir tebessüm oluşturmak için durmaksızın çalışıyoruz.
+                Siz de bu iyilik hareketinin bir parçası olun.
+            </p>
+            <div class="hero-buttons animate-fade-in-delay-2">
+                <a href="{% url 'landing:news_list' %}" class="btn btn-primary">
+                    <i class="fas fa-newspaper"></i> Haberlerimiz
+                </a>
+                <a href="{% url 'landing:contact' %}" class="btn btn-secondary">
+                    <i class="fas fa-hands-helping"></i> Gönüllü Ol
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="hero-wave">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
+                fill="var(--bg-primary)" />
+        </svg>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="stat-number" data-count="{{ site_settings.stat_lives_touched|default:10000 }}">0</div>
+                <div class="stat-label">Ulaşılan Hayat</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <div class="stat-number" data-count="{{ site_settings.stat_projects|default:100 }}">0</div>
+                <div class="stat-label">Tamamlanan Proje</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-number" data-count="{{ site_settings.stat_volunteers|default:1000 }}">0</div>
+                <div class="stat-label">Gönüllü Ordusu</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="stat-number" data-count="{{ site_settings.stat_cities|default:81 }}">0</div>
+                <div class="stat-label">Hizmet Verilen İl</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Neler Yapıyoruz?</span>
+            <h2 class="section-title">Umut Dolu Projelerimiz</h2>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Eğitim Desteği</h3>
+                <p>Geleceğimizin teminatı çocuklarımızın eğitim materyallerine ulaşmasını sağlıyor, köy okullarına
+                    destek oluyoruz.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h3>İnsani Yardım</h3>
+                <p>Afet bölgeleri ve ihtiyaç sahibi ailelere gıda, giyim ve barınma gibi temel yaşam malzemeleri
+                    ulaştırıyoruz.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <h3>Sürdürülebilir Projeler</h3>
+                <p>Sadece anlık yardım değil, kalıcı çözümler üreterek toplumsal kalkınmaya destek veriyoruz.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Latest News Section -->
+{% if latest_news %}
+<section class="news-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Güncel</span>
+            <h2 class="section-title">Son Haberler</h2>
+            <a href="{% url 'landing:news_list' %}" class="section-link">
+                Tüm Haberler <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="news-grid">
+            {% for news_item in latest_news %}
+            <article class="news-card">
+                <div class="news-image">
+                    {% if news_item.image %}
+                    <img src="{{ news_item.image.url }}" alt="{{ news_item.title }}">
+                    {% else %}
+                    <div class="news-placeholder">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    {% endif %}
+                    {% if news_item.is_featured %}
+                    <span class="news-badge">Öne Çıkan</span>
+                    {% endif %}
+                </div>
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span><i class="far fa-calendar"></i> {{ news_item.published_date|date:"d M Y" }}</span>
+                    </div>
+                    <h3 class="news-title">{{ news_item.title }}</h3>
+                    <p class="news-summary">{{ news_item.summary|truncatewords:20 }}</p>
+                    <a href="{% url 'landing:news_detail' news_item.slug %}" class="news-link">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Gallery Preview -->
+{% if featured_images %}
+<section class="gallery-preview-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Galeri</span>
+            <h2 class="section-title">Fotoğraf Galerisi</h2>
+            <a href="{% url 'landing:gallery' %}" class="section-link">
+                Tüm Fotoğraflar <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="gallery-grid">
+            {% for image in featured_images %}
+            <div class="gallery-item">
+                <img src="{{ image.image.url }}" alt="{{ image.title }}">
+                <div class="gallery-overlay">
+                    <h4>{{ image.title }}</h4>
+                    <span>{{ image.category.name }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <div class="cta-text">
+                <h2>Bir Hayata Dokun</h2>
+                <p>Küçük destekleriniz, büyük umutlara dönüşebilir. Bugün bir değişiklik yapın.</p>
+            </div>
+            <div class="cta-buttons">
+                <a href="{% url 'landing:contact' %}" class="btn btn-donate-large">
+                    <i class="fas fa-heart"></i> Şimdi Bağış Yap
+                </a>
+                <a href="{% url 'landing:contact' %}" class="btn btn-outline-light">
+                    <i class="fas fa-hands-helping"></i> Gönüllü Ol
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Links -->
+{% if featured_links %}
+<section class="quick-links-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Hızlı Erişim</span>
+            <h2 class="section-title">Önemli Bağlantılar</h2>
+        </div>
+
+        <div class="links-grid">
+            {% for link in featured_links %}
+            <a href="{{ link.url }}" target="_blank" rel="noopener" class="link-card">
+                <div class="link-icon">
+                    <i class="{{ link.icon }}"></i>
+                </div>
+                <div class="link-content">
+                    <h4>{{ link.title }}</h4>
+                    {% if link.description %}
+                    <p>{{ link.description|truncatewords:10 }}</p>
+                    {% endif %}
+                </div>
+                <i class="fas fa-external-link-alt link-external"></i>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Counter Animation
+    document.addEventListener('DOMContentLoaded', function () {
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
+
+        const animateCounter = (counter) => {
+            const target = parseInt(counter.getAttribute('data-count'));
+            const count = parseInt(counter.innerText);
+            const increment = target / speed;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(() => animateCounter(counter), 10);
+            } else {
+                counter.innerText = target.toLocaleString('tr-TR') + '+';
+            }
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => observer.observe(counter));
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}Haberler | {{ site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">Haberler</h1>
+        <nav class="breadcrumb">
+            <a href="{% url 'landing:home' %}">Ana Sayfa</a>
+            <span>/</span>
+            <span>Haberler</span>
+        </nav>
+    </div>
+</section>
+
+<!-- News List -->
+<section class="news-list-section">
+    <div class="container">
+        {% if featured_news %}
+        <!-- Featured News -->
+        <article class="featured-news-card">
+            <div class="featured-image">
+                {% if featured_news.image %}
+                <img src="{{ featured_news.image.url }}" alt="{{ featured_news.title }}">
+                {% else %}
+                <div class="news-placeholder large">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+                {% endif %}
+                <span class="news-badge large">Öne Çıkan</span>
+            </div>
+            <div class="featured-content">
+                <div class="news-meta">
+                    <span><i class="far fa-calendar"></i> {{ featured_news.published_date|date:"d F Y" }}</span>
+                </div>
+                <h2>{{ featured_news.title }}</h2>
+                <p>{{ featured_news.summary }}</p>
+                <a href="{% url 'landing:news_detail' featured_news.slug %}" class="btn btn-primary">
+                    Devamını Oku <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </article>
+        {% endif %}
+
+        <!-- News Grid -->
+        {% if news %}
+        <div class="news-grid">
+            {% for news_item in news %}
+            <article class="news-card">
+                <div class="news-image">
+                    {% if news_item.image %}
+                    <img src="{{ news_item.image.url }}" alt="{{ news_item.title }}">
+                    {% else %}
+                    <div class="news-placeholder">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    {% endif %}
+                    {% if news_item.is_featured %}
+                    <span class="news-badge">Öne Çıkan</span>
+                    {% endif %}
+                </div>
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span><i class="far fa-calendar"></i> {{ news_item.published_date|date:"d M Y" }}</span>
+                    </div>
+                    <h3 class="news-title">{{ news_item.title }}</h3>
+                    <p class="news-summary">{{ news_item.summary|truncatewords:20 }}</p>
+                    <a href="{% url 'landing:news_detail' news_item.slug %}" class="news-link">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if news.has_other_pages %}
+        <nav class="pagination">
+            {% if news.has_previous %}
+            <a href="?page={{ news.previous_page_number }}" class="page-link">
+                <i class="fas fa-chevron-left"></i> Önceki
+            </a>
+            {% endif %}
+
+            <span class="page-info">
+                Sayfa {{ news.number }} / {{ news.paginator.num_pages }}
+            </span>
+
+            {% if news.has_next %}
+            <a href="?page={{ news.next_page_number }}" class="page-link">
+                Sonraki <i class="fas fa-chevron-right"></i>
+            </a>
+            {% endif %}
+        </nav>
+        {% endif %}
+        {% else %}
+        <div class="empty-state">
+            <i class="fas fa-newspaper"></i>
+            <h3>Henüz haber bulunmuyor</h3>
+            <p>Yakında haberlerimizi buradan takip edebileceksiniz.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

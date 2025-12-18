@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block title %}Fotoğraf Galerisi | {{ site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">Fotoğraf Galerisi</h1>
+        <nav class="breadcrumb">
+            <a href="{% url 'landing:home' %}">Ana Sayfa</a>
+            <span>/</span>
+            <span>Galeri</span>
+        </nav>
+    </div>
+</section>
+
+<!-- Gallery Section -->
+<section class="gallery-section">
+    <div class="container">
+        <!-- Category Filter -->
+        {% if categories %}
+        <div class="gallery-filter">
+            <a href="{% url 'landing:gallery' %}" class="filter-btn {% if not selected_category %}active{% endif %}">
+                Tümü
+            </a>
+            {% for cat in categories %}
+            <a href="{% url 'landing:gallery' %}?category={{ cat.slug }}"
+                class="filter-btn {% if selected_category.slug == cat.slug %}active{% endif %}">
+                {{ cat.name }}
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Gallery Grid -->
+        {% if images %}
+        <div class="gallery-masonry">
+            {% for image in images %}
+            <div class="gallery-item" data-category="{{ image.category.slug }}">
+                <img src="{{ image.image.url }}" alt="{{ image.title }}" loading="lazy">
+                <div class="gallery-overlay">
+                    <h4>{{ image.title }}</h4>
+                    <span>{{ image.category.name }}</span>
+                    <button class="gallery-zoom" data-src="{{ image.image.url }}" data-title="{{ image.title }}">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if images.has_other_pages %}
+        <nav class="pagination">
+            {% if images.has_previous %}
+            <a href="?{% if selected_category %}category={{ selected_category.slug }}&{% endif %}page={{ images.previous_page_number }}"
+                class="page-link">
+                <i class="fas fa-chevron-left"></i> Önceki
+            </a>
+            {% endif %}
+
+            <span class="page-info">
+                Sayfa {{ images.number }} / {{ images.paginator.num_pages }}
+            </span>
+
+            {% if images.has_next %}
+            <a href="?{% if selected_category %}category={{ selected_category.slug }}&{% endif %}page={{ images.next_page_number }}"
+                class="page-link">
+                Sonraki <i class="fas fa-chevron-right"></i>
+            </a>
+            {% endif %}
+        </nav>
+        {% endif %}
+        {% else %}
+        <div class="empty-state">
+            <i class="fas fa-images"></i>
+            <h3>Henüz fotoğraf bulunmuyor</h3>
+            <p>Yakında etkinlik fotoğraflarımızı buradan görebileceksiniz.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close">&times;</button>
+    <img src="" alt="" id="lightbox-image">
+    <p class="lightbox-title" id="lightbox-title"></p>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxTitle = document.getElementById('lightbox-title');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        const zoomButtons = document.querySelectorAll('.gallery-zoom');
+
+        zoomButtons.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const src = this.getAttribute('data-src');
+                const title = this.getAttribute('data-title');
+                lightboxImage.src = src;
+                lightboxTitle.textContent = title;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightboxClose.addEventListener('click', function () {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        lightbox.addEventListener('click', function (e) {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+</script>
+{% endblock %}
