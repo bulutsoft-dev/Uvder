@@ -3,7 +3,7 @@
         <div class="footer-grid">
             <div class="footer-about">
                 <div class="footer-logo">
-                    <span class="logo-icon">🚂</span>
+                    <img src="/static/images/logo.png" alt="Umut Vagonu Logo" class="logo-image">
                     <span class="logo-text">
                         <strong>Umut Vagonu</strong>
                     </span>
@@ -14,6 +14,11 @@
                 <div class="social-links">
                     {% if site_settings.instagram_url %}
                     <a href="{{ site_settings.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    {% else %}
+                    <a href="https://www.instagram.com/umutvagonumanisa/" target="_blank" rel="noopener"
+                        aria-label="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
                     {% endif %}
