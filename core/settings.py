@@ -32,6 +32,11 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    # Django Unfold - Modern Admin Theme
+    'unfold',
+    'unfold.contrib.filters',
+    'unfold.contrib.forms',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +46,143 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'landing',
 ]
+
+# =============================================================================
+# DJANGO UNFOLD CONFIGURATION
+# =============================================================================
+from django.templatetags.static import static
+from django.urls import reverse_lazy
+
+UNFOLD = {
+    "SITE_TITLE": "Umut Vagonu",
+    "SITE_HEADER": "Umut Vagonu Yönetim Paneli",
+    "SITE_URL": "/",
+    "SITE_SYMBOL": "volunteer_activism",  # Material icon
+    "SHOW_HISTORY": True,
+    "SHOW_VIEW_ON_SITE": True,
+    
+    # Tema renkleri - Umut Vagonu yeşil teması
+    "COLORS": {
+        "primary": {
+            "50": "#ecfdf5",
+            "100": "#d1fae5",
+            "200": "#a7f3d0",
+            "300": "#6ee7b7",
+            "400": "#34d399",
+            "500": "#10b981",
+            "600": "#059669",
+            "700": "#047857",
+            "800": "#065f46",
+            "900": "#064e3b",
+            "950": "#022c22",
+        },
+    },
+    
+    # Sidebar Navigation
+    "SIDEBAR": {
+        "show_search": True,
+        "show_all_applications": False,
+        "navigation": [
+            {
+                "title": "Ana Panel",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Dashboard",
+                        "icon": "dashboard",
+                        "link": reverse_lazy("admin:index"),
+                    },
+                    {
+                        "title": "Siteyi Görüntüle",
+                        "icon": "public",
+                        "link": "/",
+                    },
+                ],
+            },
+            {
+                "title": "Site Yönetimi",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Site Ayarları",
+                        "icon": "settings",
+                        "link": reverse_lazy("admin:landing_sitesettings_changelist"),
+                    },
+                ],
+            },
+            {
+                "title": "İçerik Yönetimi",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Haberler",
+                        "icon": "newspaper",
+                        "link": reverse_lazy("admin:landing_news_changelist"),
+                        "badge": "landing.utils.get_news_count",
+                    },
+                    {
+                        "title": "Yazarlar",
+                        "icon": "person",
+                        "link": reverse_lazy("admin:landing_writer_changelist"),
+                    },
+                    {
+                        "title": "Köşe Yazıları",
+                        "icon": "edit_note",
+                        "link": reverse_lazy("admin:landing_article_changelist"),
+                    },
+                ],
+            },
+            {
+                "title": "Galeri",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Kategoriler",
+                        "icon": "folder",
+                        "link": reverse_lazy("admin:landing_gallerycategory_changelist"),
+                    },
+                    {
+                        "title": "Görseller",
+                        "icon": "photo_library",
+                        "link": reverse_lazy("admin:landing_galleryimage_changelist"),
+                    },
+                ],
+            },
+            {
+                "title": "Diğer",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Bağlantılar",
+                        "icon": "link",
+                        "link": reverse_lazy("admin:landing_link_changelist"),
+                    },
+                    {
+                        "title": "İletişim Mesajları",
+                        "icon": "mail",
+                        "link": reverse_lazy("admin:landing_contactmessage_changelist"),
+                    },
+                ],
+            },
+            {
+                "title": "Kullanıcı Yönetimi",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Kullanıcılar",
+                        "icon": "people",
+                        "link": reverse_lazy("admin:auth_user_changelist"),
+                    },
+                    {
+                        "title": "Gruplar",
+                        "icon": "groups",
+                        "link": reverse_lazy("admin:auth_group_changelist"),
+                    },
+                ],
+            },
+        ],
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
