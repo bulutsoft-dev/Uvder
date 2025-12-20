@@ -199,6 +199,7 @@ UNFOLD = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Static files for Vercel
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -304,6 +305,12 @@ CLOUDINARY_STORAGE = {
 # Production'da Cloudinary kullan, development'ta local storage
 if not DEBUG:
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# =============================================================================
+# WHITENOISE STATIC FILES (for Vercel)
+# =============================================================================
+# Production'da WhiteNoise kullan
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
