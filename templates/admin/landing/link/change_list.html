@@ -2,39 +2,22 @@
 {% load i18n %}
 
 {% block content %}
-<!-- Bağlantılar Bilgilendirme Kutusu -->
+{# Bağlantılar Bilgilendirme - Unfold message yapısı #}
 <div
-    class="mb-6 bg-gradient-to-r from-cyan-50 to-sky-50 dark:from-cyan-900/20 dark:to-sky-900/20 border border-cyan-200 dark:border-cyan-800 rounded-xl p-5">
-    <div class="flex items-start gap-4">
-        <div
-            class="w-12 h-12 bg-cyan-100 dark:bg-cyan-900/50 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">
-            🔗
-        </div>
+    class="mb-4 px-4 py-3 leading-normal rounded-default bg-cyan-100 text-cyan-700 dark:bg-cyan-500/20 dark:text-cyan-400">
+    <div class="flex items-start gap-3">
+        <span class="text-xl">🔗</span>
         <div>
-            <h3 class="font-semibold text-cyan-900 dark:text-cyan-100 text-lg mb-2">
-                Bağlantı Yönetimi
-            </h3>
-            <p class="text-cyan-700 dark:text-cyan-300 text-sm leading-relaxed mb-3">
-                Önemli linkleri ve sosyal medya hesaplarını buradan yönetebilirsiniz. Bağlantılar sayfasında
-                görüntülenir.
-            </p>
-            <div class="flex flex-wrap gap-3 text-xs">
+            <h3 class="font-semibold text-sm mb-1">Bağlantı Yönetimi</h3>
+            <p class="text-xs mb-2 opacity-90">Önemli linkleri ve sosyal medya hesaplarını yönetin.</p>
+            <div class="flex flex-wrap gap-2 text-xs">
+                <span class="bg-cyan-200/50 dark:bg-cyan-400/20 px-2 py-1 rounded">🎨 Uygun ikon seçin</span>
                 <span
-                    class="inline-flex items-center gap-1 px-3 py-1.5 bg-cyan-100 dark:bg-cyan-800 text-cyan-700 dark:text-cyan-200 rounded-full">
-                    <span class="font-bold">🎨</span> Uygun ikon seçin
-                </span>
-                <span
-                    class="inline-flex items-center gap-1 px-3 py-1.5 bg-amber-100 dark:bg-amber-800 text-amber-700 dark:text-amber-200 rounded-full">
-                    <span class="font-bold">⭐</span> Öne çıkanlar ana sayfada
-                </span>
-                <span
-                    class="inline-flex items-center gap-1 px-3 py-1.5 bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-200 rounded-full">
-                    <span class="font-bold">🔒</span> Pasifler gizlenir
-                </span>
+                    class="bg-yellow-200/50 dark:bg-yellow-400/20 px-2 py-1 rounded text-yellow-800 dark:text-yellow-300">⭐
+                    Öne çıkanlar ana sayfada</span>
             </div>
         </div>
     </div>
 </div>
-
 {{ block.super }}
 {% endblock %}

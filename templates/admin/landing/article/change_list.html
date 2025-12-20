@@ -2,39 +2,22 @@
 {% load i18n %}
 
 {% block content %}
-<!-- Köşe Yazıları Bilgilendirme Kutusu -->
+{# Köşe Yazıları Bilgilendirme - Unfold message yapısı #}
 <div
-    class="mb-6 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border border-purple-200 dark:border-purple-800 rounded-xl p-5">
-    <div class="flex items-start gap-4">
-        <div
-            class="w-12 h-12 bg-purple-100 dark:bg-purple-900/50 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">
-            📝
-        </div>
+    class="mb-4 px-4 py-3 leading-normal rounded-default bg-purple-100 text-purple-700 dark:bg-purple-500/20 dark:text-purple-400">
+    <div class="flex items-start gap-3">
+        <span class="text-xl">📝</span>
         <div>
-            <h3 class="font-semibold text-purple-900 dark:text-purple-100 text-lg mb-2">
-                Köşe Yazıları Yönetimi
-            </h3>
-            <p class="text-purple-700 dark:text-purple-300 text-sm leading-relaxed mb-3">
-                Yazarlarınızın köşe yazılarını bu sayfadan yönetebilirsiniz. Her yazı, ilgili yazarın sayfasında
-                görüntülenir.
-            </p>
-            <div class="flex flex-wrap gap-3 text-xs">
+            <h3 class="font-semibold text-sm mb-1">Köşe Yazıları Yönetimi</h3>
+            <p class="text-xs mb-2 opacity-90">Yazarların köşe yazılarını buradan yönetebilirsiniz.</p>
+            <div class="flex flex-wrap gap-2 text-xs">
+                <span class="bg-purple-200/50 dark:bg-purple-400/20 px-2 py-1 rounded">✍️ Önce yazar seçin</span>
                 <span
-                    class="inline-flex items-center gap-1 px-3 py-1.5 bg-purple-100 dark:bg-purple-800 text-purple-700 dark:text-purple-200 rounded-full">
-                    <span class="font-bold">✍️</span> Önce yazar seçin
-                </span>
-                <span
-                    class="inline-flex items-center gap-1 px-3 py-1.5 bg-emerald-100 dark:bg-emerald-800 text-emerald-700 dark:text-emerald-200 rounded-full">
-                    <span class="font-bold">📅</span> Yayın tarihi önemli
-                </span>
-                <span
-                    class="inline-flex items-center gap-1 px-3 py-1.5 bg-amber-100 dark:bg-amber-800 text-amber-700 dark:text-amber-200 rounded-full">
-                    <span class="font-bold">🖼️</span> Görsel opsiyonel
-                </span>
+                    class="bg-primary-200/50 dark:bg-primary-400/20 px-2 py-1 rounded text-primary-700 dark:text-primary-400">📅
+                    Yayın tarihi önemli</span>
             </div>
         </div>
     </div>
 </div>
-
 {{ block.super }}
 {% endblock %}
