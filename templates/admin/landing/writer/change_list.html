@@ -1,0 +1,40 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+
+{% block content %}
+<!-- Yazarlar Bilgilendirme Kutusu -->
+<div
+    class="mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5">
+    <div class="flex items-start gap-4">
+        <div
+            class="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">
+            ✍️
+        </div>
+        <div>
+            <h3 class="font-semibold text-blue-900 dark:text-blue-100 text-lg mb-2">
+                Yazar Yönetimi
+            </h3>
+            <p class="text-blue-700 dark:text-blue-300 text-sm leading-relaxed mb-3">
+                Bu sayfadan köşe yazarlarınızı yönetebilirsiniz. Her yazarın profil sayfası ve yazıları otomatik olarak
+                oluşturulur.
+            </p>
+            <div class="flex flex-wrap gap-3 text-xs">
+                <span
+                    class="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-200 rounded-full">
+                    <span class="font-bold">👤</span> Kare fotoğraf önerilir (1:1)
+                </span>
+                <span
+                    class="inline-flex items-center gap-1 px-3 py-1.5 bg-purple-100 dark:bg-purple-800 text-purple-700 dark:text-purple-200 rounded-full">
+                    <span class="font-bold">📋</span> Sıralama numarası ile düzenleyin
+                </span>
+                <span
+                    class="inline-flex items-center gap-1 px-3 py-1.5 bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-200 rounded-full">
+                    <span class="font-bold">⚠️</span> Pasif yazarlar gizlenir
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ block.super }}
+{% endblock %}

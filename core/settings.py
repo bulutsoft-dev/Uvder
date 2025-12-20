@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-rs=7sbuyw0teaiej0imuo7fvj7#a%j!o=hr15y@je_4+w4+!#5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -60,6 +60,9 @@ UNFOLD = {
     "SITE_SYMBOL": "volunteer_activism",  # Material icon
     "SHOW_HISTORY": True,
     "SHOW_VIEW_ON_SITE": True,
+    
+    # Dashboard callback - istatistik verileri için
+    "DASHBOARD_CALLBACK": "landing.utils.dashboard_callback",
     
     # Tema renkleri - Umut Vagonu yeşil teması
     "COLORS": {
