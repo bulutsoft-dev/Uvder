@@ -49,6 +49,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    
+    # Cloudinary Media Storage
+    'cloudinary_storage',
+    'cloudinary',
+    
     'landing',
 ]
 
@@ -285,6 +290,20 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Media files (User uploaded content)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# =============================================================================
+# CLOUDINARY MEDIA STORAGE
+# =============================================================================
+# Medya dosyalarını Cloudinary'ye yükle (production için önerilir)
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME', ''),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY', ''),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', ''),
+}
+
+# Production'da Cloudinary kullan, development'ta local storage
+if not DEBUG:
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
