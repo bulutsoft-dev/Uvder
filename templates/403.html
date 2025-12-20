@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+
+{% block title %}Erişim Reddedildi - Umut Vagonu{% endblock %}
+
+{% block content %}
+<section class="error-section error-403">
+    <div class="container">
+        <div class="error-content">
+            <div class="error-illustration">
+                <div class="error-code">403</div>
+                <div class="error-icon">
+                    <i class="fas fa-ban"></i>
+                </div>
+            </div>
+
+            <h1 class="error-title">Erişim Reddedildi</h1>
+            <p class="error-message">
+                Bu sayfaya erişim izniniz bulunmuyor.
+                <br>Eğer bu bir hata olduğunu düşünüyorsanız, lütfen bizimle iletişime geçin.
+            </p>
+
+            <div class="error-lock-animation">
+                <div class="lock-circle">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="lock-waves">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="error-buttons">
+                <a href="/" class="btn btn-primary btn-lg">
+                    <i class="fas fa-home"></i> Ana Sayfaya Dön
+                </a>
+                <a href="{% url 'landing:contact' %}" class="btn btn-outline btn-lg">
+                    <i class="fas fa-envelope"></i> Yardım İste
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .error-section.error-403 {
+        min-height: calc(100vh - 200px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px;
+        background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+    }
+
+    .error-403 .error-content {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .error-403 .error-illustration {
+        position: relative;
+        margin-bottom: 30px;
+    }
+
+    .error-403 .error-code {
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(120px, 20vw, 200px);
+        font-weight: 800;
+        background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+    }
+
+    .error-403 .error-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100px;
+        height: 100px;
+        background: var(--white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 40px rgba(245, 158, 11, 0.3);
+    }
+
+    .error-403 .error-icon i {
+        font-size: 3rem;
+        color: #F59E0B;
+    }
+
+    .error-403 .error-title {
+        font-size: 2.5rem;
+        color: #92400E;
+        margin-bottom: 15px;
+    }
+
+    .error-403 .error-message {
+        font-size: 1.1rem;
+        color: #B45309;
+        line-height: 1.8;
+        margin-bottom: 30px;
+    }
+
+    .error-lock-animation {
+        position: relative;
+        margin: 40px auto;
+        width: 120px;
+        height: 120px;
+    }
+
+    .lock-circle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+    }
+
+    .lock-circle i {
+        font-size: 2rem;
+        color: white;
+    }
+
+    .lock-waves {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .lock-waves span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 3px solid #F59E0B;
+        border-radius: 50%;
+        animation: wave 2s ease-out infinite;
+    }
+
+    .lock-waves span:nth-child(1) {
+        animation-delay: 0s;
+    }
+
+    .lock-waves span:nth-child(2) {
+        animation-delay: 0.5s;
+    }
+
+    .lock-waves span:nth-child(3) {
+        animation-delay: 1s;
+    }
+
+    .error-403 .error-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .error-403 .btn-outline {
+        border-color: #D97706;
+        color: #D97706;
+    }
+
+    .error-403 .btn-outline:hover {
+        background: #D97706;
+        color: white;
+    }
+
+    @keyframes wave {
+        0% {
+            width: 80px;
+            height: 80px;
+            opacity: 1;
+        }
+
+        100% {
+            width: 160px;
+            height: 160px;
+            opacity: 0;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .error-403 .error-title {
+            font-size: 1.8rem;
+        }
+
+        .error-403 .error-message {
+            font-size: 1rem;
+        }
+
+        .error-403 .error-buttons {
+            flex-direction: column;
+        }
+
+        .error-403 .error-buttons .btn {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}

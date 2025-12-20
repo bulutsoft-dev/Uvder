@@ -1,0 +1,255 @@
+{% extends 'base.html' %}
+
+{% block title %}Sunucu Hatası - Umut Vagonu{% endblock %}
+
+{% block content %}
+<section class="error-section error-500">
+    <div class="container">
+        <div class="error-content">
+            <div class="error-illustration">
+                <div class="error-code">500</div>
+                <div class="error-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+            </div>
+
+            <h1 class="error-title">Bir Şeyler Ters Gitti</h1>
+            <p class="error-message">
+                Sunucumuzda beklenmeyen bir hata oluştu.
+                <br>Teknik ekibimiz bilgilendirildi ve sorunu çözmek için çalışıyor.
+            </p>
+
+            <div class="error-info-box">
+                <div class="info-icon">
+                    <i class="fas fa-wrench"></i>
+                </div>
+                <div class="info-text">
+                    <h4>Bakım Devam Ediyor</h4>
+                    <p>Lütfen birkaç dakika sonra tekrar deneyin</p>
+                </div>
+            </div>
+
+            <div class="error-buttons">
+                <a href="/" class="btn btn-primary btn-lg">
+                    <i class="fas fa-home"></i> Ana Sayfaya Dön
+                </a>
+                <button onclick="location.reload()" class="btn btn-outline btn-lg">
+                    <i class="fas fa-redo"></i> Sayfayı Yenile
+                </button>
+            </div>
+
+            <div class="error-contact">
+                <p>Sorun devam ederse bizimle iletişime geçin:</p>
+                <a href="{% url 'landing:contact' %}" class="contact-link">
+                    <i class="fas fa-envelope"></i> İletişim Formu
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .error-section.error-500 {
+        min-height: calc(100vh - 200px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px;
+        background: linear-gradient(135deg, #2D3748 0%, #1A202C 100%);
+    }
+
+    .error-500 .error-content {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .error-500 .error-illustration {
+        position: relative;
+        margin-bottom: 30px;
+    }
+
+    .error-500 .error-code {
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(120px, 20vw, 200px);
+        font-weight: 800;
+        background: linear-gradient(135deg, #EF4444 0%, #F59E0B 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+        animation: glitch 2s ease-in-out infinite;
+    }
+
+    .error-500 .error-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100px;
+        height: 100px;
+        background: var(--white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 40px rgba(239, 68, 68, 0.3);
+        animation: shake 0.5s ease-in-out infinite;
+    }
+
+    .error-500 .error-icon i {
+        font-size: 3rem;
+        color: #EF4444;
+    }
+
+    .error-500 .error-title {
+        font-size: 2.5rem;
+        color: var(--white);
+        margin-bottom: 15px;
+    }
+
+    .error-500 .error-message {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.8;
+        margin-bottom: 30px;
+    }
+
+    .error-info-box {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 25px 30px;
+        border-radius: var(--radius-lg);
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .info-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--gradient-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .info-icon i {
+        font-size: 1.5rem;
+        color: var(--white);
+    }
+
+    .info-text {
+        text-align: left;
+    }
+
+    .info-text h4 {
+        color: var(--white);
+        margin-bottom: 5px;
+        font-size: 1.1rem;
+    }
+
+    .info-text p {
+        color: rgba(255, 255, 255, 0.7);
+        margin: 0;
+        font-size: 0.95rem;
+    }
+
+    .error-500 .error-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+
+    .error-500 .btn-outline {
+        border-color: rgba(255, 255, 255, 0.3);
+        color: var(--white);
+    }
+
+    .error-500 .btn-outline:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--white);
+    }
+
+    .error-contact {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.95rem;
+    }
+
+    .contact-link {
+        color: var(--primary-light);
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .contact-link:hover {
+        color: var(--white);
+    }
+
+    @keyframes glitch {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.8;
+        }
+    }
+
+    @keyframes shake {
+
+        0%,
+        100% {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+
+        25% {
+            transform: translate(-50%, -50%) rotate(2deg);
+        }
+
+        75% {
+            transform: translate(-50%, -50%) rotate(-2deg);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .error-500 .error-title {
+            font-size: 1.8rem;
+        }
+
+        .error-500 .error-message {
+            font-size: 1rem;
+        }
+
+        .error-500 .error-buttons {
+            flex-direction: column;
+        }
+
+        .error-500 .error-buttons .btn {
+            width: 100%;
+        }
+
+        .error-info-box {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .info-text {
+            text-align: center;
+        }
+    }
+</style>
+{% endblock %}

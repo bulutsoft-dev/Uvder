@@ -187,3 +187,52 @@ def contact(request):
             messages.error(request, 'Lütfen tüm zorunlu alanları doldurun.')
     
     return render(request, 'pages/contact.html')
+
+
+# =============================================================================
+# CUSTOM ERROR HANDLERS
+# =============================================================================
+
+def error_400(request, exception=None):
+    """400 Bad Request"""
+    return render(request, '400.html', status=400)
+
+
+def error_403(request, exception=None):
+    """403 Forbidden"""
+    return render(request, '403.html', status=403)
+
+
+def error_404(request, exception=None):
+    """404 Not Found"""
+    return render(request, '404.html', status=404)
+
+
+def error_500(request):
+    """500 Internal Server Error"""
+    return render(request, '500.html', status=500)
+
+
+# =============================================================================
+# TEST ERROR PAGES (Development Only)
+# =============================================================================
+
+def test_error_400(request):
+    """Test 400 error page"""
+    return render(request, '400.html', status=400)
+
+
+def test_error_403(request):
+    """Test 403 error page"""
+    return render(request, '403.html', status=403)
+
+
+def test_error_404(request):
+    """Test 404 error page"""
+    return render(request, '404.html', status=404)
+
+
+def test_error_500(request):
+    """Test 500 error page"""
+    return render(request, '500.html', status=500)
+

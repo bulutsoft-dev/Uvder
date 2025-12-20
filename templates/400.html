@@ -1,0 +1,204 @@
+{% extends 'base.html' %}
+
+{% block title %}Geçersiz İstek - Umut Vagonu{% endblock %}
+
+{% block content %}
+<section class="error-section error-400">
+    <div class="container">
+        <div class="error-content">
+            <div class="error-illustration">
+                <div class="error-code">400</div>
+                <div class="error-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+            </div>
+
+            <h1 class="error-title">Geçersiz İstek</h1>
+            <p class="error-message">
+                Gönderdiğiniz istek sunucumuz tarafından anlaşılamadı.
+                <br>Lütfen formu doğru doldurduğunuzdan emin olun ve tekrar deneyin.
+            </p>
+
+            <div class="error-tips">
+                <div class="tip-item">
+                    <i class="fas fa-keyboard"></i>
+                    <span>Form alanlarını kontrol edin</span>
+                </div>
+                <div class="tip-item">
+                    <i class="fas fa-sync"></i>
+                    <span>Sayfayı yenileyip tekrar deneyin</span>
+                </div>
+                <div class="tip-item">
+                    <i class="fas fa-history"></i>
+                    <span>Tarayıcı önbelleğini temizleyin</span>
+                </div>
+            </div>
+
+            <div class="error-buttons">
+                <a href="/" class="btn btn-primary btn-lg">
+                    <i class="fas fa-home"></i> Ana Sayfaya Dön
+                </a>
+                <button onclick="history.back()" class="btn btn-outline btn-lg">
+                    <i class="fas fa-arrow-left"></i> Geri Dön
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .error-section.error-400 {
+        min-height: calc(100vh - 200px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px;
+        background: linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%);
+    }
+
+    .error-400 .error-content {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .error-400 .error-illustration {
+        position: relative;
+        margin-bottom: 30px;
+    }
+
+    .error-400 .error-code {
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(120px, 20vw, 200px);
+        font-weight: 800;
+        background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+    }
+
+    .error-400 .error-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100px;
+        height: 100px;
+        background: var(--white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+        animation: bounce 2s ease-in-out infinite;
+    }
+
+    .error-400 .error-icon i {
+        font-size: 3rem;
+        color: #6366F1;
+    }
+
+    .error-400 .error-title {
+        font-size: 2.5rem;
+        color: #3730A3;
+        margin-bottom: 15px;
+    }
+
+    .error-400 .error-message {
+        font-size: 1.1rem;
+        color: #4338CA;
+        line-height: 1.8;
+        margin-bottom: 30px;
+    }
+
+    .error-tips {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 30px;
+    }
+
+    .tip-item {
+        background: var(--white);
+        padding: 15px 25px;
+        border-radius: var(--radius);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+    }
+
+    .tip-item:hover {
+        transform: translateX(5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .tip-item i {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        flex-shrink: 0;
+    }
+
+    .tip-item span {
+        color: #3730A3;
+        font-weight: 500;
+    }
+
+    .error-400 .error-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .error-400 .btn-outline {
+        border-color: #6366F1;
+        color: #6366F1;
+    }
+
+    .error-400 .btn-outline:hover {
+        background: #6366F1;
+        color: white;
+    }
+
+    @keyframes bounce {
+
+        0%,
+        100% {
+            transform: translate(-50%, -50%);
+        }
+
+        50% {
+            transform: translate(-50%, calc(-50% - 15px));
+        }
+    }
+
+    @media (max-width: 768px) {
+        .error-400 .error-title {
+            font-size: 1.8rem;
+        }
+
+        .error-400 .error-message {
+            font-size: 1rem;
+        }
+
+        .error-400 .error-buttons {
+            flex-direction: column;
+        }
+
+        .error-400 .error-buttons .btn {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
