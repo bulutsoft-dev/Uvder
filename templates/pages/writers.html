@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load landing_tags %}
 
 {% block title %}Yazar Köşesi | {{ site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
 
@@ -50,8 +51,9 @@
         {% else %}
         <div class="empty-state">
             <i class="fas fa-pen-fancy"></i>
-            <h3>Henüz yazar bulunmuyor</h3>
-            <p>Yakında yazarlarımızın köşe yazılarını buradan okuyabileceksiniz.</p>
+            <h3>{% get_site_content 'writers_empty_title' 'Henüz yazar bulunmuyor' %}</h3>
+            <p>{% get_site_content 'writers_empty_text' 'Yakında yazarlarımızın köşe yazılarını buradan
+                okuyabileceksiniz.' %}</p>
         </div>
         {% endif %}
 
@@ -60,7 +62,7 @@
         <div class="section-divider"></div>
 
         <div class="section-header">
-            <h2 class="section-title">Son Yazılar</h2>
+            <h2 class="section-title">{% get_site_content 'writers_latest_articles_title' 'Son Yazılar' %}</h2>
         </div>
 
         <div class="articles-list">

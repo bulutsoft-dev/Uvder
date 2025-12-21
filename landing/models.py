@@ -538,5 +538,42 @@ class ContactMessage(models.Model):
         verbose_name_plural = "İletişim Mesajları"
         ordering = ['-created_at']
 
+
+class SiteContent(models.Model):
+    """
+    Site İçerikleri
+    ---------------
+    Sabit alanlardaki dinamik içerikleri yönetir.
+    (Navbar menüleri, buton yazıları, başlıklar vb.)
+    """
+    key = models.SlugField(
+        max_length=200, 
+        unique=True, 
+        verbose_name="İçerik Anahtarı",
+        help_text="Yazılımcı tarafından belirlenen benzersiz kod. Örn: 'nav_home', 'footer_about_title'. DEĞİŞTİRMEYİNİZ!"
+    )
+    content_text = models.TextField(
+        verbose_name="İçerik",
+        help_text="Görünecek metin veya HTML kodu."
+    )
+    description = models.CharField(
+        max_length=300, 
+        verbose_name="Açıklama",
+        help_text="Bu içeriğin nerede kullanıldığını hatırlatmak için kısa not."
+    )
+    is_active = models.BooleanField(
+        default=True, 
+        verbose_name="Aktif",
+        help_text="Pasif yapılırsa varsayılan metin görünür."
+    )
+    
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Oluşturulma Tarihi")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Güncelleme Tarihi")
+
+    class Meta:
+        verbose_name = "Site İçeriği"
+        verbose_name_plural = "Site İçerikleri"
+        ordering = ['key']
+
     def __str__(self):
-        return f"{self.name} - {self.subject}"
+        return f"{self.description} ({self.key})"

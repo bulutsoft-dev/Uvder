@@ -9,7 +9,8 @@ from unfold.decorators import action, display
 
 from .models import (
     SiteSettings, News, Writer, Article, 
-    GalleryCategory, GalleryImage, Link, ContactMessage
+    GalleryCategory, GalleryImage, Link, ContactMessage,
+    SiteContent
 )
 
 
@@ -553,3 +554,37 @@ class ContactMessageAdmin(ModelAdmin):
 # admin.site.site_title = "Umut Vagonu Admin"
 # admin.site.index_title = "Hoş Geldiniz! Buradan sitenizi yönetebilirsiniz."
 admin.site.empty_value_display = "-"
+
+@admin.register(SiteContent)
+class SiteContentAdmin(ModelAdmin):
+    """
+    Site İçerik Yönetimi
+    --------------------
+    Sabit metin alanlarını buradan güncelleyebilirsiniz.
+    """
+    warn_unsaved_form = True
+    list_filter_submit = True
+    
+    list_display = ['key', 'description', 'content_preview', 'is_active', 'updated_at']
+    list_display_links = ['key', 'description']
+    search_fields = ['key', 'description', 'content_text']
+    list_filter = ['is_active', 'updated_at']
+    list_editable = ['is_active']
+    ordering = ['key']
+    
+    fieldsets = (
+        ('📝 İçerik Bilgileri', {
+            'fields': ('key', 'description', 'content_text'),
+            'description': 'Key alanını değiştirmeyiniz.',
+            'classes': ['tab'],
+        }),
+        ('⚙️ Ayarlar', {
+            'fields': ('is_active',),
+            'classes': ['tab'],
+        }),
+    )
+    
+    @display(description="Önizleme")
+    def content_preview(self, obj):
+        text = obj.content_text
+        return text[:50] + "..." if len(text) > 50 else text

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load humanize %}
+{% load landing_tags %}
 
 {% block title %}Umut Vagonu Derneği{% endblock %}
 
@@ -13,19 +14,19 @@
         <div class="hero-content">
             <img src="/static/images/logo.png" alt="Umut Vagonu" class="hero-logo animate-fade-in">
             <h1 class="hero-title animate-fade-in">
-                Umut Yüklü Vagonlar<br>
-                <span class="gradient-text">Yola Çıkıyor</span>
+                {% get_site_content 'home_hero_title_1' 'Umut Yüklü Vagonlar' %}<br>
+                <span class="gradient-text">{% get_site_content 'home_hero_title_2' 'Yola Çıkıyor' %}</span>
             </h1>
             <p class="hero-subtitle animate-fade-in-delay">
-                İhtiyaç sahiplerine ulaşmak, yüzlerde bir tebessüm oluşturmak için durmaksızın çalışıyoruz.
-                Siz de bu iyilik hareketinin bir parçası olun.
+                {% get_site_content 'home_hero_subtitle' 'İhtiyaç sahiplerine ulaşmak, yüzlerde bir tebessüm oluşturmak
+                için durmaksızın çalışıyoruz. Siz de bu iyilik hareketinin bir parçası olun.' %}
             </p>
             <div class="hero-buttons animate-fade-in-delay-2">
                 <a href="{% url 'landing:news_list' %}" class="btn btn-primary">
-                    <i class="fas fa-newspaper"></i> Haberlerimiz
+                    <i class="fas fa-newspaper"></i> {% get_site_content 'home_hero_btn_news' 'Haberlerimiz' %}
                 </a>
                 <a href="{% url 'landing:contact' %}" class="btn btn-secondary">
-                    <i class="fas fa-hands-helping"></i> Gönüllü Ol
+                    <i class="fas fa-hands-helping"></i> {% get_site_content 'home_hero_btn_volunteer' 'Gönüllü Ol' %}
                 </a>
             </div>
         </div>
@@ -48,28 +49,28 @@
                     <i class="fas fa-heart"></i>
                 </div>
                 <div class="stat-number" data-count="{{ site_settings.stat_lives_touched|default:10000 }}">0</div>
-                <div class="stat-label">Ulaşılan Hayat</div>
+                <div class="stat-label">{% get_site_content 'home_stat_1_label' 'Ulaşılan Hayat' %}</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon">
                     <i class="fas fa-project-diagram"></i>
                 </div>
                 <div class="stat-number" data-count="{{ site_settings.stat_projects|default:100 }}">0</div>
-                <div class="stat-label">Tamamlanan Proje</div>
+                <div class="stat-label">{% get_site_content 'home_stat_2_label' 'Tamamlanan Proje' %}</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon">
                     <i class="fas fa-users"></i>
                 </div>
                 <div class="stat-number" data-count="{{ site_settings.stat_volunteers|default:1000 }}">0</div>
-                <div class="stat-label">Gönüllü Ordusu</div>
+                <div class="stat-label">{% get_site_content 'home_stat_3_label' 'Gönüllü Ordusu' %}</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon">
                     <i class="fas fa-map-marker-alt"></i>
                 </div>
                 <div class="stat-number" data-count="{{ site_settings.stat_cities|default:81 }}">0</div>
-                <div class="stat-label">Hizmet Verilen İl</div>
+                <div class="stat-label">{% get_site_content 'home_stat_4_label' 'Hizmet Verilen İl' %}</div>
             </div>
         </div>
     </div>
@@ -79,8 +80,8 @@
 <section class="about-section">
     <div class="container">
         <div class="section-header">
-            <span class="section-tag">Neler Yapıyoruz?</span>
-            <h2 class="section-title">Umut Dolu Projelerimiz</h2>
+            <span class="section-tag">{% get_site_content 'home_projects_tag' 'Neler Yapıyoruz?' %}</span>
+            <h2 class="section-title">{% get_site_content 'home_projects_title' 'Umut Dolu Projelerimiz' %}</h2>
         </div>
 
         <div class="services-grid">
@@ -88,24 +89,25 @@
                 <div class="service-icon">
                     <i class="fas fa-graduation-cap"></i>
                 </div>
-                <h3>Eğitim Desteği</h3>
-                <p>Geleceğimizin teminatı çocuklarımızın eğitim materyallerine ulaşmasını sağlıyor, köy okullarına
-                    destek oluyoruz.</p>
+                <h3>{% get_site_content 'home_project_1_title' 'Eğitim Desteği' %}</h3>
+                <p>{% get_site_content 'home_project_1_text' 'Geleceğimizin teminatı çocuklarımızın eğitim
+                    materyallerine ulaşmasını sağlıyor, köy okullarına destek oluyoruz.' %}</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
                     <i class="fas fa-hand-holding-heart"></i>
                 </div>
-                <h3>İnsani Yardım</h3>
-                <p>Afet bölgeleri ve ihtiyaç sahibi ailelere gıda, giyim ve barınma gibi temel yaşam malzemeleri
-                    ulaştırıyoruz.</p>
+                <h3>{% get_site_content 'home_project_2_title' 'İnsani Yardım' %}</h3>
+                <p>{% get_site_content 'home_project_2_text' 'Afet bölgeleri ve ihtiyaç sahibi ailelere gıda, giyim ve
+                    barınma gibi temel yaşam malzemeleri ulaştırıyoruz.' %}</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
                     <i class="fas fa-seedling"></i>
                 </div>
-                <h3>Sürdürülebilir Projeler</h3>
-                <p>Sadece anlık yardım değil, kalıcı çözümler üreterek toplumsal kalkınmaya destek veriyoruz.</p>
+                <h3>{% get_site_content 'home_project_3_title' 'Sürdürülebilir Projeler' %}</h3>
+                <p>{% get_site_content 'home_project_3_text' 'Sadece anlık yardım değil, kalıcı çözümler üreterek
+                    toplumsal kalkınmaya destek veriyoruz.' %}</p>
             </div>
         </div>
     </div>
@@ -187,15 +189,16 @@
     <div class="container">
         <div class="cta-content">
             <div class="cta-text">
-                <h2>Bir Hayata Dokun</h2>
-                <p>Küçük destekleriniz, büyük umutlara dönüşebilir. Bugün bir değişiklik yapın.</p>
+                <h2>{% get_site_content 'home_cta_title' 'Bir Hayata Dokun' %}</h2>
+                <p>{% get_site_content 'home_cta_text' 'Küçük destekleriniz, büyük umutlara dönüşebilir. Bugün bir
+                    değişiklik yapın.' %}</p>
             </div>
             <div class="cta-buttons">
                 <a href="{% url 'landing:contact' %}" class="btn btn-donate-large">
-                    <i class="fas fa-heart"></i> Şimdi Bağış Yap
+                    <i class="fas fa-heart"></i> {% get_site_content 'home_cta_btn_donate' 'Şimdi Bağış Yap' %}
                 </a>
                 <a href="{% url 'landing:contact' %}" class="btn btn-outline-light">
-                    <i class="fas fa-hands-helping"></i> Gönüllü Ol
+                    <i class="fas fa-hands-helping"></i> {% get_site_content 'home_cta_btn_volunteer' 'Gönüllü Ol' %}
                 </a>
             </div>
         </div>

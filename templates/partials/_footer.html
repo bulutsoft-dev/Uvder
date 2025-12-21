@@ -1,3 +1,4 @@
+{% load landing_tags %}
 <footer class="footer">
     <div class="container">
         <div class="footer-grid">
@@ -5,10 +6,11 @@
                 <div class="footer-logo">
                     <img src="/static/images/logo.png" alt="Umut Vagonu Logo" class="logo-image">
                     <span class="logo-text">
-                        <strong>Umut Vagonu</strong>
+                        <strong>{% get_site_content 'footer_brand_title' 'Umut Vagonu' %}</strong>
                     </span>
                 </div>
-                <p>{{ site_settings.about_text|default:"Umut Vagonu Derneği, şeffaflık ve hesap verebilirlik ilkeleriyle çalışan, kamu yararına bir sivil toplum kuruluşudur."|truncatewords:30 }}</p>
+                <p>{{ site_settings.about_text|default:"Umut Vagonu Derneği, şeffaflık ve hesap verebilirlik ilkeleriyle
+                    çalışan, kamu yararına bir sivil toplum kuruluşudur."|truncatewords:30 }}</p>
 
                 <div class="social-links">
                     {% if site_settings.instagram_url %}
@@ -40,18 +42,23 @@
             </div>
 
             <div class="footer-links">
-                <h4>Hızlı Linkler</h4>
+                <h4>{% get_site_content 'footer_links_title' 'Hızlı Linkler' %}</h4>
                 <ul>
-                    <li><a href="{% url 'landing:about' %}">Hakkımızda</a></li>
-                    <li><a href="{% url 'landing:news_list' %}">Haberler</a></li>
-                    <li><a href="{% url 'landing:gallery' %}">Galeri</a></li>
-                    <li><a href="{% url 'landing:writers' %}">Yazar Köşesi</a></li>
-                    <li><a href="{% url 'landing:contact' %}">İletişim</a></li>
+                    <li><a href="{% url 'landing:about' %}">{% get_site_content 'footer_link_about' 'Hakkımızda' %}</a>
+                    </li>
+                    <li><a href="{% url 'landing:news_list' %}">{% get_site_content 'footer_link_news' 'Haberler' %}</a>
+                    </li>
+                    <li><a href="{% url 'landing:gallery' %}">{% get_site_content 'footer_link_gallery' 'Galeri' %}</a>
+                    </li>
+                    <li><a href="{% url 'landing:writers' %}">{% get_site_content 'footer_link_writers' 'Yazar Köşesi'
+                            %}</a></li>
+                    <li><a href="{% url 'landing:contact' %}">{% get_site_content 'footer_link_contact' 'İletişim'
+                            %}</a></li>
                 </ul>
             </div>
 
             <div class="footer-contact">
-                <h4>İletişim</h4>
+                <h4>{% get_site_content 'footer_contact_title' 'İletişim' %}</h4>
                 <ul>
                     {% if site_settings.contact_address %}
                     <li>
@@ -85,7 +92,7 @@
             </div>
 
             <div class="footer-donate">
-                <h4>Bağış Bilgileri</h4>
+                <h4>{% get_site_content 'footer_donate_title' 'Bağış Bilgileri' %}</h4>
                 {% if site_settings.bank_name %}
                 <div class="bank-info">
                     <p><strong>{{ site_settings.bank_name }}</strong></p>
@@ -103,13 +110,13 @@
                 </div>
                 {% endif %}
                 <a href="{% url 'landing:contact' %}" class="btn btn-donate">
-                    <i class="fas fa-heart"></i> Bağış Yap
+                    <i class="fas fa-heart"></i> {% get_site_content 'footer_donate_btn' 'Bağış Yap' %}
                 </a>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; {% now "Y" %} Umut Vagonu Derneği. Tüm Hakları Saklıdır.</p>
+            <p>{% get_site_content 'footer_copyright' '&copy; 2024 Umut Vagonu Derneği. Tüm Hakları Saklıdır.' %}</p>
             <p class="developer-credit">Developed by <a href="https://furkanbulut.vercel.app/" target="_blank"
                     rel="noopener">Furkan Bulut</a></p>
         </div>

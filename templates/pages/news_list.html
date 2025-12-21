@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load landing_tags %}
 
 {% block title %}Haberler | {{ site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
 
@@ -98,8 +99,8 @@
         {% else %}
         <div class="empty-state">
             <i class="fas fa-newspaper"></i>
-            <h3>Henüz haber bulunmuyor</h3>
-            <p>Yakında haberlerimizi buradan takip edebileceksiniz.</p>
+            <h3>{% get_site_content 'news_empty_title' 'Henüz haber bulunmuyor' %}</h3>
+            <p>{% get_site_content 'news_empty_text' 'Yakında haberlerimizi buradan takip edebileceksiniz.' %}</p>
         </div>
         {% endif %}
     </div>
