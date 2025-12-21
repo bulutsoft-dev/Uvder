@@ -124,11 +124,14 @@ class NewsAdmin(ModelAdmin):
     
     @display(description="Kapak", label=True)
     def image_preview(self, obj):
-        if obj.image:
-            return format_html(
-                '<img src="{}" style="width: 60px; height: 40px; object-fit: cover; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" />',
-                obj.image.url
-            )
+        try:
+            if obj.image:
+                return format_html(
+                    '<img src="{}" style="width: 60px; height: 40px; object-fit: cover; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" />',
+                    obj.image.url
+                )
+        except Exception:
+            pass
         return format_html('<span style="color: #999; font-size: 12px;">Görsel yok</span>')
     
     @display(description="Durum", label={"Yayında": "success", "Taslak": "warning"})
@@ -215,11 +218,14 @@ class WriterAdmin(ModelAdmin):
     
     @display(description="Foto")
     def photo_preview(self, obj):
-        if obj.photo:
-            return format_html(
-                '<img src="{}" style="width: 45px; height: 45px; object-fit: cover; border-radius: 50%; border: 2px solid #10b981;" />',
-                obj.photo.url
-            )
+        try:
+            if obj.photo:
+                return format_html(
+                    '<img src="{}" style="width: 45px; height: 45px; object-fit: cover; border-radius: 50%; border: 2px solid #10b981;" />',
+                    obj.photo.url
+                )
+        except Exception:
+            pass
         return format_html(
             '<div style="width: 45px; height: 45px; background: #E5E7EB; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #9CA3AF; font-size: 18px;">👤</div>'
         )
@@ -401,11 +407,14 @@ class GalleryImageAdmin(ModelAdmin):
     
     @display(description="Önizleme")
     def image_preview(self, obj):
-        if obj.image:
-            return format_html(
-                '<img src="{}" style="width: 80px; height: 60px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);" />',
-                obj.image.url
-            )
+        try:
+            if obj.image:
+                return format_html(
+                    '<img src="{}" style="width: 80px; height: 60px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);" />',
+                    obj.image.url
+                )
+        except Exception:
+            pass
         return "-"
     
     actions = ['make_featured', 'remove_featured']
