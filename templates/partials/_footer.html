@@ -9,8 +9,7 @@
                         <strong>{% get_site_content 'footer_brand_title' 'Umut Vagonu' %}</strong>
                     </span>
                 </div>
-                <p>{{ site_settings.about_text|default:"Umut Vagonu Derneği, şeffaflık ve hesap verebilirlik ilkeleriyle
-                    çalışan, kamu yararına bir sivil toplum kuruluşudur."|truncatewords:30 }}</p>
+                <p>{{ site_settings.about_text|default:"Umut Vagonu Derneği, şeffaflık ve hesap verebilirlik ilkeleriyle                    çalışan, kamu yararına bir sivil toplum kuruluşudur."|truncatewords:30 }}</p>
 
                 <div class="social-links">
                     {% if site_settings.instagram_url %}
@@ -46,15 +45,16 @@
                 <ul>
                     <li><a href="{% url 'landing:about' %}">{% get_site_content 'footer_link_about' 'Hakkımızda' %}</a>
                     </li>
+                    <li><a href="{% url 'landing:organization' %}">{% get_site_content 'footer_link_organization'                            'Organizasyon' %}</a>
+                    </li>
                     <li><a href="{% url 'landing:news_list' %}">{% get_site_content 'footer_link_news' 'Haberler' %}</a>
                     </li>
                     <li><a href="{% url 'landing:gallery' %}">{% get_site_content 'footer_link_gallery' 'Galeri' %}</a>
                     </li>
-                    <li><a href="{% url 'landing:writers' %}">{% get_site_content 'footer_link_writers' 'Yazar Köşesi'
-                            %}</a></li>
-                    <li><a href="{% url 'landing:contact' %}">{% get_site_content 'footer_link_contact' 'İletişim'
-                            %}</a></li>
+                    <li><a href="{% url 'landing:writers' %}">{% get_site_content 'footer_link_writers' 'Yazar Köşesi'                            %}</a></li>
+                    <li><a href="{% url 'landing:contact' %}">{% get_site_content 'footer_link_contact' 'İletişim'                            %}</a></li>
                 </ul>
+
             </div>
 
             <div class="footer-contact">

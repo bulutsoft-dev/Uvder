@@ -10,7 +10,7 @@ from unfold.decorators import action, display
 from .models import (
     SiteSettings, News, Writer, Article, 
     GalleryCategory, GalleryImage, Link, ContactMessage,
-    SiteContent
+    SiteContent, OrganizationMember
 )
 
 
@@ -597,3 +597,73 @@ class SiteContentAdmin(ModelAdmin):
     def content_preview(self, obj):
         text = obj.content_text
         return text[:50] + "..." if len(text) > 50 else text
+
+
+# =============================================================================
+# ORGANİZASYON ÜYELERİ
+# =============================================================================
+@admin.register(OrganizationMember)
+class OrganizationMemberAdmin(ModelAdmin):
+    """
+    Organizasyon Üyesi Yönetimi
+    ---------------------------
+    Dernek yönetim kadrosunu buradan yönetebilirsiniz.
+    """
+    
+    warn_unsaved_form = True
+    list_filter_submit = True
+    
+    list_display = ['photo_preview', 'name', 'title', 'role_badge', 'order', 'is_active']
+    list_display_links = ['name']
+    list_filter = ['role_type', 'is_active']
+    search_fields = ['name', 'title', 'bio']
+    list_editable = ['order', 'is_active']
+    ordering = ['role_type', 'order', 'name']
+    list_per_page = 20
+    
+    fieldsets = (
+        ('👤 Üye Bilgileri', {
+            'fields': ('name', 'title', 'photo'),
+            'description': 'Üyenin adı, unvanı ve fotoğrafı.',
+            'classes': ['tab'],
+        }),
+        ('📝 Biyografi', {
+            'fields': ('bio',),
+            'description': 'Kısa özgeçmiş veya tanıtım metni.',
+            'classes': ['tab'],
+        }),
+        ('🏢 Rol ve Sıralama', {
+            'fields': ('role_type', 'order', 'is_active'),
+            'description': 'Hiyerarşi seçimi ve görünüm sırası.',
+            'classes': ['tab'],
+        }),
+        ('📧 İletişim (Opsiyonel)', {
+            'fields': ('email', 'phone', 'linkedin_url', 'twitter_url'),
+            'description': 'Görüntülenmesi istenirse doldurulabilir.',
+            'classes': ['tab', 'collapsed'],
+        }),
+    )
+    
+    @display(description="Foto")
+    def photo_preview(self, obj):
+        try:
+            if obj.photo:
+                return format_html(
+                    '<img src="{}" style="width: 45px; height: 45px; object-fit: cover; border-radius: 50%; border: 2px solid #10b981;" />',
+                    obj.photo.url
+                )
+        except Exception:
+            pass
+        return format_html(
+            '<div style="width: 45px; height: 45px; background: #E5E7EB; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #9CA3AF; font-size: 18px;">👤</div>'
+        )
+    
+    @display(description="Rol", label={
+        "Kurucu Üye": "success",
+        "Yönetim Kurulu": "primary",
+        "Denetim Kurulu": "info",
+        "Takım Lideri": "warning",
+        "Gönüllü": "default",
+    })
+    def role_badge(self, obj):
+        return obj.get_role_type_display()

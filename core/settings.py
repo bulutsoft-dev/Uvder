@@ -121,8 +121,19 @@ UNFOLD = {
                         "icon": "settings",
                         "link": reverse_lazy("admin:landing_sitesettings_changelist"),
                     },
+                    {
+                        "title": "Site İçerikleri",
+                        "icon": "text_fields",
+                        "link": reverse_lazy("admin:landing_sitecontent_changelist"),
+                    },
+                    {
+                        "title": "Organizasyon Üyeleri",
+                        "icon": "groups",
+                        "link": reverse_lazy("admin:landing_organizationmember_changelist"),
+                    },
                 ],
             },
+
             {
                 "title": "İçerik Yönetimi",
                 "separator": True,

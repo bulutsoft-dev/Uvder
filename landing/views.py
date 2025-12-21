@@ -3,7 +3,8 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 from .models import (
     SiteSettings, News, Writer, Article,
-    GalleryCategory, GalleryImage, Link, ContactMessage
+    GalleryCategory, GalleryImage, Link, ContactMessage,
+    OrganizationMember
 )
 
 
@@ -21,6 +22,22 @@ def home(request):
 def about(request):
     """Hakkımızda sayfası"""
     return render(request, 'pages/about.html')
+
+
+def organization(request):
+    """Organizasyon yapısı sayfası"""
+    members = OrganizationMember.objects.filter(is_active=True)
+    
+    context = {
+        'founders': members.filter(role_type=OrganizationMember.ROLE_FOUNDER),
+        'board_members': members.filter(role_type=OrganizationMember.ROLE_BOARD),
+        'supervisors': members.filter(role_type=OrganizationMember.ROLE_SUPERVISOR),
+        'team_leads': members.filter(role_type=OrganizationMember.ROLE_TEAM_LEAD),
+        'volunteers': members.filter(role_type=OrganizationMember.ROLE_VOLUNTEER),
+    }
+    return render(request, 'pages/organization.html', context)
+
+
 
 
 def news_list(request):

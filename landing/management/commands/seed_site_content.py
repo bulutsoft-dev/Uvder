@@ -101,7 +101,24 @@ class Command(BaseCommand):
             ('writers_empty_title', 'Henüz yazar bulunmuyor', 'Yazarlar: Boş Liste Başlığı'),
             ('writers_empty_text', 'Yakında yazarlarımızın köşe yazılarını buradan okuyabileceksiniz.', 'Yazarlar: Boş Liste Metni'),
             ('writers_latest_articles_title', 'Son Yazılar', 'Yazarlar: Son Yazılar Başlığı'),
+            
+            # Organization Page
+            ('nav_organization', 'Organizasyon', 'Navbar: Organizasyon Linki'),
+            ('footer_link_organization', 'Organizasyon', 'Footer: Organizasyon Linki'),
+            ('org_page_title', 'Organizasyon Yapısı', 'Organizasyon: Sayfa Başlığı'),
+            ('org_intro_text', 'Umut Vagonu Derneği, gönüllü ruhla çalışan bir ekiple yürütülmektedir. Yönetim kadromuz ve gönüllü ailemizle birlikte topluma hizmet etmekteyiz.', 'Organizasyon: Giriş Metni'),
+            ('org_founders_title', 'Kurucu Üyeler', 'Organizasyon: Kurucular Başlığı'),
+            ('org_board_title', 'Yönetim Kurulu', 'Organizasyon: Yönetim Kurulu Başlığı'),
+            ('org_supervisors_title', 'Denetim Kurulu', 'Organizasyon: Denetim Kurulu Başlığı'),
+            ('org_teamleads_title', 'Takım Liderleri', 'Organizasyon: Takım Liderleri Başlığı'),
+            ('org_volunteers_title', 'Gönüllülerimiz', 'Organizasyon: Gönüllüler Başlığı'),
+            ('org_empty_title', 'Henüz üye bilgisi eklenmemiş', 'Organizasyon: Boş Liste Başlığı'),
+            ('org_empty_text', 'Yakında organizasyon yapımızı buradan görebileceksiniz.', 'Organizasyon: Boş Liste Metni'),
+            ('org_cta_title', 'Ekibimize Katılın', 'Organizasyon: CTA Başlığı'),
+            ('org_cta_text', 'Gönüllü olarak iyilik hareketimize destek olabilirsiniz.', 'Organizasyon: CTA Metni'),
+            ('org_cta_btn', 'Gönüllü Ol', 'Organizasyon: CTA Butonu'),
         ]
+
 
         created_count = 0
         updated_count = 0

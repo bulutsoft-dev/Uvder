@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+{% load landing_tags %}
+
+{% block title %}Organizasyon | {{ site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">{% get_site_content 'org_page_title' 'Organizasyon Yapısı' %}</h1>
+        <nav class="breadcrumb">
+            <a href="{% url 'landing:home' %}">Ana Sayfa</a>
+            <span>/</span>
+            <span>Organizasyon</span>
+        </nav>
+    </div>
+</section>
+
+<!-- Organization Section -->
+<section class="organization-section">
+    <div class="container">
+
+        <!-- Intro Text -->
+        <div class="org-intro">
+            <p>{% get_site_content 'org_intro_text' 'Umut Vagonu Derneği, gönüllü ruhla çalışan bir ekiple                yürütülmektedir. Yönetim kadromuz ve gönüllü ailemizle birlikte topluma hizmet etmekteyiz.' %}</p>
+        </div>
+
+        <!-- Founders Section -->
+        {% if founders %}
+        <div class="org-section">
+            <h2 class="org-section-title">
+                <i class="fas fa-star"></i>
+                {% get_site_content 'org_founders_title' 'Kurucu Üyeler' %}
+            </h2>
+            <div class="org-grid org-grid-founders">
+                {% for member in founders %}
+                <div class="org-card org-card-large">
+                    <div class="org-card-photo">
+                        {% if member.photo %}
+                        <img src="{{ member.photo.url }}" alt="{{ member.name }}" loading="lazy">
+                        {% else %}
+                        <div class="org-card-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="org-card-info">
+                        <h3>{{ member.name }}</h3>
+                        <span class="org-card-title">{{ member.title }}</span>
+                        {% if member.bio %}
+                        <p class="org-card-bio">{{ member.bio|truncatewords:30 }}</p>
+                        {% endif %}
+                        {% if member.linkedin_url or member.twitter_url %}
+                        <div class="org-card-social">
+                            {% if member.linkedin_url %}
+                            <a href="{{ member.linkedin_url }}" target="_blank" rel="noopener"><i
+                                    class="fab fa-linkedin"></i></a>
+                            {% endif %}
+                            {% if member.twitter_url %}
+                            <a href="{{ member.twitter_url }}" target="_blank" rel="noopener"><i
+                                    class="fab fa-twitter"></i></a>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Board Members Section -->
+        {% if board_members %}
+        <div class="org-section">
+            <h2 class="org-section-title">
+                <i class="fas fa-users-cog"></i>
+                {% get_site_content 'org_board_title' 'Yönetim Kurulu' %}
+            </h2>
+            <div class="org-grid org-grid-board">
+                {% for member in board_members %}
+                <div class="org-card org-card-medium">
+                    <div class="org-card-photo">
+                        {% if member.photo %}
+                        <img src="{{ member.photo.url }}" alt="{{ member.name }}" loading="lazy">
+                        {% else %}
+                        <div class="org-card-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="org-card-info">
+                        <h3>{{ member.name }}</h3>
+                        <span class="org-card-title">{{ member.title }}</span>
+                        {% if member.bio %}
+                        <p class="org-card-bio">{{ member.bio|truncatewords:20 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Supervisory Board Section -->
+        {% if supervisors %}
+        <div class="org-section">
+            <h2 class="org-section-title">
+                <i class="fas fa-clipboard-check"></i>
+                {% get_site_content 'org_supervisors_title' 'Denetim Kurulu' %}
+            </h2>
+            <div class="org-grid org-grid-supervisors">
+                {% for member in supervisors %}
+                <div class="org-card org-card-medium">
+                    <div class="org-card-photo">
+                        {% if member.photo %}
+                        <img src="{{ member.photo.url }}" alt="{{ member.name }}" loading="lazy">
+                        {% else %}
+                        <div class="org-card-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="org-card-info">
+                        <h3>{{ member.name }}</h3>
+                        <span class="org-card-title">{{ member.title }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Team Leads Section -->
+        {% if team_leads %}
+        <div class="org-section">
+            <h2 class="org-section-title">
+                <i class="fas fa-user-tie"></i>
+                {% get_site_content 'org_teamleads_title' 'Takım Liderleri' %}
+            </h2>
+            <div class="org-grid org-grid-leads">
+                {% for member in team_leads %}
+                <div class="org-card org-card-small">
+                    <div class="org-card-photo">
+                        {% if member.photo %}
+                        <img src="{{ member.photo.url }}" alt="{{ member.name }}" loading="lazy">
+                        {% else %}
+                        <div class="org-card-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="org-card-info">
+                        <h3>{{ member.name }}</h3>
+                        <span class="org-card-title">{{ member.title }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Volunteers Section -->
+        {% if volunteers %}
+        <div class="org-section">
+            <h2 class="org-section-title">
+                <i class="fas fa-hands-helping"></i>
+                {% get_site_content 'org_volunteers_title' 'Gönüllülerimiz' %}
+            </h2>
+            <div class="org-grid org-grid-volunteers">
+                {% for member in volunteers %}
+                <div class="org-card org-card-compact">
+                    <div class="org-card-photo-small">
+                        {% if member.photo %}
+                        <img src="{{ member.photo.url }}" alt="{{ member.name }}" loading="lazy">
+                        {% else %}
+                        <div class="org-card-placeholder-small">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="org-card-info-compact">
+                        <h4>{{ member.name }}</h4>
+                        <span>{{ member.title }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Empty State -->
+        {% if not founders and not board_members and not supervisors and not team_leads and not volunteers %}
+        <div class="empty-state">
+            <i class="fas fa-users"></i>
+            <h3>{% get_site_content 'org_empty_title' 'Henüz üye bilgisi eklenmemiş' %}</h3>
+            <p>{% get_site_content 'org_empty_text' 'Yakında organizasyon yapımızı buradan görebileceksiniz.' %}</p>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <div class="cta-text">
+                <h2>{% get_site_content 'org_cta_title' 'Ekibimize Katılın' %}</h2>
+                <p>{% get_site_content 'org_cta_text' 'Gönüllü olarak iyilik hareketimize destek olabilirsiniz.' %}</p>
+            </div>
+            <div class="cta-buttons">
+                <a href="{% url 'landing:contact' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-hands-helping"></i> {% get_site_content 'org_cta_btn' 'Gönüllü Ol' %}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

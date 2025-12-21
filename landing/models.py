@@ -577,3 +577,86 @@ class SiteContent(models.Model):
 
     def __str__(self):
         return f"{self.description} ({self.key})"
+
+
+class OrganizationMember(models.Model):
+    """
+    Organizasyon Üyeleri
+    --------------------
+    Dernek yönetim kadrosunu ve üye hiyerarşisini yönetir.
+    """
+    
+    # Rol türleri (hiyerarşi sırası)
+    ROLE_FOUNDER = 1
+    ROLE_BOARD = 2
+    ROLE_SUPERVISOR = 3
+    ROLE_TEAM_LEAD = 4
+    ROLE_VOLUNTEER = 5
+    
+    ROLE_CHOICES = [
+        (ROLE_FOUNDER, 'Kurucu Üye'),
+        (ROLE_BOARD, 'Yönetim Kurulu'),
+        (ROLE_SUPERVISOR, 'Denetim Kurulu'),
+        (ROLE_TEAM_LEAD, 'Takım Lideri'),
+        (ROLE_VOLUNTEER, 'Gönüllü'),
+    ]
+    
+    name = models.CharField(
+        max_length=200, 
+        verbose_name="Ad Soyad",
+        help_text="Üyenin tam adı."
+    )
+    title = models.CharField(
+        max_length=200, 
+        verbose_name="Unvan",
+        help_text="Görevi/Pozisyonu. Örn: Başkan, Genel Sekreter, Sayman."
+    )
+    photo = models.ImageField(
+        upload_to='organization/', 
+        blank=True, 
+        null=True,
+        verbose_name="Fotoğraf",
+        help_text="Profil fotoğrafı. Önerilen boyut: 400x400 piksel (kare)."
+    )
+    bio = models.TextField(
+        blank=True, 
+        verbose_name="Biyografi",
+        help_text="Kısa özgeçmiş veya tanıtım metni."
+    )
+    
+    role_type = models.IntegerField(
+        choices=ROLE_CHOICES,
+        default=ROLE_VOLUNTEER,
+        verbose_name="Rol Türü",
+        help_text="Hiyerarşideki pozisyonu. Sayfada gruplama için kullanılır."
+    )
+    order = models.IntegerField(
+        default=0, 
+        verbose_name="Sıralama",
+        help_text="Aynı rol grubundaki sıralama. Küçük sayı önce görünür."
+    )
+    is_active = models.BooleanField(
+        default=True, 
+        verbose_name="Aktif",
+        help_text="Pasif üyeler sitede görünmez."
+    )
+    
+    # Opsiyonel iletişim
+    email = models.EmailField(blank=True, verbose_name="E-posta")
+    phone = models.CharField(max_length=20, blank=True, verbose_name="Telefon")
+    
+    # Sosyal medya (opsiyonel)
+    linkedin_url = models.URLField(blank=True, verbose_name="LinkedIn")
+    twitter_url = models.URLField(blank=True, verbose_name="Twitter/X")
+    
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Oluşturulma Tarihi")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Güncelleme Tarihi")
+
+    class Meta:
+        verbose_name = "Organizasyon Üyesi"
+        verbose_name_plural = "Organizasyon Üyeleri"
+        ordering = ['role_type', 'order', 'name']
+
+    def __str__(self):
+        return f"{self.name} - {self.get_role_type_display()}"
+

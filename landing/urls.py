@@ -6,7 +6,9 @@ app_name = 'landing'
 urlpatterns = [
     path('', views.home, name='home'),
     path('hakkimizda/', views.about, name='about'),
+    path('organizasyon/', views.organization, name='organization'),
     path('haberler/', views.news_list, name='news_list'),
+
     path('haberler/<slug:slug>/', views.news_detail, name='news_detail'),
     path('galeri/', views.gallery, name='gallery'),
     path('galeri/<slug:slug>/', views.gallery_category, name='gallery_category'),
