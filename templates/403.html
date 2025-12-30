@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
-{% block title %}Erişim Reddedildi - Umut Vagonu{% endblock %}
+{% block title %}{% get_site_content 'error_403_page_title' 'Erişim Reddedildi' %} - {{
+site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
 
 {% block content %}
 <section class="error-section error-403">
@@ -13,10 +14,10 @@
                 </div>
             </div>
 
-            <h1 class="error-title">Erişim Reddedildi</h1>
+            <h1 class="error-title">{% get_site_content 'error_403_title' 'Erişim Reddedildi' %}</h1>
             <p class="error-message">
-                Bu sayfaya erişim izniniz bulunmuyor.
-                <br>Eğer bu bir hata olduğunu düşünüyorsanız, lütfen bizimle iletişime geçin.
+                {% get_site_content 'error_403_message' 'Bu sayfaya erişim izniniz bulunmuyor. <br>Eğer bu bir hata
+                olduğunu düşünüyorsanız, lütfen bizimle iletişime geçin.' %}
             </p>
 
             <div class="error-lock-animation">
@@ -32,10 +33,10 @@
 
             <div class="error-buttons">
                 <a href="/" class="btn btn-primary btn-lg">
-                    <i class="fas fa-home"></i> Ana Sayfaya Dön
+                    <i class="fas fa-home"></i> {% get_site_content 'error_403_btn_home' 'Ana Sayfaya Dön' %}
                 </a>
                 <a href="{% url 'landing:contact' %}" class="btn btn-outline btn-lg">
-                    <i class="fas fa-envelope"></i> Yardım İste
+                    <i class="fas fa-envelope"></i> {% get_site_content 'error_403_btn_help' 'Yardım İste' %}
                 </a>
             </div>
         </div>

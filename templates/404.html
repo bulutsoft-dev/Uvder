@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
-{% block title %}Sayfa Bulunamadı - Umut Vagonu{% endblock %}
+{% block title %}{% get_site_content 'error_404_page_title' 'Sayfa Bulunamadı' %} - {{
+site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
 
 {% block content %}
 <section class="error-section">
@@ -12,33 +13,38 @@
                     <i class="fas fa-map-signs"></i>
                 </div>
             </div>
-            
-            <h1 class="error-title">Sayfa Bulunamadı</h1>
+
+            <h1 class="error-title">{% get_site_content 'error_404_title' 'Sayfa Bulunamadı' %}</h1>
             <p class="error-message">
-                Aradığınız sayfa taşınmış, silinmiş veya hiç var olmamış olabilir.
-                <br>Endişelenmeyin, sizi doğru yola yönlendirelim!
+                {% get_site_content 'error_404_message' 'Aradığınız sayfa taşınmış, silinmiş veya hiç var olmamış
+                olabilir. <br>Endişelenmeyin, sizi doğru yola yönlendirelim!' %}
             </p>
-            
+
             <div class="error-suggestions">
-                <h3><i class="fas fa-lightbulb"></i> Ne yapabilirsiniz?</h3>
+                <h3><i class="fas fa-lightbulb"></i> {% get_site_content 'error_404_suggestions_title' 'Ne
+                    yapabilirsiniz?' %}</h3>
                 <ul>
-                    <li><i class="fas fa-check"></i> URL adresini kontrol edin</li>
-                    <li><i class="fas fa-check"></i> Ana sayfadan tekrar başlayın</li>
-                    <li><i class="fas fa-check"></i> Arama yaparak içeriği bulun</li>
+                    <li><i class="fas fa-check"></i> {% get_site_content 'error_404_suggestion_1' 'URL adresini kontrol
+                        edin' %}</li>
+                    <li><i class="fas fa-check"></i> {% get_site_content 'error_404_suggestion_2' 'Ana sayfadan tekrar
+                        başlayın' %}</li>
+                    <li><i class="fas fa-check"></i> {% get_site_content 'error_404_suggestion_3' 'Arama yaparak içeriği
+                        bulun' %}</li>
                 </ul>
             </div>
-            
+
             <div class="error-buttons">
                 <a href="/" class="btn btn-primary btn-lg">
-                    <i class="fas fa-home"></i> Ana Sayfaya Dön
+                    <i class="fas fa-home"></i> {% get_site_content 'error_404_btn_home' 'Ana Sayfaya Dön' %}
                 </a>
                 <a href="{% url 'landing:contact' %}" class="btn btn-outline btn-lg">
-                    <i class="fas fa-envelope"></i> Bize Ulaşın
+                    <i class="fas fa-envelope"></i> {% get_site_content 'error_404_btn_contact' 'Bize Ulaşın' %}
                 </a>
             </div>
-            
+
             <div class="error-footer">
-                <p><i class="fas fa-heart"></i> Umut Vagonu olarak her zaman yanınızdayız</p>
+                <p><i class="fas fa-heart"></i> {% get_site_content 'error_404_footer_text' 'Umut Vagonu olarak her
+                    zaman yanınızdayız' %}</p>
             </div>
         </div>
     </div>
@@ -55,18 +61,18 @@
         padding: 60px 20px;
         background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     }
-    
+
     .error-content {
         text-align: center;
         max-width: 600px;
         margin: 0 auto;
     }
-    
+
     .error-illustration {
         position: relative;
         margin-bottom: 30px;
     }
-    
+
     .error-code {
         font-family: 'Outfit', sans-serif;
         font-size: clamp(120px, 20vw, 200px);
@@ -79,7 +85,7 @@
         opacity: 0.9;
         animation: pulse 2s ease-in-out infinite;
     }
-    
+
     .error-icon {
         position: absolute;
         top: 50%;
@@ -95,25 +101,25 @@
         box-shadow: 0 10px 40px rgba(62, 184, 154, 0.3);
         animation: float 3s ease-in-out infinite;
     }
-    
+
     .error-icon i {
         font-size: 3rem;
         color: var(--primary);
     }
-    
+
     .error-title {
         font-size: 2.5rem;
         color: var(--secondary);
         margin-bottom: 15px;
     }
-    
+
     .error-message {
         font-size: 1.1rem;
         color: var(--text-secondary);
         line-height: 1.8;
         margin-bottom: 30px;
     }
-    
+
     .error-suggestions {
         background: var(--white);
         padding: 25px 30px;
@@ -122,7 +128,7 @@
         box-shadow: var(--shadow);
         text-align: left;
     }
-    
+
     .error-suggestions h3 {
         font-size: 1.1rem;
         color: var(--primary);
@@ -131,13 +137,13 @@
         align-items: center;
         gap: 10px;
     }
-    
+
     .error-suggestions ul {
         list-style: none;
         padding: 0;
         margin: 0;
     }
-    
+
     .error-suggestions li {
         padding: 8px 0;
         color: var(--text-secondary);
@@ -145,12 +151,12 @@
         align-items: center;
         gap: 10px;
     }
-    
+
     .error-suggestions li i {
         color: var(--primary);
         font-size: 0.9rem;
     }
-    
+
     .error-buttons {
         display: flex;
         gap: 15px;
@@ -158,31 +164,56 @@
         flex-wrap: wrap;
         margin-bottom: 30px;
     }
-    
+
     .error-footer {
         color: var(--text-muted);
         font-size: 0.95rem;
     }
-    
+
     .error-footer i {
         color: var(--primary);
     }
-    
+
     @keyframes pulse {
-        0%, 100% { opacity: 0.9; }
-        50% { opacity: 0.6; }
+
+        0%,
+        100% {
+            opacity: 0.9;
+        }
+
+        50% {
+            opacity: 0.6;
+        }
     }
-    
+
     @keyframes float {
-        0%, 100% { transform: translate(-50%, -50%); }
-        50% { transform: translate(-50%, calc(-50% - 10px)); }
+
+        0%,
+        100% {
+            transform: translate(-50%, -50%);
+        }
+
+        50% {
+            transform: translate(-50%, calc(-50% - 10px));
+        }
     }
-    
+
     @media (max-width: 768px) {
-        .error-title { font-size: 1.8rem; }
-        .error-message { font-size: 1rem; }
-        .error-buttons { flex-direction: column; }
-        .error-buttons .btn { width: 100%; }
+        .error-title {
+            font-size: 1.8rem;
+        }
+
+        .error-message {
+            font-size: 1rem;
+        }
+
+        .error-buttons {
+            flex-direction: column;
+        }
+
+        .error-buttons .btn {
+            width: 100%;
+        }
     }
 </style>
 {% endblock %}

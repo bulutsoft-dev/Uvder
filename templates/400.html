@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
-{% block title %}Geçersiz İstek - Umut Vagonu{% endblock %}
+{% block title %}{% get_site_content 'error_400_page_title' 'Geçersiz İstek' %} - {{
+site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
 
 {% block content %}
 <section class="error-section error-400">
@@ -13,33 +14,33 @@
                 </div>
             </div>
 
-            <h1 class="error-title">Geçersiz İstek</h1>
+            <h1 class="error-title">{% get_site_content 'error_400_title' 'Geçersiz İstek' %}</h1>
             <p class="error-message">
-                Gönderdiğiniz istek sunucumuz tarafından anlaşılamadı.
-                <br>Lütfen formu doğru doldurduğunuzdan emin olun ve tekrar deneyin.
+                {% get_site_content 'error_400_message' 'Gönderdiğiniz istek sunucumuz tarafından anlaşılamadı.
+                <br>Lütfen formu doğru doldurduğunuzdan emin olun ve tekrar deneyin.' %}
             </p>
 
             <div class="error-tips">
                 <div class="tip-item">
                     <i class="fas fa-keyboard"></i>
-                    <span>Form alanlarını kontrol edin</span>
+                    <span>{% get_site_content 'error_400_tip_1' 'Form alanlarını kontrol edin' %}</span>
                 </div>
                 <div class="tip-item">
                     <i class="fas fa-sync"></i>
-                    <span>Sayfayı yenileyip tekrar deneyin</span>
+                    <span>{% get_site_content 'error_400_tip_2' 'Sayfayı yenileyip tekrar deneyin' %}</span>
                 </div>
                 <div class="tip-item">
                     <i class="fas fa-history"></i>
-                    <span>Tarayıcı önbelleğini temizleyin</span>
+                    <span>{% get_site_content 'error_400_tip_3' 'Tarayıcı önbelleğini temizleyin' %}</span>
                 </div>
             </div>
 
             <div class="error-buttons">
                 <a href="/" class="btn btn-primary btn-lg">
-                    <i class="fas fa-home"></i> Ana Sayfaya Dön
+                    <i class="fas fa-home"></i> {% get_site_content 'error_400_btn_home' 'Ana Sayfaya Dön' %}
                 </a>
                 <button onclick="history.back()" class="btn btn-outline btn-lg">
-                    <i class="fas fa-arrow-left"></i> Geri Dön
+                    <i class="fas fa-arrow-left"></i> {% get_site_content 'error_400_btn_back' 'Geri Dön' %}
                 </button>
             </div>
         </div>

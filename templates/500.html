@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
-{% block title %}Sunucu Hatası - Umut Vagonu{% endblock %}
+{% block title %}{% get_site_content 'error_500_page_title' 'Sunucu Hatası' %} - {{
+site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
 
 {% block content %}
 <section class="error-section error-500">
@@ -13,10 +14,10 @@
                 </div>
             </div>
 
-            <h1 class="error-title">Bir Şeyler Ters Gitti</h1>
+            <h1 class="error-title">{% get_site_content 'error_500_title' 'Bir Şeyler Ters Gitti' %}</h1>
             <p class="error-message">
-                Sunucumuzda beklenmeyen bir hata oluştu.
-                <br>Teknik ekibimiz bilgilendirildi ve sorunu çözmek için çalışıyor.
+                {% get_site_content 'error_500_message' 'Sunucumuzda beklenmeyen bir hata oluştu. <br>Teknik ekibimiz
+                bilgilendirildi ve sorunu çözmek için çalışıyor.' %}
             </p>
 
             <div class="error-info-box">
@@ -24,24 +25,24 @@
                     <i class="fas fa-wrench"></i>
                 </div>
                 <div class="info-text">
-                    <h4>Bakım Devam Ediyor</h4>
-                    <p>Lütfen birkaç dakika sonra tekrar deneyin</p>
+                    <h4>{% get_site_content 'error_500_info_title' 'Bakım Devam Ediyor' %}</h4>
+                    <p>{% get_site_content 'error_500_info_text' 'Lütfen birkaç dakika sonra tekrar deneyin' %}</p>
                 </div>
             </div>
 
             <div class="error-buttons">
                 <a href="/" class="btn btn-primary btn-lg">
-                    <i class="fas fa-home"></i> Ana Sayfaya Dön
+                    <i class="fas fa-home"></i> {% get_site_content 'error_500_btn_home' 'Ana Sayfaya Dön' %}
                 </a>
                 <button onclick="location.reload()" class="btn btn-outline btn-lg">
-                    <i class="fas fa-redo"></i> Sayfayı Yenile
+                    <i class="fas fa-redo"></i> {% get_site_content 'error_500_btn_reload' 'Sayfayı Yenile' %}
                 </button>
             </div>
 
             <div class="error-contact">
-                <p>Sorun devam ederse bizimle iletişime geçin:</p>
+                <p>{% get_site_content 'error_500_contact_text' 'Sorun devam ederse bizimle iletişime geçin:' %}</p>
                 <a href="{% url 'landing:contact' %}" class="contact-link">
-                    <i class="fas fa-envelope"></i> İletişim Formu
+                    <i class="fas fa-envelope"></i> {% get_site_content 'error_500_contact_link' 'İletişim Formu' %}
                 </a>
             </div>
         </div>

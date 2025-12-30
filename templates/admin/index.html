@@ -9,10 +9,11 @@
         <div class="text-3xl">🌿</div>
         <div>
             <h2 class="font-semibold text-base-900 dark:text-base-100 mb-1">
-                Umut Vagonu Yönetim Paneli
+                {% get_site_content 'admin_welcome_title' 'Umut Vagonu Yönetim Paneli' %}
             </h2>
             <p class="text-sm text-base-500 dark:text-base-400">
-                Hoş geldiniz! Bu panel üzerinden sitenizi kolayca yönetebilirsiniz.
+                {% get_site_content 'admin_welcome_text' 'Hoş geldiniz! Bu panel üzerinden sitenizi kolayca
+                yönetebilirsiniz.' %}
             </p>
         </div>
     </div>
@@ -82,7 +83,7 @@
     class="bg-white block overflow-hidden rounded-default shadow-xs dark:bg-base-900 border border-base-200 dark:border-base-800 mb-6">
     <div class="border-b border-base-200 dark:border-base-800 py-3 px-4">
         <h3 class="font-semibold text-base-900 dark:text-base-100 flex items-center gap-2 text-sm">
-            📚 Hızlı Başlangıç
+            📚 {% get_site_content 'admin_quick_start_title' 'Hızlı Başlangıç' %}
         </h3>
     </div>
     <div class="p-4 grid grid-cols-2 lg:grid-cols-3 gap-3">
@@ -123,7 +124,7 @@
 <div
     class="mb-6 px-4 py-3 leading-normal rounded-default bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-400">
     <h4 class="font-semibold mb-2 flex items-center gap-2 text-sm">
-        💡 Kullanım İpuçları
+        💡 {% get_site_content 'admin_tips_title' 'Kullanım İpuçları' %}
     </h4>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 text-xs">
         <div class="flex items-start gap-2">

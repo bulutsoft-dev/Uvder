@@ -6,11 +6,11 @@
 <!-- Page Header -->
 <section class="page-header">
     <div class="container">
-        <h1 class="page-title">Yazı</h1>
+        <h1 class="page-title">{% get_site_content 'article_detail_page_title' 'Yazı' %}</h1>
         <nav class="breadcrumb">
-            <a href="{% url 'landing:home' %}">Ana Sayfa</a>
+            <a href="{% url 'landing:home' %}">{% get_site_content 'breadcrumb_home' 'Ana Sayfa' %}</a>
             <span>/</span>
-            <a href="{% url 'landing:writers' %}">Yazar Köşesi</a>
+            <a href="{% url 'landing:writers' %}">{% get_site_content 'breadcrumb_writers' 'Yazar Köşesi' %}</a>
             <span>/</span>
             <span>{{ article.title|truncatewords:5 }}</span>
         </nav>
@@ -51,7 +51,7 @@
 
                 <!-- Share Buttons -->
                 <div class="share-section">
-                    <span>Paylaş:</span>
+                    <span>{% get_site_content 'article_share_label' 'Paylaş:' %}</span>
                     <div class="share-buttons">
                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"
                             target="_blank" rel="noopener" class="share-btn facebook">
@@ -86,14 +86,14 @@
                         <p>{{ article.writer.bio|truncatewords:20 }}</p>
                         {% endif %}
                         <a href="{% url 'landing:writer_detail' article.writer.slug %}" class="btn btn-outline btn-sm">
-                            Tüm Yazıları
+                            {% get_site_content 'article_btn_all_articles' 'Tüm Yazıları' %}
                         </a>
                     </div>
                 </div>
 
                 {% if related_articles %}
                 <div class="sidebar-widget">
-                    <h3>Bu Yazarın Diğer Yazıları</h3>
+                    <h3>{% get_site_content 'article_related_title' 'Bu Yazarın Diğer Yazıları' %}</h3>
                     <div class="related-articles-list">
                         {% for item in related_articles %}
                         <a href="{% url 'landing:article_detail' item.slug %}" class="related-article-item">
