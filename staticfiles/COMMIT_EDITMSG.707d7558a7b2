@@ -1,0 +1,13 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+# Changes to be committed:
+#	new file:   landing/management/__init__.py
+#	new file:   landing/management/commands/__init__.py
+#	new file:   landing/management/commands/seed_data.py
+#
