@@ -40,7 +40,7 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
-    padding-top: 70px;
+    padding-top: 60px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -119,15 +119,13 @@ img {
 }
 
 .btn-donate,
-.btn-donate-large,
-.nav-link.btn-donate {
+.btn-donate-large {
     background: var(--gradient-primary);
     color: var(--white);
 }
 
 .btn-donate:hover,
-.btn-donate-large:hover,
-.nav-link.btn-donate:hover {
+.btn-donate-large:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
     color: var(--white);
@@ -912,7 +910,7 @@ section {
 .page-header {
     background: var(--gradient-hero);
     color: var(--white);
-    padding: 40px 0 60px;
+    padding: 80px 0 60px;
     text-align: center;
     position: relative;
 }
@@ -2394,14 +2392,13 @@ section {
         top: 0;
         left: 0;
         right: 0;
-        bottom: 0;
         background: var(--white);
+        background-color: var(--white);
         flex-direction: column;
         padding: 100px 30px 30px;
         transform: translateX(-100%);
         transition: transform 0.3s ease;
         z-index: 998;
-        overflow-y: auto;
         -webkit-overflow-scrolling: touch;
     }
 
@@ -3380,77 +3377,5 @@ section {
 
     .org-section-title {
         font-size: 1.4rem;
-    }
-}
-
-/* Back to Top & Animations (Moved from JS) */
-.back-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: var(--primary);
-    color: var(--white);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
-    transition: all 0.3s ease;
-    z-index: 1000;
-    box-shadow: 0 4px 15px rgba(62, 184, 154, 0.3);
-}
-
-.back-to-top.visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.back-to-top:hover {
-    background: var(--primary-dark);
-    transform: translateY(-3px);
-}
-
-.animate-ready {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
-}
-
-.animated {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-}
-
-body.menu-open {
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-}
-
-body.lightbox-open {
-    overflow: hidden;
-}
-
-.form-group.error input,
-.form-group.error textarea {
-    border-color: #EF4444 !important;
-}
-
-@media (max-width: 576px) {
-    .back-to-top {
-        bottom: 20px;
-        right: 20px;
-        width: 45px;
-        height: 45px;
-        font-size: 16px;
     }
 }
