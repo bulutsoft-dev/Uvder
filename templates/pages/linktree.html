@@ -6,6 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bağlantılar | {{ site_settings.site_title|default:"Umut Vagonu" }}</title>
 
+    <!-- Meta Tags & Favicon -->
+    {% load static %}
+    <meta name="description"
+        content="{{ site_settings.about_text|default:'Umut Vagonu Derneği - İhtiyaç sahiplerine ulaşmak, yüzlerde bir tebessüm oluşturmak için durmaksızın çalışıyoruz.'|truncatewords:30 }}">
+    <meta name="keywords" content="umut vagonu, dernek, yardım, bağış, links, bağlantılar">
+    <meta name="author" content="Umut Vagonu & Furkan Bulut">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="{% if site_settings.favicon %}{{ site_settings.favicon.url }}{% else %}{% static 'images/favicon.png' %}{% endif %}">
+    <link rel="shortcut icon"
+        href="{% if site_settings.favicon %}{{ site_settings.favicon.url }}{% else %}{% static 'images/favicon.png' %}{% endif %}"
+        type="image/png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:title" content="Bağlantılar | {{ site_settings.site_title|default:'Umut Vagonu' }}">
+    <meta property="og:description"
+        content="{{ site_settings.about_text|default:'Umut Vagonu Derneği bağlantıları ve önemli linkler.' }}">
+    <meta property="og:image"
+        content="{% if site_settings.logo %}{{ site_settings.logo.url }}{% else %}{% static 'images/logo.png' %}{% endif %}">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -354,6 +377,19 @@
 
         <!-- Links -->
         <div class="links-container">
+            <!-- Main Site Link (Hardcoded as requested) -->
+            <a href="{% url 'landing:home' %}" class="link-card featured">
+                <div class="link-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">Web Sitemiz</div>
+                    <div class="link-desc">Ana sayfamızı ziyaret edin</div>
+                </div>
+                <div class="link-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </a>
             {% for link in links %}
             <a href="{{ link.url }}" target="_blank" rel="noopener"
                 class="link-card {% if link.is_featured %}featured{% endif %}">
@@ -403,7 +439,12 @@
         </div>
 
         <div class="copyright">
-            &copy; {% now "Y" %} {{ site_settings.site_title }}. Tüm hakları saklıdır.
+            &copy; {% now "Y" %} {{ site_settings.site_title|default:"Umut Vagonu" }}. Tüm hakları saklıdır.<br>
+            <span style="font-size: 0.75rem; opacity: 0.7; margin-top: 5px; display: inline-block;">
+                Developed by <a href="https://github.com/furkanblt" target="_blank"
+                    style="color: inherit; text-decoration: none; border-bottom: 1px dotted rgba(255,255,255,0.3);">Furkan
+                    Bulut</a>
+            </span>
         </div>
 
     </div>
