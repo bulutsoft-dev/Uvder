@@ -397,22 +397,8 @@ class GalleryImageAdmin(ModelAdmin):
     ordering = ['-uploaded_at']
     list_per_page = 24
     
-    fieldsets = (
-        ('🖼️ Görsel Bilgileri', {
-            'fields': ('image', 'title', 'description'),
-            'description': 'Görsel dosyası ve açıklaması.',
-            'classes': ['tab'],
-        }),
-        ('📁 Kategori', {
-            'fields': ('category',),
-            'classes': ['tab'],
-        }),
-        ('⚙️ Ayarlar', {
-            'fields': ('is_featured',),
-            'description': 'Öne çıkan görseller ana sayfada görünür.',
-            'classes': ['tab'],
-        }),
-    )
+    # Gruplandırma olmadan düz alan listesi
+    fields = ['category', 'title', 'image', 'description', 'is_featured']
     
     @display(description="Önizleme")
     def image_preview(self, obj):
