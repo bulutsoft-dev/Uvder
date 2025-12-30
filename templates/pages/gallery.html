@@ -62,8 +62,7 @@
             {% endif %}
 
             <span class="page-info">
-                {% get_site_content 'gallery_pagination_page' 'Sayfa' %} {{ images.number }} / {{
-                images.paginator.num_pages }}
+                {% get_site_content 'gallery_pagination_page' 'Sayfa' %} {{ images.number }} / {{                images.paginator.num_pages }}
             </span>
 
             {% if images.has_next %}

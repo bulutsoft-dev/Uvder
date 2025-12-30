@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
-
-{% block title %}{% get_site_content 'error_400_page_title' 'Geçersiz İstek' %} - {{
-site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
+{% load landing_tags %}
+{% block title %}{% get_site_content 'error_400_page_title' 'Geçersiz İstek' %} - {{site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
 
 {% block content %}
 <section class="error-section error-400">
@@ -16,8 +15,7 @@ site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
 
             <h1 class="error-title">{% get_site_content 'error_400_title' 'Geçersiz İstek' %}</h1>
             <p class="error-message">
-                {% get_site_content 'error_400_message' 'Gönderdiğiniz istek sunucumuz tarafından anlaşılamadı.
-                <br>Lütfen formu doğru doldurduğunuzdan emin olun ve tekrar deneyin.' %}
+                {% get_site_content 'error_400_message' 'Gönderdiğiniz istek sunucumuz tarafından anlaşılamadı.                <br>Lütfen formu doğru doldurduğunuzdan emin olun ve tekrar deneyin.' %}
             </p>
 
             <div class="error-tips">

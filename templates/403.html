@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
-
-{% block title %}{% get_site_content 'error_403_page_title' 'Erişim Reddedildi' %} - {{
-site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
+{% load landing_tags %}
+{% block title %}{% get_site_content 'error_403_page_title' 'Erişim Reddedildi' %} - {{site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
 
 {% block content %}
 <section class="error-section error-403">
@@ -16,8 +15,7 @@ site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
 
             <h1 class="error-title">{% get_site_content 'error_403_title' 'Erişim Reddedildi' %}</h1>
             <p class="error-message">
-                {% get_site_content 'error_403_message' 'Bu sayfaya erişim izniniz bulunmuyor. <br>Eğer bu bir hata
-                olduğunu düşünüyorsanız, lütfen bizimle iletişime geçin.' %}
+                {% get_site_content 'error_403_message' 'Bu sayfaya erişim izniniz bulunmuyor. <br>Eğer bu bir hata                olduğunu düşünüyorsanız, lütfen bizimle iletişime geçin.' %}
             </p>
 
             <div class="error-lock-animation">

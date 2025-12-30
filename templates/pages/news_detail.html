@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load landing_tags %}
 {% block title %}{{ news.title }} | {{ site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
 
 {% block content %}
@@ -31,8 +31,7 @@
                 <div class="news-detail-meta">
                     <span><i class="far fa-calendar"></i> {{ news.published_date|date:"d F Y" }}</span>
                     {% if news.is_featured %}
-                    <span class="badge-featured"><i class="fas fa-star"></i> {% get_site_content 'news_badge_featured'
-                        'Öne Çıkan' %}</span>
+                    <span class="badge-featured"><i class="fas fa-star"></i> {% get_site_content 'news_badge_featured'                        'Öne Çıkan' %}</span>
                     {% endif %}
                 </div>
 
@@ -93,8 +92,7 @@
 
                 <div class="sidebar-widget cta-widget">
                     <h3>{% get_site_content 'news_sidebar_cta_title' 'Destek Olun' %}</h3>
-                    <p>{% get_site_content 'news_sidebar_cta_text' 'Umut Vagonu hareketine katılarak bir fark yaratın.'
-                        %}</p>
+                    <p>{% get_site_content 'news_sidebar_cta_text' 'Umut Vagonu hareketine katılarak bir fark yaratın.'                        %}</p>
                     <a href="{% url 'landing:contact' %}" class="btn btn-primary btn-block">
                         <i class="fas fa-heart"></i> {% get_site_content 'news_sidebar_cta_btn' 'Bağış Yap' %}
                     </a>

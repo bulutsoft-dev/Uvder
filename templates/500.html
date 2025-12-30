@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
-
-{% block title %}{% get_site_content 'error_500_page_title' 'Sunucu Hatası' %} - {{
-site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
+{% load landing_tags %}
+{% block title %}{% get_site_content 'error_500_page_title' 'Sunucu Hatası' %} - {{site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
 
 {% block content %}
 <section class="error-section error-500">
@@ -16,8 +15,7 @@ site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
 
             <h1 class="error-title">{% get_site_content 'error_500_title' 'Bir Şeyler Ters Gitti' %}</h1>
             <p class="error-message">
-                {% get_site_content 'error_500_message' 'Sunucumuzda beklenmeyen bir hata oluştu. <br>Teknik ekibimiz
-                bilgilendirildi ve sorunu çözmek için çalışıyor.' %}
+                {% get_site_content 'error_500_message' 'Sunucumuzda beklenmeyen bir hata oluştu. <br>Teknik ekibimiz                bilgilendirildi ve sorunu çözmek için çalışıyor.' %}
             </p>
 
             <div class="error-info-box">

@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
-
-{% block title %}{% get_site_content 'error_404_page_title' 'Sayfa Bulunamadı' %} - {{
-site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
+{% load landing_tags %}
+{% block title %}{% get_site_content 'error_404_page_title' 'Sayfa Bulunamadı' %} - {{site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
 
 {% block content %}
 <section class="error-section">
@@ -16,20 +15,15 @@ site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
 
             <h1 class="error-title">{% get_site_content 'error_404_title' 'Sayfa Bulunamadı' %}</h1>
             <p class="error-message">
-                {% get_site_content 'error_404_message' 'Aradığınız sayfa taşınmış, silinmiş veya hiç var olmamış
-                olabilir. <br>Endişelenmeyin, sizi doğru yola yönlendirelim!' %}
+                {% get_site_content 'error_404_message' 'Aradığınız sayfa taşınmış, silinmiş veya hiç var olmamış                olabilir. <br>Endişelenmeyin, sizi doğru yola yönlendirelim!' %}
             </p>
 
             <div class="error-suggestions">
-                <h3><i class="fas fa-lightbulb"></i> {% get_site_content 'error_404_suggestions_title' 'Ne
-                    yapabilirsiniz?' %}</h3>
+                <h3><i class="fas fa-lightbulb"></i> {% get_site_content 'error_404_suggestions_title' 'Ne                    yapabilirsiniz?' %}</h3>
                 <ul>
-                    <li><i class="fas fa-check"></i> {% get_site_content 'error_404_suggestion_1' 'URL adresini kontrol
-                        edin' %}</li>
-                    <li><i class="fas fa-check"></i> {% get_site_content 'error_404_suggestion_2' 'Ana sayfadan tekrar
-                        başlayın' %}</li>
-                    <li><i class="fas fa-check"></i> {% get_site_content 'error_404_suggestion_3' 'Arama yaparak içeriği
-                        bulun' %}</li>
+                    <li><i class="fas fa-check"></i> {% get_site_content 'error_404_suggestion_1' 'URL adresini kontrol                        edin' %}</li>
+                    <li><i class="fas fa-check"></i> {% get_site_content 'error_404_suggestion_2' 'Ana sayfadan tekrar                        başlayın' %}</li>
+                    <li><i class="fas fa-check"></i> {% get_site_content 'error_404_suggestion_3' 'Arama yaparak içeriği                        bulun' %}</li>
                 </ul>
             </div>
 
@@ -43,8 +37,7 @@ site_settings.site_title|default:"Umut Vagonu" }}{% endblock %}
             </div>
 
             <div class="error-footer">
-                <p><i class="fas fa-heart"></i> {% get_site_content 'error_404_footer_text' 'Umut Vagonu olarak her
-                    zaman yanınızdayız' %}</p>
+                <p><i class="fas fa-heart"></i> {% get_site_content 'error_404_footer_text' 'Umut Vagonu olarak her                    zaman yanınızdayız' %}</p>
             </div>
         </div>
     </div>

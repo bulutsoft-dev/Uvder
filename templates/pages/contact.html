@@ -23,8 +23,7 @@
             <!-- Contact Info -->
             <div class="contact-info">
                 <h2>{% get_site_content 'contact_title' 'Bize Ulaşın' %}</h2>
-                <p>{% get_site_content 'contact_subtitle' 'Sorularınız, önerileriniz veya gönüllülük başvuruları için
-                    bizimle iletişime geçebilirsiniz.' %}</p>
+                <p>{% get_site_content 'contact_subtitle' 'Sorularınız, önerileriniz veya gönüllülük başvuruları için bizimle iletişime geçebilirsiniz.' %}</p>
 
                 <div class="contact-details">
                     <div class="contact-item">
@@ -33,8 +32,7 @@
                         </div>
                         <div class="contact-text">
                             <h4>{% get_site_content 'contact_address_title' 'Adres' %}</h4>
-                            <p>{{ site_settings.contact_address|default:"Güzelyurt Mh. 5731 Sk. No:11 Yunusemre
-                                MANİSA"}}</p>
+                            <p>{{ site_settings.contact_address|default:'Güzelyurt Mh. 5731 Sk. No:11 Yunusemre MANİSA' }}</p>
                         </div>
                     </div>
 
@@ -45,9 +43,7 @@
                         <div class="contact-text">
                             <h4>{% get_site_content 'contact_phone_title' 'Telefon' %}</h4>
                             <p>
-                                <a href="tel:{{ site_settings.contact_phone|default:'+905551234567' }}">
-                                    {{ site_settings.contact_phone|default:"0555 123 45 67" }}
-                                </a>
+                                <a href="tel:{{ site_settings.contact_phone|default:'+905551234567' }}">{{ site_settings.contact_phone|default:'0555 123 45 67' }}</a>
                             </p>
                         </div>
                     </div>
