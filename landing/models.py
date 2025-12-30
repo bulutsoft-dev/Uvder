@@ -59,6 +59,13 @@ class SiteSettings(models.Model):
         help_text="Geliştiricinin web sitesi."
     )
     
+    # Site URL - Linktree için
+    site_url = models.URLField(
+        default="https://umutvagonu.org/",
+        verbose_name="Site Adresi",
+        help_text="Linktree sayfasında 'Ana Siteye Git' butonu için kullanılacak adres."
+    )
+    
     
     # İletişim Bilgileri
     contact_phone = models.CharField(
