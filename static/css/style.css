@@ -147,9 +147,11 @@ img {
 }
 
 /* Header */
+/* Header - Always Condensed */
 .header {
-    background: var(--white);
-    box-shadow: var(--shadow);
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 4px 20px rgba(62, 184, 154, 0.15);
+    backdrop-filter: blur(10px);
     position: fixed;
     top: 0;
     left: 0;
@@ -158,14 +160,13 @@ img {
     transition: all 0.3s ease;
 }
 
+/* Scrolled class is now redundant visually but kept for compatibility logic */
 .header.scrolled {
     box-shadow: 0 4px 20px rgba(62, 184, 154, 0.15);
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
 }
 
 .navbar {
-    padding: 12px 0;
+    padding: 8px 0;
 }
 
 .navbar .container {
@@ -182,7 +183,7 @@ img {
 }
 
 .logo-image {
-    height: 45px;
+    height: 40px;
     width: auto;
     border-radius: 8px;
 }
@@ -221,6 +222,11 @@ img {
     color: var(--primary);
 }
 
+.nav-link.active {
+    color: var(--primary);
+    background: transparent;
+}
+
 .nav-toggle {
     display: none;
     flex-direction: column;
@@ -253,13 +259,6 @@ img {
 
 .nav-toggle.active span:nth-child(3) {
     transform: rotate(-45deg) translate(6px, -6px);
-}
-
-/* Scrolled Header */
-.header.scrolled {
-    background: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
 }
 
 .header.scrolled .navbar {
