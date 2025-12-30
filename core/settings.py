@@ -299,6 +299,8 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 # Supabase PostgreSQL (from .env)
+# CONN_MAX_AGE=0 for serverless environments (Vercel)
+# This prevents "cursor does not exist" errors
 DATABASES = {
     'default': {
         'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
@@ -308,8 +310,11 @@ DATABASES = {
         'HOST': os.getenv('DB_HOST', 'localhost'),
         'PORT': os.getenv('DB_PORT', '5432'),
         'OPTIONS': {
-            'sslmode': os.getenv('DB_SSLMODE', 'prefer'),
+            'sslmode': os.getenv('DB_SSLMODE', 'require'),
         },
+        # Serverless için bağlantı her request'te yeniden oluşturulur
+        'CONN_MAX_AGE': 0,
+        'CONN_HEALTH_CHECKS': True,
     }
 }
 

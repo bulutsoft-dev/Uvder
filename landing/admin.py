@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.utils.html import format_html
+from django.utils.html import format_html, mark_safe
 from django.utils import timezone
 from django.db.models import Count
 from django.urls import reverse
@@ -113,23 +113,8 @@ class NewsAdmin(ModelAdmin):
     list_per_page = 20
     save_on_top = True
     
-    fieldsets = (
-        ('📰 Haber Bilgileri', {
-            'fields': ('title', 'slug', 'image'),
-            'description': 'Haberin başlığı ve kapak görseli. Slug otomatik oluşturulur.',
-            'classes': ['tab'],
-        }),
-        ('📝 Haber İçeriği', {
-            'fields': ('summary', 'content'),
-            'description': 'Özet: Haber listelerinde görünür (max 2-3 cümle). İçerik: Haberin tam metni.',
-            'classes': ['tab'],
-        }),
-        ('⚙️ Yayın Ayarları', {
-            'fields': ('is_published', 'is_featured', 'published_date'),
-            'description': 'Öne çıkan haberler ana sayfada büyük olarak gösterilir.',
-            'classes': ['tab'],
-        }),
-    )
+    # Gruplandırma olmadan düz alan listesi
+    fields = ['title', 'slug', 'image', 'summary', 'content', 'is_published', 'is_featured', 'published_date']
     
     @display(description="Kapak", label=True)
     def image_preview(self, obj):
@@ -141,7 +126,7 @@ class NewsAdmin(ModelAdmin):
                 )
             except Exception:
                 pass
-        return format_html('<span style="color: #999; font-size: 12px;">Görsel yok</span>')
+        return mark_safe('<span style="color: #999; font-size: 12px;">Görsel yok</span>')
     
     @display(description="Durum", label={"Yayında": "success", "Taslak": "warning"})
     def status_badge(self, obj):
@@ -202,28 +187,8 @@ class WriterAdmin(ModelAdmin):
     ordering = ['order', 'name']
     list_per_page = 20
     
-    fieldsets = (
-        ('👤 Yazar Bilgileri', {
-            'fields': ('name', 'slug', 'photo'),
-            'description': 'Yazarın adı ve profil fotoğrafı.',
-            'classes': ['tab'],
-        }),
-        ('📋 Biyografi', {
-            'fields': ('bio',),
-            'description': 'Yazarın kısa özgeçmişi. Yazar sayfasında görünür.',
-            'classes': ['tab'],
-        }),
-        ('📧 İletişim', {
-            'fields': ('email',),
-            'description': 'Opsiyonel. Okuyucuların yazara ulaşması için.',
-            'classes': ['tab'],
-        }),
-        ('⚙️ Ayarlar', {
-            'fields': ('is_active', 'order'),
-            'description': 'Sıralama: Küçük sayı önce görünür.',
-            'classes': ['tab'],
-        }),
-    )
+    # Gruplandırma olmadan düz alan listesi
+    fields = ['name', 'slug', 'photo', 'bio', 'email', 'is_active', 'order']
     
     @display(description="Foto")
     def photo_preview(self, obj):
@@ -235,7 +200,7 @@ class WriterAdmin(ModelAdmin):
                 )
             except Exception:
                 pass
-        return format_html(
+        return mark_safe(
             '<div style="width: 45px; height: 45px; background: #E5E7EB; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #9CA3AF; font-size: 18px;">👤</div>'
         )
     
@@ -278,22 +243,8 @@ class ArticleAdmin(ModelAdmin):
     list_per_page = 20
     save_on_top = True
     
-    fieldsets = (
-        ('✍️ Yazı Bilgileri', {
-            'fields': ('writer', 'title', 'slug', 'image'),
-            'description': 'Yazının yazarı, başlığı ve opsiyonel kapak görseli.',
-            'classes': ['tab'],
-        }),
-        ('📝 Yazı İçeriği', {
-            'fields': ('content',),
-            'description': 'Yazının tam metni. HTML desteklenmez, paragraflar otomatik oluşturulur.',
-            'classes': ['tab'],
-        }),
-        ('⚙️ Yayın Ayarları', {
-            'fields': ('is_published', 'published_date'),
-            'classes': ['tab'],
-        }),
-    )
+    # Gruplandırma olmadan düz alan listesi
+    fields = ['writer', 'title', 'slug', 'image', 'content', 'is_published', 'published_date']
     
     @display(description="Yazar")
     def writer_link(self, obj):
@@ -339,18 +290,8 @@ class GalleryCategoryAdmin(ModelAdmin):
     search_fields = ['name', 'description']
     ordering = ['order', 'name']
     
-    fieldsets = (
-        ('📁 Kategori Bilgileri', {
-            'fields': ('name', 'slug', 'description'),
-            'description': 'Kategori adı ve opsiyonel açıklama.',
-            'classes': ['tab'],
-        }),
-        ('⚙️ Ayarlar', {
-            'fields': ('order',),
-            'description': 'Sıralama: Küçük sayı önce görünür.',
-            'classes': ['tab'],
-        }),
-    )
+    # Gruplandırma olmadan düz alan listesi
+    fields = ['name', 'slug', 'description', 'order']
     
     @display(description="Görseller", label=True)
     def image_count_badge(self, obj):
@@ -446,23 +387,8 @@ class LinkAdmin(ModelAdmin):
     list_editable = ['is_active', 'is_featured', 'order']
     ordering = ['order', 'title']
     
-    fieldsets = (
-        ('🔗 Bağlantı Bilgileri', {
-            'fields': ('title', 'url', 'description'),
-            'description': 'Bağlantının adı ve adresi.',
-            'classes': ['tab'],
-        }),
-        ('🎨 Görünüm', {
-            'fields': ('icon',),
-            'description': 'Bağlantı yanında gösterilecek ikon.',
-            'classes': ['tab'],
-        }),
-        ('⚙️ Ayarlar', {
-            'fields': ('is_active', 'is_featured', 'order'),
-            'description': 'Öne çıkan bağlantılar ana sayfada görünür.',
-            'classes': ['tab'],
-        }),
-    )
+    # Gruplandırma olmadan düz alan listesi
+    fields = ['title', 'url', 'description', 'icon', 'is_active', 'is_featured', 'order']
     
     @display(description="İkon")
     def icon_preview(self, obj):
@@ -746,28 +672,8 @@ class OrganizationMemberAdmin(ModelAdmin):
     ordering = ['role_type', 'order', 'name']
     list_per_page = 20
     
-    fieldsets = (
-        ('👤 Üye Bilgileri', {
-            'fields': ('name', 'title', 'photo'),
-            'description': 'Üyenin adı, unvanı ve fotoğrafı.',
-            'classes': ['tab'],
-        }),
-        ('📝 Biyografi', {
-            'fields': ('bio',),
-            'description': 'Kısa özgeçmiş veya tanıtım metni.',
-            'classes': ['tab'],
-        }),
-        ('🏢 Rol ve Sıralama', {
-            'fields': ('role_type', 'order', 'is_active'),
-            'description': 'Hiyerarşi seçimi ve görünüm sırası.',
-            'classes': ['tab'],
-        }),
-        ('📧 İletişim (Opsiyonel)', {
-            'fields': ('email', 'phone', 'linkedin_url', 'twitter_url'),
-            'description': 'Görüntülenmesi istenirse doldurulabilir.',
-            'classes': ['tab', 'collapsed'],
-        }),
-    )
+    # Gruplandırma olmadan düz alan listesi
+    fields = ['name', 'title', 'photo', 'bio', 'role_type', 'order', 'is_active', 'email', 'phone', 'linkedin_url', 'twitter_url']
     
     @display(description="Foto")
     def photo_preview(self, obj):
@@ -779,7 +685,7 @@ class OrganizationMemberAdmin(ModelAdmin):
                 )
             except Exception:
                 pass
-        return format_html(
+        return mark_safe(
             '<div style="width: 45px; height: 45px; background: #E5E7EB; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #9CA3AF; font-size: 18px;">👤</div>'
         )
     
