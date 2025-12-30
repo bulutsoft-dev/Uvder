@@ -16,6 +16,7 @@ urlpatterns = [
     path('yazar-kosesi/yazi/<slug:slug>/', views.article_detail, name='article_detail'),
     path('yazar-kosesi/<slug:slug>/', views.writer_detail, name='writer_detail'),
     path('baglantilar/', views.links, name='links'),
+    path('linktree/', views.linktree, name='linktree'),
     path('iletisim/', views.contact, name='contact'),
     
     # Test error pages (Development)

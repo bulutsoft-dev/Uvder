@@ -172,14 +172,31 @@ def article_detail(request, slug):
     return render(request, 'pages/article_detail.html', context)
 
 
+
 def links(request):
-    """Bağlantı linkleri"""
+    """Bağlantı linkleri (Normal site içi sayfa)"""
     links_list = Link.objects.filter(is_active=True)
     
     context = {
         'links': links_list,
     }
     return render(request, 'pages/links.html', context)
+
+
+def linktree(request):
+    """
+    Linktree benzeri özel sayfa
+    ---------------------------
+    Siteden bağımsız, özel tasarımlı bağlantı sayfası.
+    """
+    links_list = Link.objects.filter(is_active=True).order_by('order')
+    settings = SiteSettings.get_settings()
+    
+    context = {
+        'links': links_list,
+        'site_settings': settings,
+    }
+    return render(request, 'pages/linktree.html', context)
 
 
 def contact(request):
