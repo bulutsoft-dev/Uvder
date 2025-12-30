@@ -359,24 +359,42 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # =============================================================================
-# CLOUDINARY MEDIA STORAGE
+# CLOUDINARY MEDIA STORAGE - Django 6.0+ Compatible
 # =============================================================================
-# Medya dosyalarını Cloudinary'ye yükle (production için önerilir)
+# Medya dosyalarını Cloudinary'ye yükle (Vercel için zorunlu, local için de desteklenir)
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+# Cloudinary yapılandırması
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME', ''),
     'API_KEY': os.getenv('CLOUDINARY_API_KEY', ''),
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', ''),
 }
 
-# Production'da Cloudinary kullan, development'ta local storage
-if not DEBUG:
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# Cloudinary'yi doğrudan yapılandır
+cloudinary.config(
+    cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME', ''),
+    api_key=os.getenv('CLOUDINARY_API_KEY', ''),
+    api_secret=os.getenv('CLOUDINARY_API_SECRET', ''),
+    secure=True
+)
 
 # =============================================================================
-# WHITENOISE STATIC FILES (for Vercel)
+# DJANGO 6.0+ STORAGES CONFIGURATION
 # =============================================================================
-# Production'da WhiteNoise kullan
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Django 4.2+ için STORAGES API kullanılır (DEFAULT_FILE_STORAGE deprecated)
+
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
