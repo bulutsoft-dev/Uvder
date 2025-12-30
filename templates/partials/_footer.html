@@ -4,12 +4,17 @@
         <div class="footer-grid">
             <div class="footer-about">
                 <div class="footer-logo">
+                    {% if site_settings.logo %}
+                    <img src="{{ site_settings.logo.url }}" alt="{{ site_settings.site_title|default:'Umut Vagonu' }}"
+                        class="logo-image">
+                    {% else %}
                     <img src="/static/images/logo.png" alt="Umut Vagonu Logo" class="logo-image">
+                    {% endif %}
                     <span class="logo-text">
                         <strong>{% get_site_content 'footer_brand_title' 'Umut Vagonu' %}</strong>
                     </span>
                 </div>
-                <p>{{ site_settings.about_text|default:'Umut Vagonu Derneği, şeffaflık ve hesap verebilirlik ilkeleriyle çalışan, kamu yararına bir sivil toplum kuruluşudur.'|truncatewords:30 }}</p>
+                <p>{{ site_settings.about_text|default:'Umut Vagonu Derneği, şeffaflık ve hesap verebilirlik ilkeleriyle                    çalışan, kamu yararına bir sivil toplum kuruluşudur.'|truncatewords:30 }}</p>
 
                 <div class="social-links">
                     {% if site_settings.instagram_url %}
@@ -116,9 +121,10 @@
         </div>
 
         <div class="footer-bottom">
-            <p>{% get_site_content 'footer_copyright' '&copy; 2024 Umut Vagonu Derneği. Tüm Hakları Saklıdır.' %}</p>
-            <p class="developer-credit">Developed by <a href="https://furkanbulut.vercel.app/" target="_blank"
-                    rel="noopener">Furkan Bulut</a></p>
+            <p>{% get_site_content 'footer_copyright' '&copy; 2025 Umut Vagonu Derneği. Tüm Hakları Saklıdır.' %}</p>
+            <p class="developer-credit">Developed by <a
+                    href="{{ site_settings.developer_url|default:'https://furkanbulut.vercel.app/' }}" target="_blank"
+                    rel="noopener">{{ site_settings.developer_name|default:'Furkan Bulut' }}</a></p>
         </div>
     </div>
 </footer>

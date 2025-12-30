@@ -167,11 +167,6 @@ UNFOLD = {
                         "link": reverse_lazy("admin:landing_contactcontent_changelist"),
                     },
                     {
-                        "title": "Hata Sayfaları (404/500)",
-                        "icon": "error",
-                        "link": reverse_lazy("admin:landing_errorpagecontent_changelist"),
-                    },
-                    {
                         "title": "Admin Dashboard",
                         "icon": "dashboard_customize",
                         "link": reverse_lazy("admin:landing_admindashboardcontent_changelist"),

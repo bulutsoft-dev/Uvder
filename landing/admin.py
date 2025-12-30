@@ -35,8 +35,8 @@ class SiteSettingsAdmin(ModelAdmin):
     
     fieldsets = (
         ('🏠 Genel Bilgiler', {
-            'fields': ('site_title', 'slogan', 'about_text'),
-            'description': 'Sitenin temel bilgilerini buradan düzenleyebilirsiniz.',
+            'fields': ('site_title', 'slogan', 'about_text', 'logo', 'favicon'),
+            'description': 'Sitenin temel bilgileri, logo ve favicon ayarları.',
             'classes': ['tab'],
         }),
         ('📞 İletişim Bilgileri', {
@@ -57,6 +57,11 @@ class SiteSettingsAdmin(ModelAdmin):
         ('📊 Ana Sayfa İstatistikleri', {
             'fields': ('stat_lives_touched', 'stat_projects', 'stat_volunteers', 'stat_cities'),
             'description': 'Ana sayfada gösterilen istatistik rakamları. Bu sayılar animasyonlu olarak gösterilir.',
+            'classes': ['tab'],
+        }),
+        ('👨‍💻 Geliştirici Bilgileri', {
+            'fields': ('developer_name', 'developer_url'),
+            'description': 'Footer kısmında görünecek geliştirici bilgileri.',
             'classes': ['tab'],
         }),
     )

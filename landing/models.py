@@ -22,12 +22,43 @@ class SiteSettings(models.Model):
         verbose_name="Slogan",
         help_text="Logo altında ve sayfa başlıklarında görünür."
     )
+
     about_text = models.TextField(
         blank=True,
         verbose_name="Hakkımızda Metni",
         default="Umut Vagonu Derneği, ihtiyaç sahiplerine ulaşmak, yüzlerde bir tebessüm oluşturmak için durmaksızın çalışan bir sivil toplum kuruluşudur.",
         help_text="Footer ve meta açıklamalarında kullanılır."
     )
+
+    # Görsel ve Varlıklar
+    logo = models.ImageField(
+        upload_to='site/',
+        blank=True,
+        null=True,
+        verbose_name="Logo",
+        help_text="Site logosu. Önerilen boyut: 200x60 piksel (PNG veya SVG)."
+    )
+    favicon = models.ImageField(
+        upload_to='site/',
+        blank=True,
+        null=True,
+        verbose_name="Favicon",
+        help_text="Tarayıcı sekmesinde görünen ikon. Önerilen: 32x32 piksel (PNG)."
+    )
+
+    # Geliştirici Bilgileri
+    developer_name = models.CharField(
+        max_length=100,
+        default="Furkan Bulut",
+        verbose_name="Geliştirici Adı",
+        help_text="Footer'da görünecek geliştirici adı."
+    )
+    developer_url = models.URLField(
+        default="https://furkanbulut.vercel.app/",
+        verbose_name="Geliştirici Linki",
+        help_text="Geliştiricinin web sitesi."
+    )
+    
     
     # İletişim Bilgileri
     contact_phone = models.CharField(

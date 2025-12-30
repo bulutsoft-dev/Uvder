@@ -12,13 +12,19 @@
     </div>
     <div class="container">
         <div class="hero-content">
+            {% if site_settings.logo %}
+            <img src="{{ site_settings.logo.url }}" alt="{{ site_settings.site_title|default:'Umut Vagonu' }}"
+                class="hero-logo animate-fade-in">
+            {% else %}
             <img src="/static/images/logo.png" alt="Umut Vagonu" class="hero-logo animate-fade-in">
+            {% endif %}
             <h1 class="hero-title animate-fade-in">
                 {% get_site_content 'home_hero_title_1' 'Umut Yüklü Vagonlar' %}<br>
                 <span class="gradient-text">{% get_site_content 'home_hero_title_2' 'Yola Çıkıyor' %}</span>
             </h1>
             <p class="hero-subtitle animate-fade-in-delay">
-                {% get_site_content 'home_hero_subtitle' 'İhtiyaç sahiplerine ulaşmak, yüzlerde bir tebessüm oluşturmak                için durmaksızın çalışıyoruz. Siz de bu iyilik hareketinin bir parçası olun.' %}
+                {% get_site_content 'home_hero_subtitle' 'İhtiyaç sahiplerine ulaşmak, yüzlerde bir tebessüm oluşturmak
+                için durmaksızın çalışıyoruz. Siz de bu iyilik hareketinin bir parçası olun.' %}
             </p>
             <div class="hero-buttons animate-fade-in-delay-2">
                 <a href="{% url 'landing:news_list' %}" class="btn btn-primary">
@@ -32,7 +38,8 @@
     </div>
     <div class="hero-wave">
         <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path                d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
+            <path
+                d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
                 fill="var(--bg-primary)" />
         </svg>
     </div>
@@ -88,21 +95,24 @@
                     <i class="fas fa-graduation-cap"></i>
                 </div>
                 <h3>{% get_site_content 'home_project_1_title' 'Eğitim Desteği' %}</h3>
-                <p>{% get_site_content 'home_project_1_text' 'Geleceğimizin teminatı çocuklarımızın eğitim                    materyallerine ulaşmasını sağlıyor, köy okullarına destek oluyoruz.' %}</p>
+                <p>{% get_site_content 'home_project_1_text' 'Geleceğimizin teminatı çocuklarımızın eğitim
+                    materyallerine ulaşmasını sağlıyor, köy okullarına destek oluyoruz.' %}</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
                     <i class="fas fa-hand-holding-heart"></i>
                 </div>
                 <h3>{% get_site_content 'home_project_2_title' 'İnsani Yardım' %}</h3>
-                <p>{% get_site_content 'home_project_2_text' 'Afet bölgeleri ve ihtiyaç sahibi ailelere gıda, giyim ve                    barınma gibi temel yaşam malzemeleri ulaştırıyoruz.' %}</p>
+                <p>{% get_site_content 'home_project_2_text' 'Afet bölgeleri ve ihtiyaç sahibi ailelere gıda, giyim ve
+                    barınma gibi temel yaşam malzemeleri ulaştırıyoruz.' %}</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
                     <i class="fas fa-seedling"></i>
                 </div>
                 <h3>{% get_site_content 'home_project_3_title' 'Sürdürülebilir Projeler' %}</h3>
-                <p>{% get_site_content 'home_project_3_text' 'Sadece anlık yardım değil, kalıcı çözümler üreterek                    toplumsal kalkınmaya destek veriyoruz.' %}</p>
+                <p>{% get_site_content 'home_project_3_text' 'Sadece anlık yardım değil, kalıcı çözümler üreterek
+                    toplumsal kalkınmaya destek veriyoruz.' %}</p>
             </div>
         </div>
     </div>
@@ -185,7 +195,8 @@
         <div class="cta-content">
             <div class="cta-text">
                 <h2>{% get_site_content 'home_cta_title' 'Bir Hayata Dokun' %}</h2>
-                <p>{% get_site_content 'home_cta_text' 'Küçük destekleriniz, büyük umutlara dönüşebilir. Bugün bir                    değişiklik yapın.' %}</p>
+                <p>{% get_site_content 'home_cta_text' 'Küçük destekleriniz, büyük umutlara dönüşebilir. Bugün bir
+                    değişiklik yapın.' %}</p>
             </div>
             <div class="cta-buttons">
                 <a href="{% url 'landing:contact' %}" class="btn btn-donate-large">

@@ -3,10 +3,15 @@
     <nav class="navbar">
         <div class="container">
             <a href="{% url 'landing:home' %}" class="logo">
+                {% if site_settings.logo %}
+                <img src="{{ site_settings.logo.url }}" alt="{{ site_settings.site_title|default:'Umut Vagonu' }}"
+                    class="logo-image">
+                {% else %}
                 <img src="/static/images/logo.png" alt="Umut Vagonu Logo" class="logo-image">
+                {% endif %}
                 <span class="logo-text">
                     <strong>{% get_site_content 'nav_brand_title' 'Umut Vagonu' %}</strong>
-                    <small>{% get_site_content 'nav_brand_slogan' site_settings.slogan|default:'Geleceğe Umut Taşıyoruz' %}</small>
+                    <small>{% get_site_content 'nav_brand_slogan' site_settings.slogan|default:'Geleceğe Umut Taşıyoruz'                        %}</small>
                 </span>
             </a>
 
@@ -17,14 +22,15 @@
             </button>
 
             <ul class="nav-menu">
-                <li><a href="{% url 'landing:home' %}" class="nav-link {% is_active 'landing:home' %}">{% get_site_content 'nav_home' 'Ana Sayfa' %}</a></li>
-                <li><a href="{% url 'landing:about' %}" class="nav-link {% is_active 'landing:about' %}">{% get_site_content 'nav_about' 'Hakkımızda' %}</a></li>
-                <li><a href="{% url 'landing:organization' %}" class="nav-link {% is_active 'landing:organization' %}">{% get_site_content 'nav_organization' 'Organizasyon' %}</a></li>
-                <li><a href="{% url 'landing:news_list' %}" class="nav-link {% is_active 'landing:news_list' %}">{% get_site_content 'nav_news' 'Haberler' %}</a></li>
-                <li><a href="{% url 'landing:gallery' %}" class="nav-link {% is_active 'landing:gallery' %}">{% get_site_content 'nav_gallery' 'Galeri' %}</a></li>
-                <li><a href="{% url 'landing:writers' %}" class="nav-link {% is_active 'landing:writers' %}">{% get_site_content 'nav_writers' 'Yazar Köşesi' %}</a></li>
-                <li><a href="{% url 'landing:links' %}" class="nav-link {% is_active 'landing:links' %}">{% get_site_content 'nav_links' 'Bağlantılar' %}</a></li>
-                <li><a href="{% url 'landing:contact' %}" class="nav-link {% is_active 'landing:contact' %}">{% get_site_content 'nav_contact' 'İletişim' %}</a></li>
+                <li><a href="{% url 'landing:home' %}" class="nav-link {% is_active 'landing:home' %}">{%                        get_site_content 'nav_home' 'Ana Sayfa' %}</a></li>
+                <li><a href="{% url 'landing:about' %}" class="nav-link {% is_active 'landing:about' %}">{%                        get_site_content 'nav_about' 'Hakkımızda' %}</a></li>
+                <li><a href="{% url 'landing:organization' %}"
+                        class="nav-link {% is_active 'landing:organization' %}">{% get_site_content 'nav_organization'                        'Organizasyon' %}</a></li>
+                <li><a href="{% url 'landing:news_list' %}" class="nav-link {% is_active 'landing:news_list' %}">{%                        get_site_content 'nav_news' 'Haberler' %}</a></li>
+                <li><a href="{% url 'landing:gallery' %}" class="nav-link {% is_active 'landing:gallery' %}">{%                        get_site_content 'nav_gallery' 'Galeri' %}</a></li>
+                <li><a href="{% url 'landing:writers' %}" class="nav-link {% is_active 'landing:writers' %}">{%                        get_site_content 'nav_writers' 'Yazar Köşesi' %}</a></li>
+                <li><a href="{% url 'landing:links' %}" class="nav-link {% is_active 'landing:links' %}">{%                        get_site_content 'nav_links' 'Bağlantılar' %}</a></li>
+                <li><a href="{% url 'landing:contact' %}" class="nav-link {% is_active 'landing:contact' %}">{%                        get_site_content 'nav_contact' 'İletişim' %}</a></li>
                 <li>
                     <a href="{% url 'landing:contact' %}" class="nav-link btn-donate">
                         <i class="fas fa-heart"></i> {% get_site_content 'nav_donate_btn' 'Bağış Yap' %}

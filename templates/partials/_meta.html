@@ -7,7 +7,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 {# Primary Meta Tags #}
-<meta name="description" content="{% if page_description %}{{ page_description|truncatewords:30 }}{% elif site_settings.about_text %}{{ site_settings.about_text|truncatewords:30 }}{% else %}Umut Vagonu Derneği - İhtiyaç sahiplerine ulaşmak, yüzlerde bir tebessüm oluşturmak için durmaksızın çalışıyoruz. Eğitim desteği, insan yardım ve sürdürülebilir projeler.{% endif %}">
+<meta name="description"
+    content="{% if page_description %}{{ page_description|truncatewords:30 }}{% elif site_settings.about_text %}{{ site_settings.about_text|truncatewords:30 }}{% else %}Umut Vagonu Derneği - İhtiyaç sahiplerine ulaşmak, yüzlerde bir tebessüm oluşturmak için durmaksızın çalışıyoruz. Eğitim desteği, insan yardım ve sürdürülebilir projeler.{% endif %}">
 <meta name="keywords"
     content="umut vagonu, dernek, yardım, bağış, gönüllü, manisa, eğitim desteği, insani yardım, sivil toplum kuruluşu, hayır kurumu">
 <meta name="author" content="Umut Vagonu Derneği">
@@ -16,10 +17,15 @@
 <meta name="revisit-after" content="7 days">
 
 {# Favicon #}
-<link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/static/images/logo.png">
-<link rel="shortcut icon" href="/static/images/favicon.png" type="image/png">
+<link rel="icon" type="image/png" sizes="32x32"
+    href="{% if site_settings.favicon %}{{ site_settings.favicon.url }}{% else %}/static/images/favicon.png{% endif %}">
+<link rel="icon" type="image/png" sizes="16x16"
+    href="{% if site_settings.favicon %}{{ site_settings.favicon.url }}{% else %}/static/images/favicon.png{% endif %}">
+<link rel="apple-touch-icon" sizes="180x180"
+    href="{% if site_settings.logo %}{{ site_settings.logo.url }}{% else %}/static/images/logo.png{% endif %}">
+<link rel="shortcut icon"
+    href="{% if site_settings.favicon %}{{ site_settings.favicon.url }}{% else %}/static/images/favicon.png{% endif %}"
+    type="image/png">
 
 {# Open Graph / Facebook #}
 <meta property="og:type" content="{{ og_type|default:'website' }}">
@@ -27,7 +33,8 @@
 <meta property="og:title" content="{{ page_title|default:site_settings.site_title|default:'Umut Vagonu Derneği' }}">
 <meta property="og:description"
     content="{{ page_description|default:site_settings.about_text|default:'Umut Vagonu Derneği - İhtiyaç sahiplerine ulaşmak, yüzlerde bir tebessüm oluşturmak için durmaksızın çalışıyoruz.'|truncatewords:25 }}">
-<meta property="og:image" content="{% if og_image %}{{ og_image }}{% else %}{{ request.scheme }}://{{ request.get_host }}/static/images/logo.png{% endif %}">
+<meta property="og:image"
+    content="{% if og_image %}{{ og_image }}{% else %}{% if site_settings.logo %}{{ request.scheme }}://{{ request.get_host }}{{ site_settings.logo.url }}{% else %}{{ request.scheme }}://{{ request.get_host }}/static/images/logo.png{% endif %}{% endif %}">
 <meta property="og:image:alt" content="Umut Vagonu Logo">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -40,12 +47,14 @@
 <meta name="twitter:title" content="{{ page_title|default:site_settings.site_title|default:'Umut Vagonu Derneği' }}">
 <meta name="twitter:description"
     content="{{ page_description|default:site_settings.about_text|default:'Umut Vagonu Derneği - İhtiyaç sahiplerine ulaşmak, yüzlerde bir tebessüm oluşturmak için durmaksızın çalışıyoruz.'|truncatewords:20 }}">
-<meta name="twitter:image" content="{% if og_image %}{{ og_image }}{% else %}{{ request.scheme }}://{{ request.get_host }}/static/images/logo.png{% endif %}">
+<meta name="twitter:image"
+    content="{% if og_image %}{{ og_image }}{% else %}{% if site_settings.logo %}{{ request.scheme }}://{{ request.get_host }}{{ site_settings.logo.url }}{% else %}{{ request.scheme }}://{{ request.get_host }}/static/images/logo.png{% endif %}{% endif %}">
 
 {# Theme Color #}
 <meta name="theme-color" content="#3EB89A">
 <meta name="msapplication-TileColor" content="#3EB89A">
-<meta name="msapplication-TileImage" content="/static/images/logo.png">
+<meta name="msapplication-TileImage"
+    content="{% if site_settings.logo %}{{ site_settings.logo.url }}{% else %}/static/images/logo.png{% endif %}">
 
 {# Canonical URL #}
 <link rel="canonical" href="{{ request.build_absolute_uri }}">
