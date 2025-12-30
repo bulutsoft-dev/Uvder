@@ -15,7 +15,7 @@ from .models import (
     SiteContent, OrganizationMember,
     NavbarContent, AboutContent, ContactContent, FooterContent,
     HomeContent, OrgPageContent, NewsContent, GalleryContent,
-    WriterContent, LinkContent
+    WriterContent, LinkContent, ErrorPageContent, AdminDashboardContent, ArticleDetailContent
 )
 
 
@@ -698,6 +698,36 @@ class LinkContentAdmin(SiteContentAdmin):
     """Bağlantılar Sayfası Ayarları"""
     def get_queryset(self, request):
         return super().get_queryset(request).filter(key__startswith='link_')
+
+    def has_add_permission(self, request):
+        return False
+
+
+@admin.register(ErrorPageContent)
+class ErrorPageContentAdmin(SiteContentAdmin):
+    """Hata Sayfaları (400, 403, 404, 500) Ayarları"""
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(key__startswith='error_')
+
+    def has_add_permission(self, request):
+        return False
+
+
+@admin.register(AdminDashboardContent)
+class AdminDashboardContentAdmin(SiteContentAdmin):
+    """Admin Dashboard Metin Ayarları"""
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(key__startswith='admin_')
+
+    def has_add_permission(self, request):
+        return False
+
+
+@admin.register(ArticleDetailContent)
+class ArticleDetailContentAdmin(SiteContentAdmin):
+    """Yazı Detay Sayfası Ayarları"""
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(key__startswith='article_')
 
     def has_add_permission(self, request):
         return False

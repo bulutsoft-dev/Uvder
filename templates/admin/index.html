@@ -1,6 +1,6 @@
 {% extends "admin/index.html" %}
 {% load i18n %}
-
+{% load landing_tags %}
 {% block content %}
 {# Hoş Geldiniz - Unfold Card Yapısı #}
 <div
@@ -12,8 +12,7 @@
                 {% get_site_content 'admin_welcome_title' 'Umut Vagonu Yönetim Paneli' %}
             </h2>
             <p class="text-sm text-base-500 dark:text-base-400">
-                {% get_site_content 'admin_welcome_text' 'Hoş geldiniz! Bu panel üzerinden sitenizi kolayca
-                yönetebilirsiniz.' %}
+                {% get_site_content 'admin_welcome_text' 'Hoş geldiniz! Bu panel üzerinden sitenizi kolayca                yönetebilirsiniz.' %}
             </p>
         </div>
     </div>

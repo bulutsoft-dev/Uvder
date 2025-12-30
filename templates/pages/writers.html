@@ -39,8 +39,7 @@
                     <p>{{ writer.bio|truncatewords:20 }}</p>
                     {% endif %}
                     <div class="writer-meta">
-                        <span><i class="fas fa-pen"></i> {{ writer.articles.count }} {% get_site_content
-                            'writers_article_count_label' 'yazı' %}</span>
+                        <span><i class="fas fa-pen"></i> {{ writer.articles.count }} {% get_site_content                            'writers_article_count_label' 'yazı' %}</span>
                     </div>
                     <a href="{% url 'landing:writer_detail' writer.slug %}" class="btn btn-outline">
                         {% get_site_content 'writers_btn_view_articles' 'Yazıları Gör' %} <i
@@ -54,8 +53,7 @@
         <div class="empty-state">
             <i class="fas fa-pen-fancy"></i>
             <h3>{% get_site_content 'writers_empty_title' 'Henüz yazar bulunmuyor' %}</h3>
-            <p>{% get_site_content 'writers_empty_text' 'Yakında yazarlarımızın köşe yazılarını buradan
-                okuyabileceksiniz.' %}</p>
+            <p>{% get_site_content 'writers_empty_text' 'Yakında yazarlarımızın köşe yazılarını buradan                okuyabileceksiniz.' %}</p>
         </div>
         {% endif %}
 

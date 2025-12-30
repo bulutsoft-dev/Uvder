@@ -142,6 +142,11 @@ UNFOLD = {
                         "link": reverse_lazy("admin:landing_newscontent_changelist"),
                     },
                     {
+                        "title": "Haber Detay Sayfası",
+                        "icon": "article",
+                        "link": reverse_lazy("admin:landing_articledetailcontent_changelist"),
+                    },
+                    {
                         "title": "Galeri Sayfası",
                         "icon": "collections",
                         "link": reverse_lazy("admin:landing_gallerycontent_changelist"),
@@ -160,6 +165,16 @@ UNFOLD = {
                         "title": "İletişim Sayfası",
                         "icon": "contact_mail",
                         "link": reverse_lazy("admin:landing_contactcontent_changelist"),
+                    },
+                    {
+                        "title": "Hata Sayfaları (404/500)",
+                        "icon": "error",
+                        "link": reverse_lazy("admin:landing_errorpagecontent_changelist"),
+                    },
+                    {
+                        "title": "Admin Dashboard",
+                        "icon": "dashboard_customize",
+                        "link": reverse_lazy("admin:landing_admindashboardcontent_changelist"),
                     },
                     {
                         "title": "Navbar Yönetimi",

@@ -633,6 +633,27 @@ class LinkContent(SiteContent):
         verbose_name_plural = "Bağlantılar Sayfası Ayarları"
 
 
+class ErrorPageContent(SiteContent):
+    class Meta:
+        proxy = True
+        verbose_name = "Hata Sayfaları Ayarı"
+        verbose_name_plural = "Hata Sayfaları Ayarları"
+
+
+class AdminDashboardContent(SiteContent):
+    class Meta:
+        proxy = True
+        verbose_name = "Admin Panel İçerik Ayarı"
+        verbose_name_plural = "Admin Panel İçerik Ayarları"
+
+
+class ArticleDetailContent(SiteContent):
+    class Meta:
+        proxy = True
+        verbose_name = "Yazı Detay Sayfası Ayarı"
+        verbose_name_plural = "Yazı Detay Sayfası Ayarları"
+
+
 class OrganizationMember(models.Model):
     """
     Organizasyon Üyeleri
