@@ -563,6 +563,34 @@ class SiteContent(models.Model):
         return f"{self.description} ({self.key})"
 
 
+class NavbarContent(SiteContent):
+    class Meta:
+        proxy = True
+        verbose_name = "Navbar Ayarı"
+        verbose_name_plural = "Navbar Ayarları"
+
+
+class AboutContent(SiteContent):
+    class Meta:
+        proxy = True
+        verbose_name = "Hakkımızda Ayarı"
+        verbose_name_plural = "Hakkımızda Ayarları"
+
+
+class ContactContent(SiteContent):
+    class Meta:
+        proxy = True
+        verbose_name = "İletişim Ayarı"
+        verbose_name_plural = "İletişim Ayarları"
+
+
+class FooterContent(SiteContent):
+    class Meta:
+        proxy = True
+        verbose_name = "Footer Ayarı"
+        verbose_name_plural = "Footer Ayarları"
+
+
 class OrganizationMember(models.Model):
     """
     Organizasyon Üyeleri

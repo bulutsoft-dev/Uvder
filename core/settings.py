@@ -122,9 +122,24 @@ UNFOLD = {
                         "link": reverse_lazy("admin:landing_sitesettings_changelist"),
                     },
                     {
-                        "title": "Site İçerikleri",
-                        "icon": "text_fields",
-                        "link": reverse_lazy("admin:landing_sitecontent_changelist"),
+                        "title": "Navbar Yönetimi",
+                        "icon": "menu",
+                        "link": reverse_lazy("admin:landing_navbarcontent_changelist"),
+                    },
+                    {
+                        "title": "Hakkımızda Metinleri",
+                        "icon": "info",
+                        "link": reverse_lazy("admin:landing_aboutcontent_changelist"),
+                    },
+                    {
+                        "title": "İletişim Metinleri",
+                        "icon": "contact_mail",
+                        "link": reverse_lazy("admin:landing_contactcontent_changelist"),
+                    },
+                    {
+                        "title": "Footer Yönetimi",
+                        "icon": "branding_watermark",
+                        "link": reverse_lazy("admin:landing_footercontent_changelist"),
                     },
                     {
                         "title": "Organizasyon Üyeleri",

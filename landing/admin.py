@@ -3,6 +3,7 @@ from django.utils.html import format_html
 from django.utils import timezone
 from django.db.models import Count
 from django.urls import reverse
+from django.shortcuts import redirect
 
 # Django Unfold imports
 from unfold.admin import ModelAdmin, TabularInline
@@ -11,7 +12,8 @@ from unfold.decorators import action, display
 from .models import (
     SiteSettings, News, Writer, Article, 
     GalleryCategory, GalleryImage, Link, ContactMessage,
-    SiteContent, OrganizationMember
+    SiteContent, OrganizationMember,
+    NavbarContent, AboutContent, ContactContent, FooterContent
 )
 
 
@@ -597,6 +599,46 @@ class SiteContentAdmin(ModelAdmin):
     def content_preview(self, obj):
         text = obj.content_text
         return text[:50] + "..." if len(text) > 50 else text
+
+
+@admin.register(NavbarContent)
+class NavbarContentAdmin(SiteContentAdmin):
+    """Navbar Ayarları"""
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(key__startswith='nav_')
+    
+    def has_add_permission(self, request):
+        return False
+
+
+@admin.register(AboutContent)
+class AboutContentAdmin(SiteContentAdmin):
+    """Hakkımızda Sayfası Ayarları"""
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(key__startswith='about_')
+
+    def has_add_permission(self, request):
+        return False
+
+
+@admin.register(ContactContent)
+class ContactContentAdmin(SiteContentAdmin):
+    """İletişim Sayfası Ayarları"""
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(key__startswith='contact_')
+
+    def has_add_permission(self, request):
+        return False
+
+
+@admin.register(FooterContent)
+class FooterContentAdmin(SiteContentAdmin):
+    """Footer Ayarları"""
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(key__startswith='footer_')
+
+    def has_add_permission(self, request):
+        return False
 
 
 # =============================================================================
