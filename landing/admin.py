@@ -13,7 +13,9 @@ from .models import (
     SiteSettings, News, Writer, Article, 
     GalleryCategory, GalleryImage, Link, ContactMessage,
     SiteContent, OrganizationMember,
-    NavbarContent, AboutContent, ContactContent, FooterContent
+    NavbarContent, AboutContent, ContactContent, FooterContent,
+    HomeContent, OrgPageContent, NewsContent, GalleryContent,
+    WriterContent, LinkContent
 )
 
 
@@ -636,6 +638,66 @@ class FooterContentAdmin(SiteContentAdmin):
     """Footer Ayarları"""
     def get_queryset(self, request):
         return super().get_queryset(request).filter(key__startswith='footer_')
+
+    def has_add_permission(self, request):
+        return False
+
+
+@admin.register(HomeContent)
+class HomeContentAdmin(SiteContentAdmin):
+    """Ana Sayfa Ayarları"""
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(key__startswith='home_')
+
+    def has_add_permission(self, request):
+        return False
+
+
+@admin.register(OrgPageContent)
+class OrgPageContentAdmin(SiteContentAdmin):
+    """Organizasyon Sayfası Ayarları"""
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(key__startswith='org_')
+
+    def has_add_permission(self, request):
+        return False
+
+
+@admin.register(NewsContent)
+class NewsContentAdmin(SiteContentAdmin):
+    """Haber Sayfası Ayarları"""
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(key__startswith='news_')
+
+    def has_add_permission(self, request):
+        return False
+
+
+@admin.register(GalleryContent)
+class GalleryContentAdmin(SiteContentAdmin):
+    """Galeri Sayfası Ayarları"""
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(key__startswith='gallery_')
+
+    def has_add_permission(self, request):
+        return False
+
+
+@admin.register(WriterContent)
+class WriterContentAdmin(SiteContentAdmin):
+    """Yazar Köşesi Ayarları"""
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(key__startswith='writer_')
+
+    def has_add_permission(self, request):
+        return False
+
+
+@admin.register(LinkContent)
+class LinkContentAdmin(SiteContentAdmin):
+    """Bağlantılar Sayfası Ayarları"""
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(key__startswith='link_')
 
     def has_add_permission(self, request):
         return False

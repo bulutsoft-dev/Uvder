@@ -7,11 +7,11 @@
 <!-- Page Header -->
 <section class="page-header">
     <div class="container">
-        <h1 class="page-title">Yazar Köşesi</h1>
+        <h1 class="page-title">{% get_site_content 'writers_page_title' 'Yazar Köşesi' %}</h1>
         <nav class="breadcrumb">
-            <a href="{% url 'landing:home' %}">Ana Sayfa</a>
+            <a href="{% url 'landing:home' %}">{% get_site_content 'breadcrumb_home' 'Ana Sayfa' %}</a>
             <span>/</span>
-            <span>Yazar Köşesi</span>
+            <span>{% get_site_content 'breadcrumb_writers' 'Yazar Köşesi' %}</span>
         </nav>
     </div>
 </section>
@@ -39,10 +39,12 @@
                     <p>{{ writer.bio|truncatewords:20 }}</p>
                     {% endif %}
                     <div class="writer-meta">
-                        <span><i class="fas fa-pen"></i> {{ writer.articles.count }} yazı</span>
+                        <span><i class="fas fa-pen"></i> {{ writer.articles.count }} {% get_site_content
+                            'writers_article_count_label' 'yazı' %}</span>
                     </div>
                     <a href="{% url 'landing:writer_detail' writer.slug %}" class="btn btn-outline">
-                        Yazıları Gör <i class="fas fa-arrow-right"></i>
+                        {% get_site_content 'writers_btn_view_articles' 'Yazıları Gör' %} <i
+                            class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -52,7 +54,8 @@
         <div class="empty-state">
             <i class="fas fa-pen-fancy"></i>
             <h3>{% get_site_content 'writers_empty_title' 'Henüz yazar bulunmuyor' %}</h3>
-            <p>{% get_site_content 'writers_empty_text' 'Yakında yazarlarımızın köşe yazılarını buradan                okuyabileceksiniz.' %}</p>
+            <p>{% get_site_content 'writers_empty_text' 'Yakında yazarlarımızın köşe yazılarını buradan
+                okuyabileceksiniz.' %}</p>
         </div>
         {% endif %}
 
@@ -84,7 +87,7 @@
                     <h3>{{ article.title }}</h3>
                     <p>{{ article.content|truncatewords:30 }}</p>
                     <a href="{% url 'landing:article_detail' article.slug %}" class="article-link">
-                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                        {% get_site_content 'article_read_more' 'Devamını Oku' %} <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </article>

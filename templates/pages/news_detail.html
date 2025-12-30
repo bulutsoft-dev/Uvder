@@ -6,11 +6,11 @@
 <!-- Page Header -->
 <section class="page-header">
     <div class="container">
-        <h1 class="page-title">Haber Detay</h1>
+        <h1 class="page-title">{% get_site_content 'news_detail_title' 'Haber Detay' %}</h1>
         <nav class="breadcrumb">
-            <a href="{% url 'landing:home' %}">Ana Sayfa</a>
+            <a href="{% url 'landing:home' %}">{% get_site_content 'breadcrumb_home' 'Ana Sayfa' %}</a>
             <span>/</span>
-            <a href="{% url 'landing:news_list' %}">Haberler</a>
+            <a href="{% url 'landing:news_list' %}">{% get_site_content 'breadcrumb_news' 'Haberler' %}</a>
             <span>/</span>
             <span>{{ news.title|truncatewords:5 }}</span>
         </nav>
@@ -31,7 +31,8 @@
                 <div class="news-detail-meta">
                     <span><i class="far fa-calendar"></i> {{ news.published_date|date:"d F Y" }}</span>
                     {% if news.is_featured %}
-                    <span class="badge-featured"><i class="fas fa-star"></i> Öne Çıkan</span>
+                    <span class="badge-featured"><i class="fas fa-star"></i> {% get_site_content 'news_badge_featured'
+                        'Öne Çıkan' %}</span>
                     {% endif %}
                 </div>
 
@@ -47,7 +48,7 @@
 
                 <!-- Share Buttons -->
                 <div class="share-section">
-                    <span>Paylaş:</span>
+                    <span>{% get_site_content 'news_share_label' 'Paylaş:' %}</span>
                     <div class="share-buttons">
                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"
                             target="_blank" rel="noopener" class="share-btn facebook">
@@ -69,7 +70,7 @@
             <aside class="news-sidebar">
                 {% if related_news %}
                 <div class="sidebar-widget">
-                    <h3>İlgili Haberler</h3>
+                    <h3>{% get_site_content 'news_related_title' 'İlgili Haberler' %}</h3>
                     <div class="related-news-list">
                         {% for item in related_news %}
                         <a href="{% url 'landing:news_detail' item.slug %}" class="related-news-item">
@@ -91,10 +92,11 @@
                 {% endif %}
 
                 <div class="sidebar-widget cta-widget">
-                    <h3>Destek Olun</h3>
-                    <p>Umut Vagonu hareketine katılarak bir fark yaratın.</p>
+                    <h3>{% get_site_content 'news_sidebar_cta_title' 'Destek Olun' %}</h3>
+                    <p>{% get_site_content 'news_sidebar_cta_text' 'Umut Vagonu hareketine katılarak bir fark yaratın.'
+                        %}</p>
                     <a href="{% url 'landing:contact' %}" class="btn btn-primary btn-block">
-                        <i class="fas fa-heart"></i> Bağış Yap
+                        <i class="fas fa-heart"></i> {% get_site_content 'news_sidebar_cta_btn' 'Bağış Yap' %}
                     </a>
                 </div>
             </aside>

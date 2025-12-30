@@ -9,9 +9,9 @@
     <div class="container">
         <h1 class="page-title">{% get_site_content 'org_page_title' 'Organizasyon Yapısı' %}</h1>
         <nav class="breadcrumb">
-            <a href="{% url 'landing:home' %}">Ana Sayfa</a>
+            <a href="{% url 'landing:home' %}">{% get_site_content 'breadcrumb_home' 'Ana Sayfa' %}</a>
             <span>/</span>
-            <span>Organizasyon</span>
+            <span>{% get_site_content 'breadcrumb_organization' 'Organizasyon' %}</span>
         </nav>
     </div>
 </section>
@@ -22,7 +22,8 @@
 
         <!-- Intro Text -->
         <div class="org-intro">
-            <p>{% get_site_content 'org_intro_text' 'Umut Vagonu Derneği, gönüllü ruhla çalışan bir ekiple                yürütülmektedir. Yönetim kadromuz ve gönüllü ailemizle birlikte topluma hizmet etmekteyiz.' %}</p>
+            <p>{% get_site_content 'org_intro_text' 'Umut Vagonu Derneği, gönüllü ruhla çalışan bir ekiple
+                yürütülmektedir. Yönetim kadromuz ve gönüllü ailemizle birlikte topluma hizmet etmekteyiz.' %}</p>
         </div>
 
         <!-- Founders Section -->

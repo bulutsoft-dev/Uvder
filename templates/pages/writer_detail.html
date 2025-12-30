@@ -8,9 +8,9 @@
     <div class="container">
         <h1 class="page-title">{{ writer.name }}</h1>
         <nav class="breadcrumb">
-            <a href="{% url 'landing:home' %}">Ana Sayfa</a>
+            <a href="{% url 'landing:home' %}">{% get_site_content 'breadcrumb_home' 'Ana Sayfa' %}</a>
             <span>/</span>
-            <a href="{% url 'landing:writers' %}">Yazar Köşesi</a>
+            <a href="{% url 'landing:writers' %}">{% get_site_content 'breadcrumb_writers' 'Yazar Köşesi' %}</a>
             <span>/</span>
             <span>{{ writer.name }}</span>
         </nav>
@@ -47,7 +47,7 @@
         <div class="section-divider"></div>
 
         <div class="section-header">
-            <h2 class="section-title">Yazıları</h2>
+            <h2 class="section-title">{% get_site_content 'writer_articles_title' 'Yazıları' %}</h2>
         </div>
 
         {% if articles %}
@@ -68,7 +68,7 @@
                     <h3>{{ article.title }}</h3>
                     <p>{{ article.content|truncatewords:25 }}</p>
                     <a href="{% url 'landing:article_detail' article.slug %}" class="article-link">
-                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                        {% get_site_content 'article_read_more' 'Devamını Oku' %} <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </article>
@@ -98,8 +98,8 @@
         {% else %}
         <div class="empty-state">
             <i class="fas fa-pen"></i>
-            <h3>Henüz yazı bulunmuyor</h3>
-            <p>Bu yazarın henüz yayınlanmış yazısı bulunmuyor.</p>
+            <h3>{% get_site_content 'writer_empty_title' 'Henüz yazı bulunmuyor' %}</h3>
+            <p>{% get_site_content 'writer_empty_text' 'Bu yazarın henüz yayınlanmış yazısı bulunmuyor.' %}</p>
         </div>
         {% endif %}
     </div>

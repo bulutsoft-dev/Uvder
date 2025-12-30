@@ -7,11 +7,11 @@
 <!-- Page Header -->
 <section class="page-header">
     <div class="container">
-        <h1 class="page-title">Fotoğraf Galerisi</h1>
+        <h1 class="page-title">{% get_site_content 'gallery_page_title' 'Fotoğraf Galerisi' %}</h1>
         <nav class="breadcrumb">
-            <a href="{% url 'landing:home' %}">Ana Sayfa</a>
+            <a href="{% url 'landing:home' %}">{% get_site_content 'breadcrumb_home' 'Ana Sayfa' %}</a>
             <span>/</span>
-            <span>Galeri</span>
+            <span>{% get_site_content 'breadcrumb_gallery' 'Galeri' %}</span>
         </nav>
     </div>
 </section>
@@ -23,7 +23,7 @@
         {% if categories %}
         <div class="gallery-filter">
             <a href="{% url 'landing:gallery' %}" class="filter-btn {% if not selected_category %}active{% endif %}">
-                Tümü
+                {% get_site_content 'gallery_filter_all' 'Tümü' %}
             </a>
             {% for cat in categories %}
             <a href="{% url 'landing:gallery' %}?category={{ cat.slug }}"
@@ -57,18 +57,19 @@
             {% if images.has_previous %}
             <a href="?{% if selected_category %}category={{ selected_category.slug }}&{% endif %}page={{ images.previous_page_number }}"
                 class="page-link">
-                <i class="fas fa-chevron-left"></i> Önceki
+                <i class="fas fa-chevron-left"></i> {% get_site_content 'gallery_pagination_prev' 'Önceki' %}
             </a>
             {% endif %}
 
             <span class="page-info">
-                Sayfa {{ images.number }} / {{ images.paginator.num_pages }}
+                {% get_site_content 'gallery_pagination_page' 'Sayfa' %} {{ images.number }} / {{
+                images.paginator.num_pages }}
             </span>
 
             {% if images.has_next %}
             <a href="?{% if selected_category %}category={{ selected_category.slug }}&{% endif %}page={{ images.next_page_number }}"
                 class="page-link">
-                Sonraki <i class="fas fa-chevron-right"></i>
+                {% get_site_content 'gallery_pagination_next' 'Sonraki' %} <i class="fas fa-chevron-right"></i>
             </a>
             {% endif %}
         </nav>

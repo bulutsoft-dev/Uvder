@@ -7,11 +7,11 @@
 <!-- Page Header -->
 <section class="page-header">
     <div class="container">
-        <h1 class="page-title">Haberler</h1>
+        <h1 class="page-title">{% get_site_content 'news_list_title' 'Haberler' %}</h1>
         <nav class="breadcrumb">
-            <a href="{% url 'landing:home' %}">Ana Sayfa</a>
+            <a href="{% url 'landing:home' %}">{% get_site_content 'breadcrumb_home' 'Ana Sayfa' %}</a>
             <span>/</span>
-            <span>Haberler</span>
+            <span>{% get_site_content 'breadcrumb_news' 'Haberler' %}</span>
         </nav>
     </div>
 </section>
@@ -30,7 +30,7 @@
                     <i class="fas fa-newspaper"></i>
                 </div>
                 {% endif %}
-                <span class="news-badge large">Öne Çıkan</span>
+                <span class="news-badge large">{% get_site_content 'news_badge_featured' 'Öne Çıkan' %}</span>
             </div>
             <div class="featured-content">
                 <div class="news-meta">
@@ -39,7 +39,7 @@
                 <h2>{{ featured_news.title }}</h2>
                 <p>{{ featured_news.summary }}</p>
                 <a href="{% url 'landing:news_detail' featured_news.slug %}" class="btn btn-primary">
-                    Devamını Oku <i class="fas fa-arrow-right"></i>
+                    {% get_site_content 'news_read_more' 'Devamını Oku' %} <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </article>
@@ -59,7 +59,7 @@
                     </div>
                     {% endif %}
                     {% if news_item.is_featured %}
-                    <span class="news-badge">Öne Çıkan</span>
+                    <span class="news-badge">{% get_site_content 'news_badge_featured' 'Öne Çıkan' %}</span>
                     {% endif %}
                 </div>
                 <div class="news-content">
@@ -69,7 +69,7 @@
                     <h3 class="news-title">{{ news_item.title }}</h3>
                     <p class="news-summary">{{ news_item.summary|truncatewords:20 }}</p>
                     <a href="{% url 'landing:news_detail' news_item.slug %}" class="news-link">
-                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                        {% get_site_content 'news_read_more' 'Devamını Oku' %} <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </article>
@@ -81,17 +81,17 @@
         <nav class="pagination">
             {% if news.has_previous %}
             <a href="?page={{ news.previous_page_number }}" class="page-link">
-                <i class="fas fa-chevron-left"></i> Önceki
+                <i class="fas fa-chevron-left"></i> {% get_site_content 'news_pagination_prev' 'Önceki' %}
             </a>
             {% endif %}
 
             <span class="page-info">
-                Sayfa {{ news.number }} / {{ news.paginator.num_pages }}
+                {% get_site_content 'news_pagination_page' 'Sayfa' %} {{ news.number }} / {{ news.paginator.num_pages }}
             </span>
 
             {% if news.has_next %}
             <a href="?page={{ news.next_page_number }}" class="page-link">
-                Sonraki <i class="fas fa-chevron-right"></i>
+                {% get_site_content 'news_pagination_next' 'Sonraki' %} <i class="fas fa-chevron-right"></i>
             </a>
             {% endif %}
         </nav>

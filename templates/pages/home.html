@@ -18,7 +18,8 @@
                 <span class="gradient-text">{% get_site_content 'home_hero_title_2' 'Yola Çıkıyor' %}</span>
             </h1>
             <p class="hero-subtitle animate-fade-in-delay">
-                {% get_site_content 'home_hero_subtitle' 'İhtiyaç sahiplerine ulaşmak, yüzlerde bir tebessüm oluşturmak                için durmaksızın çalışıyoruz. Siz de bu iyilik hareketinin bir parçası olun.' %}
+                {% get_site_content 'home_hero_subtitle' 'İhtiyaç sahiplerine ulaşmak, yüzlerde bir tebessüm oluşturmak
+                için durmaksızın çalışıyoruz. Siz de bu iyilik hareketinin bir parçası olun.' %}
             </p>
             <div class="hero-buttons animate-fade-in-delay-2">
                 <a href="{% url 'landing:news_list' %}" class="btn btn-primary">
@@ -89,21 +90,24 @@
                     <i class="fas fa-graduation-cap"></i>
                 </div>
                 <h3>{% get_site_content 'home_project_1_title' 'Eğitim Desteği' %}</h3>
-                <p>{% get_site_content 'home_project_1_text' 'Geleceğimizin teminatı çocuklarımızın eğitim                    materyallerine ulaşmasını sağlıyor, köy okullarına destek oluyoruz.' %}</p>
+                <p>{% get_site_content 'home_project_1_text' 'Geleceğimizin teminatı çocuklarımızın eğitim
+                    materyallerine ulaşmasını sağlıyor, köy okullarına destek oluyoruz.' %}</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
                     <i class="fas fa-hand-holding-heart"></i>
                 </div>
                 <h3>{% get_site_content 'home_project_2_title' 'İnsani Yardım' %}</h3>
-                <p>{% get_site_content 'home_project_2_text' 'Afet bölgeleri ve ihtiyaç sahibi ailelere gıda, giyim ve                    barınma gibi temel yaşam malzemeleri ulaştırıyoruz.' %}</p>
+                <p>{% get_site_content 'home_project_2_text' 'Afet bölgeleri ve ihtiyaç sahibi ailelere gıda, giyim ve
+                    barınma gibi temel yaşam malzemeleri ulaştırıyoruz.' %}</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
                     <i class="fas fa-seedling"></i>
                 </div>
                 <h3>{% get_site_content 'home_project_3_title' 'Sürdürülebilir Projeler' %}</h3>
-                <p>{% get_site_content 'home_project_3_text' 'Sadece anlık yardım değil, kalıcı çözümler üreterek                    toplumsal kalkınmaya destek veriyoruz.' %}</p>
+                <p>{% get_site_content 'home_project_3_text' 'Sadece anlık yardım değil, kalıcı çözümler üreterek
+                    toplumsal kalkınmaya destek veriyoruz.' %}</p>
             </div>
         </div>
     </div>
@@ -114,10 +118,10 @@
 <section class="news-section">
     <div class="container">
         <div class="section-header">
-            <span class="section-tag">Güncel</span>
-            <h2 class="section-title">Son Haberler</h2>
+            <span class="section-tag">{% get_site_content 'home_news_tag' 'Güncel' %}</span>
+            <h2 class="section-title">{% get_site_content 'home_news_title' 'Son Haberler' %}</h2>
             <a href="{% url 'landing:news_list' %}" class="section-link">
-                Tüm Haberler <i class="fas fa-arrow-right"></i>
+                {% get_site_content 'home_news_all_btn' 'Tüm Haberler' %} <i class="fas fa-arrow-right"></i>
             </a>
         </div>
 
@@ -133,7 +137,7 @@
                     </div>
                     {% endif %}
                     {% if news_item.is_featured %}
-                    <span class="news-badge">Öne Çıkan</span>
+                    <span class="news-badge">{% get_site_content 'news_badge_featured' 'Öne Çıkan' %}</span>
                     {% endif %}
                 </div>
                 <div class="news-content">
@@ -143,7 +147,7 @@
                     <h3 class="news-title">{{ news_item.title }}</h3>
                     <p class="news-summary">{{ news_item.summary|truncatewords:20 }}</p>
                     <a href="{% url 'landing:news_detail' news_item.slug %}" class="news-link">
-                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                        {% get_site_content 'news_read_more' 'Devamını Oku' %} <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </article>
@@ -158,10 +162,10 @@
 <section class="gallery-preview-section">
     <div class="container">
         <div class="section-header">
-            <span class="section-tag">Galeri</span>
-            <h2 class="section-title">Fotoğraf Galerisi</h2>
+            <span class="section-tag">{% get_site_content 'home_gallery_tag' 'Galeri' %}</span>
+            <h2 class="section-title">{% get_site_content 'home_gallery_title' 'Fotoğraf Galerisi' %}</h2>
             <a href="{% url 'landing:gallery' %}" class="section-link">
-                Tüm Fotoğraflar <i class="fas fa-arrow-right"></i>
+                {% get_site_content 'home_gallery_all_btn' 'Tüm Fotoğraflar' %} <i class="fas fa-arrow-right"></i>
             </a>
         </div>
 
@@ -186,7 +190,8 @@
         <div class="cta-content">
             <div class="cta-text">
                 <h2>{% get_site_content 'home_cta_title' 'Bir Hayata Dokun' %}</h2>
-                <p>{% get_site_content 'home_cta_text' 'Küçük destekleriniz, büyük umutlara dönüşebilir. Bugün bir                    değişiklik yapın.' %}</p>
+                <p>{% get_site_content 'home_cta_text' 'Küçük destekleriniz, büyük umutlara dönüşebilir. Bugün bir
+                    değişiklik yapın.' %}</p>
             </div>
             <div class="cta-buttons">
                 <a href="{% url 'landing:contact' %}" class="btn btn-donate-large">
@@ -205,8 +210,8 @@
 <section class="quick-links-section">
     <div class="container">
         <div class="section-header">
-            <span class="section-tag">Hızlı Erişim</span>
-            <h2 class="section-title">Önemli Bağlantılar</h2>
+            <span class="section-tag">{% get_site_content 'home_links_tag' 'Hızlı Erişim' %}</span>
+            <h2 class="section-title">{% get_site_content 'home_links_title' 'Önemli Bağlantılar' %}</h2>
         </div>
 
         <div class="links-grid">

@@ -570,11 +570,25 @@ class NavbarContent(SiteContent):
         verbose_name_plural = "Navbar Ayarları"
 
 
+class HomeContent(SiteContent):
+    class Meta:
+        proxy = True
+        verbose_name = "Ana Sayfa Ayarı"
+        verbose_name_plural = "Ana Sayfa Ayarları"
+
+
 class AboutContent(SiteContent):
     class Meta:
         proxy = True
         verbose_name = "Hakkımızda Ayarı"
         verbose_name_plural = "Hakkımızda Ayarları"
+
+
+class OrgPageContent(SiteContent):
+    class Meta:
+        proxy = True
+        verbose_name = "Organizasyon Sayfası Ayarı"
+        verbose_name_plural = "Organizasyon Sayfası Ayarları"
 
 
 class ContactContent(SiteContent):
@@ -589,6 +603,34 @@ class FooterContent(SiteContent):
         proxy = True
         verbose_name = "Footer Ayarı"
         verbose_name_plural = "Footer Ayarları"
+
+
+class NewsContent(SiteContent):
+    class Meta:
+        proxy = True
+        verbose_name = "Haber Sayfası Ayarı"
+        verbose_name_plural = "Haber Sayfası Ayarları"
+
+
+class GalleryContent(SiteContent):
+    class Meta:
+        proxy = True
+        verbose_name = "Galeri Sayfası Ayarı"
+        verbose_name_plural = "Galeri Sayfası Ayarları"
+
+
+class WriterContent(SiteContent):
+    class Meta:
+        proxy = True
+        verbose_name = "Yazar Köşesi Ayarı"
+        verbose_name_plural = "Yazar Köşesi Ayarları"
+
+
+class LinkContent(SiteContent):
+    class Meta:
+        proxy = True
+        verbose_name = "Bağlantılar Sayfası Ayarı"
+        verbose_name_plural = "Bağlantılar Sayfası Ayarları"
 
 
 class OrganizationMember(models.Model):

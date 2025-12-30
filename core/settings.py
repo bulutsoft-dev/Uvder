@@ -122,19 +122,49 @@ UNFOLD = {
                         "link": reverse_lazy("admin:landing_sitesettings_changelist"),
                     },
                     {
-                        "title": "Navbar Yönetimi",
-                        "icon": "menu",
-                        "link": reverse_lazy("admin:landing_navbarcontent_changelist"),
+                        "title": "Ana Sayfa Ayarları",
+                        "icon": "home",
+                        "link": reverse_lazy("admin:landing_homecontent_changelist"),
                     },
                     {
-                        "title": "Hakkımızda Metinleri",
+                        "title": "Hakkımızda Sayfası",
                         "icon": "info",
                         "link": reverse_lazy("admin:landing_aboutcontent_changelist"),
                     },
                     {
-                        "title": "İletişim Metinleri",
+                        "title": "Organizasyon Sayfası",
+                        "icon": "corporate_fare",
+                        "link": reverse_lazy("admin:landing_orgpagecontent_changelist"),
+                    },
+                    {
+                        "title": "Haber Sayfası",
+                        "icon": "feed",
+                        "link": reverse_lazy("admin:landing_newscontent_changelist"),
+                    },
+                    {
+                        "title": "Galeri Sayfası",
+                        "icon": "collections",
+                        "link": reverse_lazy("admin:landing_gallerycontent_changelist"),
+                    },
+                    {
+                        "title": "Yazar Köşesi Ayarları",
+                        "icon": "assignment_ind",
+                        "link": reverse_lazy("admin:landing_writercontent_changelist"),
+                    },
+                    {
+                        "title": "Bağlantılar Sayfası",
+                        "icon": "link",
+                        "link": reverse_lazy("admin:landing_linkcontent_changelist"),
+                    },
+                    {
+                        "title": "İletişim Sayfası",
                         "icon": "contact_mail",
                         "link": reverse_lazy("admin:landing_contactcontent_changelist"),
+                    },
+                    {
+                        "title": "Navbar Yönetimi",
+                        "icon": "menu",
+                        "link": reverse_lazy("admin:landing_navbarcontent_changelist"),
                     },
                     {
                         "title": "Footer Yönetimi",

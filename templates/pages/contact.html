@@ -7,11 +7,11 @@
 <!-- Page Header -->
 <section class="page-header">
     <div class="container">
-        <h1 class="page-title">İletişim</h1>
+        <h1 class="page-title">{% get_site_content 'contact_page_title' 'İletişim' %}</h1>
         <nav class="breadcrumb">
-            <a href="{% url 'landing:home' %}">Ana Sayfa</a>
+            <a href="{% url 'landing:home' %}">{% get_site_content 'breadcrumb_home' 'Ana Sayfa' %}</a>
             <span>/</span>
-            <span>İletişim</span>
+            <span>{% get_site_content 'breadcrumb_contact' 'İletişim' %}</span>
         </nav>
     </div>
 </section>
@@ -23,7 +23,8 @@
             <!-- Contact Info -->
             <div class="contact-info">
                 <h2>{% get_site_content 'contact_title' 'Bize Ulaşın' %}</h2>
-                <p>{% get_site_content 'contact_subtitle' 'Sorularınız, önerileriniz veya gönüllülük başvuruları için                    bizimle iletişime geçebilirsiniz.' %}</p>
+                <p>{% get_site_content 'contact_subtitle' 'Sorularınız, önerileriniz veya gönüllülük başvuruları için
+                    bizimle iletişime geçebilirsiniz.' %}</p>
 
                 <div class="contact-details">
                     <div class="contact-item">
@@ -31,8 +32,9 @@
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="contact-text">
-                            <h4>Adres</h4>
-                            <p>{{ site_settings.contact_address|default:"Güzelyurt Mh. 5731 Sk. No:11 Yunusemre                                MANİSA"}}</p>
+                            <h4>{% get_site_content 'contact_address_title' 'Adres' %}</h4>
+                            <p>{{ site_settings.contact_address|default:"Güzelyurt Mh. 5731 Sk. No:11 Yunusemre
+                                MANİSA"}}</p>
                         </div>
                     </div>
 
@@ -41,7 +43,7 @@
                             <i class="fas fa-phone"></i>
                         </div>
                         <div class="contact-text">
-                            <h4>Telefon</h4>
+                            <h4>{% get_site_content 'contact_phone_title' 'Telefon' %}</h4>
                             <p>
                                 <a href="tel:{{ site_settings.contact_phone|default:'+905551234567' }}">
                                     {{ site_settings.contact_phone|default:"0555 123 45 67" }}
@@ -55,7 +57,7 @@
                             <i class="fas fa-envelope"></i>
                         </div>
                         <div class="contact-text">
-                            <h4>E-posta</h4>
+                            <h4>{% get_site_content 'contact_email_title' 'E-posta' %}</h4>
                             <p>
                                 <a href="mailto:{{ site_settings.contact_email|default:'bilgi@umutvagonu.org' }}">
                                     {{ site_settings.contact_email|default:"bilgi@umutvagonu.org" }}
@@ -67,7 +69,8 @@
 
                 <!-- Donation Info -->
                 <div class="donation-info-card">
-                    <h3><i class="fas fa-heart"></i> Bağış Bilgileri</h3>
+                    <h3><i class="fas fa-heart"></i> {% get_site_content 'contact_donation_title' 'Bağış Bilgileri' %}
+                    </h3>
                     <div class="bank-details">
                         <p><strong>{{ site_settings.bank_name|default:"Ziraat Bankası" }}</strong></p>
                         {% if site_settings.bank_account %}
@@ -83,7 +86,7 @@
 
                 <!-- Social Links -->
                 <div class="contact-social">
-                    <h4>Bizi Takip Edin</h4>
+                    <h4>{% get_site_content 'contact_social_title' 'Bizi Takip Edin' %}</h4>
                     <div class="social-links">
                         {% if site_settings.instagram_url %}
                         <a href="{{ site_settings.instagram_url }}" target="_blank" rel="noopener">
@@ -120,34 +123,38 @@
                     {% csrf_token %}
 
                     <div class="form-group">
-                        <label for="name">Ad Soyad *</label>
-                        <input type="text" id="name" name="name" required placeholder="Adınız Soyadınız">
+                        <label for="name">{% get_site_content 'contact_form_name' 'Ad Soyad' %} *</label>
+                        <input type="text" id="name" name="name" required
+                            placeholder="{% get_site_content 'contact_form_name_placeholder' 'Adınız Soyadınız' %}">
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="email">E-posta *</label>
-                            <input type="email" id="email" name="email" required placeholder="ornek@email.com">
+                            <label for="email">{% get_site_content 'contact_form_email' 'E-posta' %} *</label>
+                            <input type="email" id="email" name="email" required
+                                placeholder="{% get_site_content 'contact_form_email_placeholder' 'ornek@email.com' %}">
                         </div>
                         <div class="form-group">
-                            <label for="phone">Telefon</label>
-                            <input type="tel" id="phone" name="phone" placeholder="0555 123 45 67">
+                            <label for="phone">{% get_site_content 'contact_form_phone' 'Telefon' %}</label>
+                            <input type="tel" id="phone" name="phone"
+                                placeholder="{% get_site_content 'contact_form_phone_placeholder' '0555 123 45 67' %}">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="subject">Konu *</label>
-                        <input type="text" id="subject" name="subject" required placeholder="Mesajınızın konusu">
+                        <label for="subject">{% get_site_content 'contact_form_subject' 'Konu' %} *</label>
+                        <input type="text" id="subject" name="subject" required
+                            placeholder="{% get_site_content 'contact_form_subject_placeholder' 'Mesajınızın konusu' %}">
                     </div>
 
                     <div class="form-group">
-                        <label for="message">Mesajınız *</label>
+                        <label for="message">{% get_site_content 'contact_form_message' 'Mesajınız' %} *</label>
                         <textarea id="message" name="message" rows="5" required
-                            placeholder="Mesajınızı buraya yazın..."></textarea>
+                            placeholder="{% get_site_content 'contact_form_message_placeholder' 'Mesajınızı buraya yazın...' %}"></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-lg">
-                        <i class="fas fa-paper-plane"></i> Gönder
+                        <i class="fas fa-paper-plane"></i> {% get_site_content 'contact_form_btn' 'Gönder' %}
                     </button>
                 </form>
             </div>
@@ -160,7 +167,7 @@
     <div class="container">
         <div class="map-wrapper">
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3116.0553!2d27.4!3d38.62!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDM3JzEyLjAiTiAyN8KwMjQnMDAuMCJF!5e0!3m2!1str!2str!4v1"
+                src="{% get_site_content 'contact_map_url' 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3116.0553!2d27.4!3d38.62!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDM3JzEyLjAiTiAyN8KwMjQnMDAuMCJF!5e0!3m2!1str!2str!4v1' %}"
                 width="100%" height="400" style="border:0; border-radius: 16px;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>

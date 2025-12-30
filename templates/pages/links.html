@@ -6,11 +6,11 @@
 <!-- Page Header -->
 <section class="page-header">
     <div class="container">
-        <h1 class="page-title">Bağlantılar</h1>
+        <h1 class="page-title">{% get_site_content 'links_page_title' 'Bağlantılar' %}</h1>
         <nav class="breadcrumb">
-            <a href="{% url 'landing:home' %}">Ana Sayfa</a>
+            <a href="{% url 'landing:home' %}">{% get_site_content 'breadcrumb_home' 'Ana Sayfa' %}</a>
             <span>/</span>
-            <span>Bağlantılar</span>
+            <span>{% get_site_content 'breadcrumb_links' 'Bağlantılar' %}</span>
         </nav>
     </div>
 </section>
@@ -19,7 +19,8 @@
 <section class="links-section">
     <div class="container">
         <div class="links-intro">
-            <p>Umut Vagonu ile ilgili önemli bağlantılar ve sosyal medya hesaplarımız.</p>
+            <p>{% get_site_content 'links_intro_text' 'Umut Vagonu ile ilgili önemli bağlantılar ve sosyal medya
+                hesaplarımız.' %}</p>
         </div>
 
         {% if links %}
@@ -46,15 +47,16 @@
         {% else %}
         <div class="empty-state">
             <i class="fas fa-link"></i>
-            <h3>Henüz bağlantı bulunmuyor</h3>
-            <p>Yakında önemli bağlantılarımızı buradan görebileceksiniz.</p>
+            <h3>{% get_site_content 'links_empty_title' 'Henüz bağlantı bulunmuyor' %}</h3>
+            <p>{% get_site_content 'links_empty_text' 'Yakında önemli bağlantılarımızı buradan görebileceksiniz.' %}</p>
         </div>
         {% endif %}
 
         <!-- Social Media Section -->
         <div class="social-section">
-            <h2>Sosyal Medya</h2>
-            <p>Bizi sosyal medyadan takip edin ve gelişmelerden haberdar olun.</p>
+            <h2>{% get_site_content 'links_social_title' 'Sosyal Medya' %}</h2>
+            <p>{% get_site_content 'links_social_text' 'Bizi sosyal medyadan takip edin ve gelişmelerden haberdar olun.'
+                %}</p>
 
             <div class="social-links-large">
                 {% if site_settings.instagram_url %}
