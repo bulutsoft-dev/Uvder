@@ -6,6 +6,7 @@ from .models import (
     GalleryCategory, GalleryImage, Link, ContactMessage,
     OrganizationMember
 )
+from .forms import ContactForm
 
 
 def home(request):
@@ -183,27 +184,18 @@ def links(request):
 
 def contact(request):
     """İletişim sayfası"""
+    form = ContactForm()
+    
     if request.method == 'POST':
-        name = request.POST.get('name', '').strip()
-        email = request.POST.get('email', '').strip()
-        phone = request.POST.get('phone', '').strip()
-        subject = request.POST.get('subject', '').strip()
-        message_text = request.POST.get('message', '').strip()
-        
-        if name and email and subject and message_text:
-            ContactMessage.objects.create(
-                name=name,
-                email=email,
-                phone=phone,
-                subject=subject,
-                message=message_text
-            )
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
             messages.success(request, 'Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız.')
             return redirect('landing:contact')
         else:
-            messages.error(request, 'Lütfen tüm zorunlu alanları doldurun.')
+            messages.error(request, 'Lütfen formu kontrol ediniz. Hatalı alanlar mevcut.')
     
-    return render(request, 'pages/contact.html')
+    return render(request, 'pages/contact.html', {'form': form})
 
 
 # =============================================================================

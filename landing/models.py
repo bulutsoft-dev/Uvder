@@ -1,6 +1,6 @@
 from django.db import models
-from django.utils.text import slugify
 from django.utils import timezone
+from .utils import get_unique_slug
 
 
 class SiteSettings(models.Model):
@@ -193,13 +193,7 @@ class News(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
-            # Benzersizlik kontrolü
-            original_slug = self.slug
-            counter = 1
-            while News.objects.filter(slug=self.slug).exclude(pk=self.pk).exists():
-                self.slug = f"{original_slug}-{counter}"
-                counter += 1
+            self.slug = get_unique_slug(self, 'title', 'slug')
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -262,12 +256,7 @@ class Writer(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
-            original_slug = self.slug
-            counter = 1
-            while Writer.objects.filter(slug=self.slug).exclude(pk=self.pk).exists():
-                self.slug = f"{original_slug}-{counter}"
-                counter += 1
+            self.slug = get_unique_slug(self, 'name', 'slug')
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -282,7 +271,7 @@ class Article(models.Model):
     """
     writer = models.ForeignKey(
         Writer, 
-        on_delete=models.CASCADE, 
+        on_delete=models.PROTECT, 
         related_name='articles', 
         verbose_name="Yazar",
         help_text="Bu yazıyı yazan kişi."
@@ -329,12 +318,7 @@ class Article(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
-            original_slug = self.slug
-            counter = 1
-            while Article.objects.filter(slug=self.slug).exclude(pk=self.pk).exists():
-                self.slug = f"{original_slug}-{counter}"
-                counter += 1
+            self.slug = get_unique_slug(self, 'title', 'slug')
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -377,7 +361,7 @@ class GalleryCategory(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            self.slug = get_unique_slug(self, 'name', 'slug')
         super().save(*args, **kwargs)
 
     def __str__(self):
