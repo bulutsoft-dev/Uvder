@@ -21,8 +21,7 @@ db.sqlite3
 *.mo
 
 # Static files (production)
-staticfiles/
-static_root/
+
 
 # Media files
 media/
