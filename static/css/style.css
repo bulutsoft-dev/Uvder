@@ -1949,17 +1949,33 @@ section {
 }
 
 .mission-vision-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin-bottom: 60px;
 }
 
-.mission-vision-grid .mv-card {
-    flex: 0 1 calc(33.333% - 20px);
-    min-width: 280px;
-    max-width: 380px;
+/* Dinamik kart sayısına göre grid */
+.mission-vision-grid.cards-1 {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mission-vision-grid.cards-2 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mission-vision-grid.cards-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.mission-vision-grid.cards-4 {
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .mv-card {
@@ -2003,16 +2019,32 @@ section {
 }
 
 .activities-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
 }
 
-.activities-grid .activity-card {
-    flex: 0 1 calc(50% - 15px);
-    min-width: 280px;
+/* Dinamik kart sayısına göre grid */
+.activities-grid.cards-1 {
+    grid-template-columns: 1fr;
     max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.activities-grid.cards-2 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.activities-grid.cards-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.activities-grid.cards-4 {
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .activity-card {
@@ -2336,12 +2368,16 @@ section {
         margin: 0 auto;
     }
 
-    .mission-vision-grid .mv-card {
-        flex: 0 1 calc(50% - 15px);
+    .mission-vision-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .activities-grid .activity-card {
-        flex: 0 1 100%;
+    .mission-vision-grid.cards-1 {
+        grid-template-columns: 1fr;
+    }
+
+    .activities-grid {
+        grid-template-columns: 1fr;
     }
 
     .impact-grid {
@@ -2822,8 +2858,11 @@ section {
     }
 
     /* About Page */
-    .mission-vision-grid .mv-card {
-        flex: 0 1 100%;
+    .mission-vision-grid,
+    .mission-vision-grid.cards-1,
+    .mission-vision-grid.cards-2,
+    .mission-vision-grid.cards-3 {
+        grid-template-columns: 1fr;
         max-width: 100%;
     }
 

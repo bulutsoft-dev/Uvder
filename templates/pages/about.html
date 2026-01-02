@@ -36,7 +36,8 @@
         </div>
 
         <!-- Mission & Vision -->
-        <div class="mission-vision-grid">
+        {% with card_count=mission_vision_cards|length %}
+        <div class="mission-vision-grid cards-{{ card_count|default:'3' }}">
             {% if mission_vision_cards %}
                 {% for card in mission_vision_cards %}
                 <div class="mv-card">
@@ -72,12 +73,14 @@
                 </div>
             {% endif %}
         </div>
+        {% endwith %}
 
         <!-- What We Do -->
+        {% with activity_count=activity_cards|length %}
         <div class="what-we-do">
             <h2 class="section-title">{% get_site_content 'about_activities_title' 'Neler Yapıyoruz?' %}</h2>
 
-            <div class="activities-grid">
+            <div class="activities-grid cards-{{ activity_count|default:'4' }}">
                 {% if activity_cards %}
                     {% for card in activity_cards %}
                     <div class="activity-card">
@@ -111,6 +114,7 @@
                 {% endif %}
             </div>
         </div>
+        {% endwith %}
 
         <!-- Impact Stats -->
         <div class="impact-section">

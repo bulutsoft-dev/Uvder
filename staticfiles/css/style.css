@@ -171,8 +171,9 @@ img {
 
 .navbar .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    gap: 40px;
 }
 
 .logo {
@@ -211,10 +212,11 @@ img {
 }
 
 .nav-link {
-    padding: 10px 15px;
+    padding: 10px 10px;
     color: var(--text-secondary);
     border-radius: var(--radius);
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -1953,6 +1955,29 @@ section {
     margin-bottom: 60px;
 }
 
+/* Dinamik kart sayısına göre grid */
+.mission-vision-grid.cards-1 {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mission-vision-grid.cards-2 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mission-vision-grid.cards-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.mission-vision-grid.cards-4 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
 .mv-card {
     background: var(--white);
     padding: 40px 30px;
@@ -1997,6 +2022,29 @@ section {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
+}
+
+/* Dinamik kart sayısına göre grid */
+.activities-grid.cards-1 {
+    grid-template-columns: 1fr;
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.activities-grid.cards-2 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.activities-grid.cards-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.activities-grid.cards-4 {
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .activity-card {
@@ -2321,7 +2369,11 @@ section {
     }
 
     .mission-vision-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .mission-vision-grid.cards-1 {
+        grid-template-columns: 1fr;
     }
 
     .activities-grid {
@@ -2380,9 +2432,13 @@ section {
 }
 
 /* Mobile Landscape and Tablets */
-@media (max-width: 1150px) {
+@media (max-width: 1280px) {
     .container {
         padding: 0 15px;
+    }
+
+    .navbar .container {
+        justify-content: space-between;
     }
 
     section {
@@ -2406,6 +2462,8 @@ section {
         transform: translateX(-100%);
         transition: transform 0.3s ease;
         z-index: 998;
+        height: 100vh;
+        overflow-y: auto;
         -webkit-overflow-scrolling: touch;
     }
 
@@ -2800,8 +2858,12 @@ section {
     }
 
     /* About Page */
-    .mission-vision-grid {
+    .mission-vision-grid,
+    .mission-vision-grid.cards-1,
+    .mission-vision-grid.cards-2,
+    .mission-vision-grid.cards-3 {
         grid-template-columns: 1fr;
+        max-width: 100%;
     }
 
     .mv-card {
@@ -3386,5 +3448,58 @@ section {
 
     .org-section-title {
         font-size: 1.4rem;
+    }
+}
+/* ===========================================
+   BACK TO TOP BUTTON
+   =========================================== */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-primary);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(62, 184, 154, 0.4);
+    z-index: 999;
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.back-to-top.visible {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+    animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(62, 184, 154, 0.6);
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(20px);
+    }
+    50% {
+        transform: scale(1.05) translateY(-5px);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
     }
 }
