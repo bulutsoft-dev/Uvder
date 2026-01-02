@@ -22,11 +22,11 @@
         <div class="about-intro">
             <div class="about-text">
                 <h2>{% get_site_content 'about_intro_title' 'Umut Vagonu Derneği' %}</h2>
-                <p class="lead">{{ site_settings.about_text|default:"Umut Vagonu Derneği, ihtiyaç sahiplerine ulaşmak,                    yüzlerde bir tebessüm oluşturmak için durmaksızın çalışan bir sivil toplum kuruluşudur." }}</p>
+                <p class="lead">{% get_site_content 'about_lead_text' 'Umut Vagonu Derneği, ihtiyaç sahiplerine ulaşmak, yüzlerde bir tebessüm oluşturmak için durmaksızın çalışan bir sivil toplum kuruluşudur.' %}</p>
 
-                <p>{% get_site_content 'about_intro_p1' 'Manisa merkezli olarak kurulan derneğimiz, Fen Bilgisi                    Öğretmeni Arzu Şahin Ünal tarafından başlatılan "Umut Vagonu" projesinin dernekleşmesiyle hayata                    geçmiştir.' %}</p>
+                <p>{% get_site_content 'about_intro_p1' 'Manisa merkezli olarak kurulan derneğimiz, Fen Bilgisi Öğretmeni Arzu Şahin Ünal tarafından başlatılan "Umut Vagonu" projesinin dernekleşmesiyle hayata geçmiştir.' %}</p>
 
-                <p>{% get_site_content "about_intro_p2' '7\'den 70\'e herkesin birbiriyle kaynaşmasını sağlayarak,                    topluma karşı duyarlı, sorumluluk sahibi ve gelişmeye açık bireyler yetiştirmek misyonuyla                    çalışıyoruz." %}</p>
+                <p>{% get_site_content 'about_intro_p2' "7'den 70'e herkesin birbiriyle kaynaşmasını sağlayarak, topluma karşı duyarlı, sorumluluk sahibi ve gelişmeye açık bireyler yetiştirmek misyonuyla çalışıyoruz." %}</p>
             </div>
             <div class="about-image">
                 <div class="about-image-placeholder">
@@ -36,6 +36,7 @@
         </div>
 
         <!-- Mission & Vision -->
+        {% if mission_vision_cards %}
         <div class="mission-vision-grid">
             {% for card in mission_vision_cards %}
             <div class="mv-card">
@@ -45,33 +46,12 @@
                 <h3>{{ card.title }}</h3>
                 <p>{{ card.content }}</p>
             </div>
-            {% empty %}
-            <!-- Varsayılan kartlar (veritabanında kart yoksa) -->
-            <div class="mv-card">
-                <div class="mv-icon">
-                    <i class="fas fa-bullseye"></i>
-                </div>
-                <h3>{% get_site_content 'about_mission_title' 'Misyonumuz' %}</h3>
-                <p>{% get_site_content 'about_mission_text' 'İhtiyaç sahiplerine eğitim, insani yardım ve sürdürülebilir projelerle ulaşarak toplumsal dayanışmayı güçlendirmek.' %}</p>
-            </div>
-            <div class="mv-card">
-                <div class="mv-icon">
-                    <i class="fas fa-eye"></i>
-                </div>
-                <h3>{% get_site_content 'about_vision_title' 'Vizyonumuz' %}</h3>
-                <p>{% get_site_content 'about_vision_text' "Türkiye'nin her köşesine umut taşıyan, gönüllülük kültürünü yaygınlaştıran öncü bir sivil toplum kuruluşu olmak." %}</p>
-            </div>
-            <div class="mv-card">
-                <div class="mv-icon">
-                    <i class="fas fa-gem"></i>
-                </div>
-                <h3>{% get_site_content 'about_values_title' 'Değerlerimiz' %}</h3>
-                <p>{% get_site_content 'about_values_text' 'Şeffaflık, hesap verebilirlik, gönüllülük, dayanışma ve sürdürülebilirlik ilkeleriyle hareket ediyoruz.' %}</p>
-            </div>
             {% endfor %}
         </div>
+        {% endif %}
 
         <!-- What We Do -->
+        {% if activity_cards %}
         <div class="what-we-do">
             <h2 class="section-title">{% get_site_content 'about_activities_title' 'Neler Yapıyoruz?' %}</h2>
 
@@ -82,31 +62,10 @@
                     <h4>{{ card.title }}</h4>
                     <p>{{ card.content }}</p>
                 </div>
-                {% empty %}
-                <!-- Varsayılan kartlar (veritabanında kart yoksa) -->
-                <div class="activity-card">
-                    <div class="activity-number">01</div>
-                    <h4>{% get_site_content 'about_activity_1_title' 'Eğitim Desteği' %}</h4>
-                    <p>{% get_site_content 'about_activity_1_text' "Doğu'daki köy okullarında eğitim gören çocuklara kırtasiye ve oyuncak yardımı yapıyor, köy okullarının tadilatını gerçekleştiriyor ve kütüphaneler kazandırıyoruz." %}</p>
-                </div>
-                <div class="activity-card">
-                    <div class="activity-number">02</div>
-                    <h4>{% get_site_content 'about_activity_2_title' 'İnsani Yardım' %}</h4>
-                    <p>{% get_site_content 'about_activity_2_text' 'Afet bölgeleri ve ihtiyaç sahibi ailelere gıda, giyim ve barınma gibi temel yaşam malzemeleri ulaştırıyoruz.' %}</p>
-                </div>
-                <div class="activity-card">
-                    <div class="activity-number">03</div>
-                    <h4>{% get_site_content 'about_activity_3_title' 'Sürdürülebilir Projeler' %}</h4>
-                    <p>{% get_site_content 'about_activity_3_text' 'Kalıcı çözümler üreterek toplumsal kalkınmaya destek veriyor, gönüllülük temalı festivaller düzenliyoruz.' %}</p>
-                </div>
-                <div class="activity-card">
-                    <div class="activity-number">04</div>
-                    <h4>{% get_site_content 'about_activity_4_title' 'Gönüllü Ağı' %}</h4>
-                    <p>{% get_site_content 'about_activity_4_text' 'Öğrenci, mühendis, avukat, öğretmen ve daha birçok meslek grubundan 1000+ gönüllü ile çalışıyoruz.' %}</p>
-                </div>
                 {% endfor %}
             </div>
         </div>
+        {% endif %}
 
         <!-- Impact Stats -->
         <div class="impact-section">

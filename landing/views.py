@@ -23,8 +23,8 @@ def home(request):
 def about(request):
     """Hakkımızda sayfası"""
     context = {
-        'mission_vision_cards': AboutCard.objects.filter(card_type='mission_vision', is_active=True),
-        'activity_cards': AboutCard.objects.filter(card_type='activity', is_active=True),
+        'mission_vision_cards': AboutCard.objects.filter(card_type='mission_vision', is_active=True).order_by('order'),
+        'activity_cards': AboutCard.objects.filter(card_type='activity', is_active=True).order_by('order'),
     }
     return render(request, 'pages/about.html', context)
 

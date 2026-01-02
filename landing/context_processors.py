@@ -5,13 +5,14 @@ def site_settings(request):
     """Site ayarlarını tüm template'lere ekle"""
     try:
         settings = SiteSettings.get_settings()
-    except:
-        settings = None
-    
+    except Exception:
+        # Veritabanı bağlantısı yoksa veya hata oluşursa varsayılan bir SiteSettings nesnesi oluştur
+        settings = SiteSettings()
+
     # Footer için aktif linkleri al
     try:
         footer_links = Link.objects.filter(is_active=True)[:5]
-    except:
+    except Exception:
         footer_links = []
     
     return {
