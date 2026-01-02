@@ -12,7 +12,7 @@ from unfold.decorators import action, display
 from .models import (
     SiteSettings, News, Writer, Article, 
     GalleryCategory, GalleryImage, Link, ContactMessage,
-    SiteContent, OrganizationMember,
+    SiteContent, OrganizationMember, AboutCard,
     NavbarContent, AboutContent, ContactContent, FooterContent,
     HomeContent, OrgPageContent, NewsContent, GalleryContent,
     WriterContent, LinkContent, ErrorPageContent, AdminDashboardContent, ArticleDetailContent
@@ -648,6 +648,70 @@ class ArticleDetailContentAdmin(SiteContentAdmin):
 
     def has_add_permission(self, request):
         return False
+
+
+# =============================================================================
+# HAKKIMIZDA KARTLARI (Misyon, Vizyon, Değerler vs.)
+# =============================================================================
+@admin.register(AboutCard)
+class AboutCardAdmin(ModelAdmin):
+    """
+    Hakkımızda Kartları Yönetimi
+    ----------------------------
+    Misyon, Vizyon, Değerler ve Aktivite kartlarını buradan ekleyip çıkarabilirsiniz.
+    """
+
+    warn_unsaved_form = True
+    list_filter_submit = True
+
+    list_display = ['icon_preview', 'title', 'card_type_badge', 'content_preview', 'order', 'is_active']
+    list_display_links = ['title']
+    list_filter = ['card_type', 'is_active']
+    search_fields = ['title', 'content']
+    list_editable = ['order', 'is_active']
+    ordering = ['card_type', 'order']
+    list_per_page = 20
+
+    fieldsets = (
+        ('📝 Kart Bilgileri', {
+            'fields': ('card_type', 'title', 'icon', 'content'),
+            'description': 'Kartın içerik ve görünüm bilgileri.',
+            'classes': ['tab'],
+        }),
+        ('⚙️ Ayarlar', {
+            'fields': ('order', 'is_active'),
+            'description': 'Sıralama ve görünürlük ayarları.',
+            'classes': ['tab'],
+        }),
+    )
+
+    @display(description="İkon")
+    def icon_preview(self, obj):
+        return format_html(
+            '<span style="display: inline-flex; align-items: center; justify-content: center; width: 35px; height: 35px; background: #10b981; border-radius: 8px; color: white;"><i class="{}"></i></span>',
+            obj.icon
+        )
+
+    @display(description="Kart Türü", label={"Misyon & Vizyon Kartları": "primary", "Neler Yapıyoruz Kartları": "info"})
+    def card_type_badge(self, obj):
+        return obj.get_card_type_display()
+
+    @display(description="Önizleme")
+    def content_preview(self, obj):
+        text = obj.content
+        return text[:80] + "..." if len(text) > 80 else text
+
+    actions = ['make_active', 'make_inactive']
+
+    @action(description="✅ Seçili kartları aktif yap")
+    def make_active(self, request, queryset):
+        count = queryset.update(is_active=True)
+        self.message_user(request, f"{count} kart aktif yapıldı.")
+
+    @action(description="❌ Seçili kartları pasif yap")
+    def make_inactive(self, request, queryset):
+        count = queryset.update(is_active=False)
+        self.message_user(request, f"{count} kart pasif yapıldı.")
 
 
 # =============================================================================

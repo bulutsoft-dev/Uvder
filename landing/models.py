@@ -692,6 +692,81 @@ class ArticleDetailContent(SiteContent):
         verbose_name_plural = "Yazı Detay Sayfası Ayarları"
 
 
+class AboutCard(models.Model):
+    """
+    Hakkımızda Sayfası Kartları
+    ----------------------------
+    Misyon, Vizyon, Değerler gibi kartları dinamik olarak yönetir.
+    """
+    CARD_TYPE_CHOICES = [
+        ('mission_vision', 'Misyon & Vizyon Kartları'),
+        ('activity', 'Neler Yapıyoruz Kartları'),
+    ]
+
+    ICON_CHOICES = [
+        ('fas fa-bullseye', '🎯 Hedef (Misyon)'),
+        ('fas fa-eye', '👁️ Göz (Vizyon)'),
+        ('fas fa-gem', '💎 Değer'),
+        ('fas fa-heart', '❤️ Kalp'),
+        ('fas fa-hand-holding-heart', '🤲 Yardım'),
+        ('fas fa-graduation-cap', '🎓 Eğitim'),
+        ('fas fa-users', '👥 İnsanlar'),
+        ('fas fa-globe', '🌍 Dünya'),
+        ('fas fa-lightbulb', '💡 Ampul'),
+        ('fas fa-star', '⭐ Yıldız'),
+        ('fas fa-seedling', '🌱 Fidan'),
+        ('fas fa-hands-helping', '🤝 Dayanışma'),
+        ('fas fa-book', '📖 Kitap'),
+        ('fas fa-school', '🏫 Okul'),
+        ('fas fa-home', '🏠 Ev'),
+        ('fas fa-gift', '🎁 Hediye'),
+    ]
+
+    card_type = models.CharField(
+        max_length=20,
+        choices=CARD_TYPE_CHOICES,
+        default='mission_vision',
+        verbose_name="Kart Türü",
+        help_text="Kartın nerede görüneceğini belirler."
+    )
+    title = models.CharField(
+        max_length=200,
+        verbose_name="Başlık",
+        help_text="Kartın başlığı. Örn: Misyonumuz, Vizyonumuz"
+    )
+    content = models.TextField(
+        verbose_name="İçerik",
+        help_text="Kartın açıklama metni."
+    )
+    icon = models.CharField(
+        max_length=50,
+        choices=ICON_CHOICES,
+        default='fas fa-star',
+        verbose_name="İkon",
+        help_text="Kartın ikonu."
+    )
+    order = models.IntegerField(
+        default=0,
+        verbose_name="Sıralama",
+        help_text="Küçük sayı önce görünür."
+    )
+    is_active = models.BooleanField(
+        default=True,
+        verbose_name="Aktif",
+        help_text="Pasif kartlar sitede görünmez."
+    )
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Oluşturulma Tarihi")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Güncelleme Tarihi")
+
+    class Meta:
+        verbose_name = "Hakkımızda Kartı"
+        verbose_name_plural = "Hakkımızda Kartları"
+        ordering = ['card_type', 'order']
+
+    def __str__(self):
+        return f"{self.get_card_type_display()} - {self.title}"
+
+
 class OrganizationMember(models.Model):
     """
     Organizasyon Üyeleri
@@ -772,4 +847,3 @@ class OrganizationMember(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.get_role_type_display()}"
-

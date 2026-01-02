@@ -4,7 +4,7 @@ from django.contrib import messages
 from .models import (
     SiteSettings, News, Writer, Article,
     GalleryCategory, GalleryImage, Link, ContactMessage,
-    OrganizationMember
+    OrganizationMember, AboutCard
 )
 from .forms import ContactForm
 
@@ -22,7 +22,11 @@ def home(request):
 
 def about(request):
     """Hakkımızda sayfası"""
-    return render(request, 'pages/about.html')
+    context = {
+        'mission_vision_cards': AboutCard.objects.filter(card_type='mission_vision', is_active=True),
+        'activity_cards': AboutCard.objects.filter(card_type='activity', is_active=True),
+    }
+    return render(request, 'pages/about.html', context)
 
 
 def organization(request):
