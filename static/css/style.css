@@ -1949,10 +1949,17 @@ section {
 }
 
 .mission-vision-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 30px;
     margin-bottom: 60px;
+}
+
+.mission-vision-grid .mv-card {
+    flex: 0 1 calc(33.333% - 20px);
+    min-width: 280px;
+    max-width: 380px;
 }
 
 .mv-card {
@@ -1996,9 +2003,16 @@ section {
 }
 
 .activities-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 30px;
+}
+
+.activities-grid .activity-card {
+    flex: 0 1 calc(50% - 15px);
+    min-width: 280px;
+    max-width: 550px;
 }
 
 .activity-card {
@@ -2322,12 +2336,12 @@ section {
         margin: 0 auto;
     }
 
-    .mission-vision-grid {
-        grid-template-columns: 1fr 1fr;
+    .mission-vision-grid .mv-card {
+        flex: 0 1 calc(50% - 15px);
     }
 
-    .activities-grid {
-        grid-template-columns: 1fr;
+    .activities-grid .activity-card {
+        flex: 0 1 100%;
     }
 
     .impact-grid {
@@ -2808,8 +2822,9 @@ section {
     }
 
     /* About Page */
-    .mission-vision-grid {
-        grid-template-columns: 1fr;
+    .mission-vision-grid .mv-card {
+        flex: 0 1 100%;
+        max-width: 100%;
     }
 
     .mv-card {

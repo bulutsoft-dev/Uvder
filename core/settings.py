@@ -132,6 +132,11 @@ UNFOLD = {
                         "link": reverse_lazy("admin:landing_aboutcontent_changelist"),
                     },
                     {
+                        "title": "Hakkımızda Kartları",
+                        "icon": "view_carousel",
+                        "link": reverse_lazy("admin:landing_aboutcard_changelist"),
+                    },
+                    {
                         "title": "Organizasyon Sayfası",
                         "icon": "corporate_fare",
                         "link": reverse_lazy("admin:landing_orgpagecontent_changelist"),
