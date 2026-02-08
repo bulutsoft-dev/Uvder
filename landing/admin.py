@@ -82,6 +82,9 @@ class SiteSettingsAdmin(ModelAdmin):
         obj = SiteSettings.objects.first()
         return redirect(reverse('admin:landing_sitesettings_change', args=[obj.pk]))
 
+    class Media:
+        js = ('js/admin_image_compressor.js',)
+
 
 # =============================================================================
 # HABERLER
@@ -163,6 +166,9 @@ class NewsAdmin(ModelAdmin):
         count = queryset.update(is_featured=False)
         self.message_user(request, f"{count} haberden öne çıkarma kaldırıldı.")
 
+    class Media:
+        js = ('js/admin_image_compressor.js',)
+
 
 # =============================================================================
 # YAZARLAR
@@ -214,6 +220,9 @@ class WriterAdmin(ModelAdmin):
     @display(description="Durum", label={"Aktif": "success", "Pasif": "danger"})
     def active_badge(self, obj):
         return "Aktif" if obj.is_active else "Pasif"
+
+    class Media:
+        js = ('js/admin_image_compressor.js',)
 
 
 # =============================================================================
@@ -268,6 +277,9 @@ class ArticleAdmin(ModelAdmin):
     def make_draft(self, request, queryset):
         count = queryset.update(is_published=False)
         self.message_user(request, f"{count} yazı taslağa alındı.")
+
+    class Media:
+        js = ('js/admin_image_compressor.js',)
 
 
 # =============================================================================
@@ -364,6 +376,9 @@ class GalleryImageAdmin(ModelAdmin):
     def remove_featured(self, request, queryset):
         count = queryset.update(is_featured=False)
         self.message_user(request, f"{count} görselden öne çıkarma kaldırıldı.")
+
+    class Media:
+        js = ('js/admin_image_compressor.js',)
 
 
 # =============================================================================
@@ -713,6 +728,9 @@ class AboutCardAdmin(ModelAdmin):
         count = queryset.update(is_active=False)
         self.message_user(request, f"{count} kart pasif yapıldı.")
 
+    class Media:
+        js = ('js/admin_image_compressor.js',)
+
 
 # =============================================================================
 # ORGANİZASYON ÜYELERİ
@@ -762,3 +780,6 @@ class OrganizationMemberAdmin(ModelAdmin):
     })
     def role_badge(self, obj):
         return obj.get_role_type_display()
+
+    class Media:
+        js = ('js/admin_image_compressor.js',)
